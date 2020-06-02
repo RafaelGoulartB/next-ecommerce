@@ -22,19 +22,6 @@ This project was made using the follow technologies:
   <li><a href="https://github.com/axios/axios">Axios</a> - To connection with API</li>
 </ul>
 
-
-## Author
-
-👤 **Rafael GoulartB**
-
-* Github: [@RafaelGoulartB](https://github.com/RafaelGoulartB)
-
-
-
-## 🤝 Contributing
-
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/RafaelGoulartB/Next.js-Ecommerce/issues).
-
 ## Show your support
 
 Give a ⭐️ if this project helped you!
@@ -72,3 +59,11 @@ yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+
+
+## Author
+
+👤 **Rafael GoulartB**
+
+* Github: [@RafaelGoulartB](https://github.com/RafaelGoulartB)
