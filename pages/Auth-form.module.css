@@ -1,0 +1,155 @@
+.loginContainer {
+  width: 60vw;
+  margin-top: 10%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.loginContainer .title {
+  color: #4d4d4d;
+  font-size: 38px;
+  text-transform: uppercase;
+  font-weight: 1000;
+  letter-spacing: 1.65px;
+  -webkit-letter-spacing: 1.65px;
+  margin-bottom: 32px;
+}
+.loginContainer form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.loginContainer form .formTitle {
+  font-size: 38px;
+  font-weight: 1000;
+  letter-spacing: 1.65px;
+  color: #b2b2b2;
+  text-transform: uppercase;
+  margin-bottom: 84px;
+}
+.loginContainer form .inputs {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.loginContainer form .inputRow {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.loginContainer form .inputs input {
+  width: 100%;
+  font-size: 15px;
+  margin-bottom: 34px;
+  color: #4d4d4d;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  background-color: #ffffff;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+  padding-bottom: 1.25em;
+  padding-top: 1.25em;
+  padding-left: 32px;
+}
+.loginContainer form .inputs .inputRow input {
+  width: 44%;
+  font-size: 15px;
+  margin-bottom: 34px;
+  color: #4d4d4d;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  background-color: #ffffff;
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+  padding-bottom: 1.25em;
+  padding-top: 1.25em;
+  padding-left: 32px;
+}
+.loginContainer form .inputs input ::placeholder {
+  color: #b2b2b2;
+  opacity: 1; /* Firefox */
+}
+.loginContainer form .inputs .input :-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: #b2b2b2;
+}
+.loginContainer form .inputs input ::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: #b2b2b2;
+}
+.loginContainer form button {
+  margin-top: 32px;
+  background-color: #1875f0;
+  color: #ffffff;
+  border: none;
+  width: 50%;
+  font-size: 18px;
+  border-radius: 6px;
+  padding-bottom: 1em;
+  padding-top: 1em;
+  align-self: center;
+}
+.loginContainer form .switchForm {
+  color: #b2b2b2;
+  margin-top: 12px;
+  font-weight: 500;
+}
+@media (min-width: 1400px) {
+  .loginContainer {
+    width: 840px;
+    margin-top: 5%;
+  }
+}
+@media (max-width: 1150px) {
+  .loginContainer form .inputs .inputRow input {
+    width: 42%;
+  }
+}
+@media (max-width: 1000px) {
+  .loginContainer .title {
+    width: 95vw;
+    font-size: 36px;
+    text-align: center;
+  }
+  .loginContainer form .formTitle {
+    width: 95vw;
+    font-size: 34px;
+    text-align: center;
+  }
+  .loginContainer form .inputs .inputRow {
+    align-items: center;
+    flex-direction: column;
+  }
+  .loginContainer form .inputs .inputRow input {
+    width: 70vw;
+  }
+  .loginContainer form .inputs input {
+    width: 80%;
+    align-self: center;
+  }
+  .loginContainer form button {
+    align-self: center;
+    width: 80%;
+  }
+}
+@media (max-width: 800px) {
+  .loginContainer .title {
+    width: 95vw;
+    font-size: 25px;
+    text-align: center;
+  }
+  .loginContainer form .formTitle {
+    width: 95vw;
+    font-size: 26px;
+    text-align: center;
+    margin-bottom: 36px;
+  }
+  .loginContainer form .inputs input {
+    width: 75vw;
+  }
+  .loginContainer form button {
+    width: 75vw;
+  }
+}

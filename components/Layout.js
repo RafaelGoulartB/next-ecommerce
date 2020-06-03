@@ -10,7 +10,14 @@ export default function Layout(props) {
 
       <main>{props.children}</main>
 
-      <style jsx>{``}</style>
+      <style jsx>{`
+        main {
+          display: flex;
+          background-color: "#FAFAFA";
+          align-items: center;
+          justify-content: center;
+        }
+      `}</style>
     </div>
   );
 }
