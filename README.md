@@ -14,6 +14,8 @@
 
 > This project use the following API: https://github.com/RafaelGoulartB/Nodejs-Ecommerce-Api 
 
+You can see the project at: https://quantum-ecommerce.now.sh/
+
 ## 💻 Technologies
 This project was made using the follow technologies:
 <ul>
