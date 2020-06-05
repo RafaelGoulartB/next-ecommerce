@@ -12,26 +12,37 @@
   </a>
 </p>
 
+> This project was made to show a full ecommerce plataform with front-end build with Next.Js hosting by Vercel.
 > This project use the following API: https://github.com/RafaelGoulartB/Nodejs-Ecommerce-Api 
 
-You can see the project running online at: <a href="https://quantum-ecommerce.now.sh/" target="_blank">QUANTUM ECOMMERCE<a/>
+# :pushpin: Table of Contents
 
-## 💻 Technologies
+* [Technologies](#computer-technologies)
+* [Features](#rocket-features)
+* [How to run](#construction_worker-how-to-run)
+* [Found a bug? Missing a specific feature?](#bug-issues)
+* [License](#closed_book-license)
+
+
+# :computer: Technologies
 This project was made using the follow technologies:
 <ul>
   <li><a href="https://nextjs.org/">Next.js</a>  - To Server-Side-Render</li>
-  <li><a href="https://reactjs.org/docs/getting-started.html">React.js</a></li>
   <li><a href="https://github.com/axios/axios">Axios</a> - To connection with API</li>
+  <li><a href="https://reactjs.org/docs/getting-started.html">React.js</a></li>
   <li><a href="https://eslint.org/docs/user-guide/getting-started">Eslint</a></li>
 </ul>
 
-## Show your support
-
-Give a ⭐️ if this project helped you!
-
 ![Project Image](https://github.com/RafaelGoulartB/Ecommerce-Quantum/blob/master/Ecommerce.jpg)
 
-## How to run
+# :rocket: Features
+
+* Signup and Signin using JWT to authentication.
+* List Products
+* Add products to cart
+* Buy Products
+
+# :construction_worker: How to run
 First, clone and run the API: https://github.com/RafaelGoulartB/Nodejs-Ecommerce-Api
 ```bash
 git clone https://github.com/RafaelGoulartB/Nodejs-Ecommerce-Api.git
@@ -54,16 +65,13 @@ yarn dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 
+# :bug: Issues
 
-## Author
+Feel free to **file a new issue** with a respective title and description on the the [NextJS Ecommerce](https://github.com/RafaelGoulartB/Next.js-Ecommerce/issues) repository. If you already found a solution to your problem, **i would love to review your pull request**!
 
-👤 **Rafael GoulartB**
+# :closed_book: License
 
-* Github: [@RafaelGoulartB](https://github.com/RafaelGoulartB)
+Released in 2020.
+This project is under the [MIT license](https://github.com/RafaelGoulartB/Next.js-Ecommerce/master/LICENSE).
 
-## 📝 License
-
-Copyright © 2020 [Rafael GoulartB](https://github.com/RafaelGoulartB).<br />
-This project is [MIT](https://github.com/RafaelGoulartB/Next.js-Ecommerce/blob/master/LICENSE) licensed.
-
-***
+Made with love by [RafaelGoulartB](https://github.com/RafaelGoulartB) 🚀
