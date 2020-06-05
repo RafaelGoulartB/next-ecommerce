@@ -1,16 +1,16 @@
-import { useState } from "react";
-import Layout from "../components/Layout";
-import Link from "next/link";
-import userApi from "../services/user-api";
+import { useState } from 'react';
+import Layout from '../components/Layout';
+import Link from 'next/link';
+import userApi from '../services/user-api';
 import styles from './Auth-form.module.css';
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log("Form submited");
+    console.log('Form submited');
   }
 
   return (
@@ -37,7 +37,7 @@ export default function Login() {
           </div>
           <button type="submit">Login</button>
           <Link href="/signup">
-            <a className={styles.switchForm}>I don't have a account</a>
+            <a className={styles.switchForm}>I do not have a account</a>
           </Link>
         </form>
       </div>

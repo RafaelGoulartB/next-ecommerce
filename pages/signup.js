@@ -1,19 +1,19 @@
-import { useState } from "react";
-import Link from "next/link";
-import Layout from "../components/Layout";
-import userApi from "../services/user-api";
+import { useState } from 'react';
+import Link from 'next/link';
+import Layout from '../components/Layout';
+import userApi from '../services/user-api';
 import styles from './Auth-form.module.css';
 
 
 export default function SignUp() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirm_password, setConfirm_password] = useState("");
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirm_password, setConfirm_password] = useState('');
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log("Form submited");
+    console.log('Form submited');
   }
 
   return (
