@@ -23,6 +23,7 @@
 * [Found a bug? Missing a specific feature?](#bug-issues)
 * [License](#closed_book-license)
 
+![Project Image](https://github.com/RafaelGoulartB/Ecommerce-Quantum/blob/master/Ecommerce.jpg)
 
 # :computer: Technologies
 This project was made using the follow technologies:
@@ -32,8 +33,6 @@ This project was made using the follow technologies:
   <li><a href="https://reactjs.org/docs/getting-started.html">React.js</a></li>
   <li><a href="https://eslint.org/docs/user-guide/getting-started">Eslint</a></li>
 </ul>
-
-![Project Image](https://github.com/RafaelGoulartB/Ecommerce-Quantum/blob/master/Ecommerce.jpg)
 
 # :rocket: Features
 
