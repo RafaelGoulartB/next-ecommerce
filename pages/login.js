@@ -28,6 +28,10 @@ export default function Login() {
         setMsgError(response.data.error)
         return;
       }
+      if(!response.data) {
+        setMsgError('Network error, please try again later.')
+        return;
+      }
 
       localStorage.setItem('user', response.data.user);
       localStorage.setItem('auth_token', response.data.token);
