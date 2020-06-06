@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Layout from '../components/Layout';
 import Link from 'next/link';
-import userApi from '../services/user-api';
+import api from '../services/api';
 import styles from './Auth-form.module.css';
 
 export default function Login() {
