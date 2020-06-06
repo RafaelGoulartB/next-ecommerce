@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import Layout from '../components/Layout';
+import PageContainer from '../components/page-container';
 import Link from 'next/link';
 import api from '../services/api';
 import styles from './Auth-form.module.css';
@@ -37,7 +37,7 @@ export default function Login() {
   }
 
   return (
-    <Layout title="Login">
+    <PageContainer title="Quantum E-commerce - Login">
       <div className={styles.loginContainer}>
         <h1 className={styles.title}>quantum ecommerce</h1>
         <form onSubmit={handleSubmit}>
@@ -67,6 +67,6 @@ export default function Login() {
           </Link>
         </form>
       </div>
-    </Layout>
+    </PageContainer>
   );
 }

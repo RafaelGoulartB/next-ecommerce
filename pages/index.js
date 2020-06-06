@@ -1,13 +1,12 @@
-import Head from 'next/head';
-import Layout from '../components/Layout';
+import Page from '../components/page';
 
 export default function Home() {
   return (
-    <Layout title="Home">
+    <Page title="Quantum E-commerce - Products">
       <div>
         <h1>Home with Layout</h1>
         <style jsx>{''}</style>
       </div>
-    </Layout>
+    </Page>
   );
 }
