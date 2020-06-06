@@ -10,10 +10,18 @@ export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirm_password, setConfirm_password] = useState('');
+  const [msgError, setMsgError] = useState('');
 
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log('Form submited');
+
+    if(password != confirm_password) {
+      setMsgError('The password doesn\'t match');
+      setPassword('');
+      setConfirm_password('');
+
+      return;
+    }
   }
 
   return (
@@ -22,6 +30,9 @@ export default function SignUp() {
         <h1 className={styles.title}>quantum ecommerce</h1>
         <form onSubmit={handleSubmit}>
           <h3 className={styles.formTitle}>sign up</h3>
+          {msgError && (
+            <p className={styles.errorMsg}>{msgError}</p>
+          )}
           <div className={styles.inputs}>
             <div className={styles.inputRow}>
               <input

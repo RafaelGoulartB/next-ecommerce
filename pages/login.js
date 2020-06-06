@@ -7,6 +7,7 @@ import styles from './Auth-form.module.css';
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [msgError, setMsgError] = useState('');
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -19,6 +20,9 @@ export default function Login() {
         <h1 className={styles.title}>quantum ecommerce</h1>
         <form onSubmit={handleSubmit}>
           <h3 className={styles.formTitle}>login</h3>
+          {msgError && (
+            <p className={styles.errorMsg}>{msgError}</p>
+          )}
           <div className={styles.inputs}>
             <input
               type="email"
