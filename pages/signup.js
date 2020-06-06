@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Layout from '../components/Layout';
 import api from '../services/api';
@@ -6,6 +7,8 @@ import styles from './Auth-form.module.css';
 
 
 export default function SignUp() {
+  const router = useRouter();
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -19,7 +22,25 @@ export default function SignUp() {
       setMsgError('The password doesn\'t match');
       setPassword('');
       setConfirm_password('');
+      return;
+    }
+    const data = {
+      name,
+      email,
+      password
+    }
+    try {
+      const response = await api.post('user/signup', data);
+      if(response.data.error) {
+        setMsgError(response.data.error);
+        return;
+      }
 
+      localStorage.setItem('user', response.data.user);
+      localStorage.setItem('auth_token', response.data.token);
+      router.push('/')
+    } catch {
+      setMsgError('Network error, please try again later.')
       return;
     }
   }

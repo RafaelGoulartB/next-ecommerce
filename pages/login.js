@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 import Layout from '../components/Layout';
 import Link from 'next/link';
 import api from '../services/api';
@@ -9,9 +10,30 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [msgError, setMsgError] = useState('');
 
+  const router = useRouter();
+
   async function handleSubmit(e) {
     e.preventDefault();
-    console.log('Form submited');
+
+    const data = {
+      email,
+      password
+    }
+
+    try {
+      const response = await api.post('user/login', data);
+      if(response.data.error) {
+        setMsgError(response.data.error)
+        return;
+      }
+
+      localStorage.setItem('user', response.data.user);
+      localStorage.setItem('auth_token', response.data.token);
+      router.push('/')
+    } catch {
+      setMsgError('Network error, please try again later.')
+      return;
+    }
   }
 
   return (
