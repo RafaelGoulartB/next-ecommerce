@@ -5,6 +5,8 @@ import Link from 'next/link';
 import api from '../services/api';
 import styles from './Auth-form.module.css';
 
+import Button from '../components/form/button';
+
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -61,7 +63,9 @@ export default function Login() {
               value={password}
             />
           </div>
-          <button type="submit">Login</button>
+
+          <Button type="submit" title="Login"/>
+
           <Link href="/signup">
             <a className={styles.switchForm}>I do not have a account</a>
           </Link>

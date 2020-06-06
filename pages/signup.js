@@ -5,6 +5,7 @@ import PageContainer from '../components/page-container';
 import api from '../services/api';
 import styles from './Auth-form.module.css';
 
+import Button from '../components/form/button';
 
 export default function SignUp() {
   const router = useRouter();
@@ -88,7 +89,9 @@ export default function SignUp() {
               />
             </div>
           </div>
-          <button type="submit">Sign Up</button>
+
+          <Button type="submit" title="Sign Up"/>
+
           <Link href="/login">
             <a className={styles.switchForm}>I already have a account</a>
           </Link>
