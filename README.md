@@ -36,15 +36,16 @@ This project was made using the follow technologies:
 
 # :rocket: Features
 
-* Authentication with JWT.
-* Live search
-* Sort list of products
-* Add products to Cart
-* Checkout
-* Payment
-* Categories with products
-* Reset Password using email
-* Contact us Form
+- [x] Authentication with JWT and LocalStorage.
+- [ ] Reset Password using email
+- [ ] List Products
+- [ ] Filter products by Category
+- [ ] Sort list of products
+- [ ] Live search
+- [ ] Add products to Cart
+- [ ] Checkout
+- [ ] Payment
+- [ ] Contact us Form
 
 # :construction_worker: How to run
 First, clone and run the API: https://github.com/RafaelGoulartB/Nodejs-Ecommerce-Api
