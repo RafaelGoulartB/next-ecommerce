@@ -42,9 +42,11 @@ This project was made using the follow technologies:
 - [ ] Filter products by Category
 - [ ] Sort list of products
 - [ ] Live search
+- [ ] Add products to Wishlist
 - [ ] Add products to Cart
 - [ ] Checkout
 - [ ] Payment
+- [ ] Review Products
 - [ ] Contact us Form
 
 # :construction_worker: How to run
