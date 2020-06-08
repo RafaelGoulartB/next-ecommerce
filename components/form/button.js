@@ -5,6 +5,7 @@ export default function Button({ type, title }) {
 
       <style jsx>{`
         button {
+          width: 100%;
           margin-top: 32px;
           background-color: #1875f0;
           color: #ffffff;
@@ -17,13 +18,12 @@ export default function Button({ type, title }) {
           align-self: center;
         }
         @media (max-width: 1000px) {
-          .loginContainer form button {
-            align-self: center;
-            width: 80%;
+          button {
+            width: 70vw;
           }
         }
         @media (max-width: 800px) {
-          .loginContainer form button {
+          button {
             width: 75vw;
           }
         }
