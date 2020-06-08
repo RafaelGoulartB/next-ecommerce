@@ -3,9 +3,12 @@ import { useRouter } from 'next/router';
 import PageContainer from '../components/page-container';
 import Link from 'next/link';
 import api from '../services/api';
-import styles from './Auth-form.module.css';
 
+import AlertError from '../components/alerts/error';
 import Button from '../components/form/button';
+import Input from '../components/form/input';
+import InputContainer from '../components/form/InputContainer';
+import FormContainer from '../components/form/formContainer';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -44,37 +47,61 @@ export default function Login() {
 
   return (
     <PageContainer title="Quantum E-commerce - Login">
-      <div className={styles.loginContainer}>
-        <h1 className={styles.title}>quantum ecommerce</h1>
+      <FormContainer>
         <form onSubmit={handleSubmit}>
-          <h3 className={styles.formTitle}>login</h3>
+          <h3 className="formTitle">login</h3>
+
           {msgError && (
-            <p className={styles.errorMsg}>{msgError}</p>
+            <AlertError message={msgError} />
           )}
-          <div className={styles.inputs}>
-            <input
+
+          <InputContainer>
+            <Input
               type="email"
               name="email"
               placeholder="Email"
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={value => setEmail(value)}
               value={email}
             />
-            <input
+            <Input
               type="password"
               name="password"
               placeholder="Password"
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={value => setPassword(value)}
               value={password}
             />
-          </div>
 
-          <Button type="submit" title="Login"/>
+            <Button type="submit" title="Login"/>
+          </InputContainer>
 
-          <Link href="/signup">
-            <a className={styles.switchForm}>I do not have a account</a>
-          </Link>
         </form>
-      </div>
+
+        <Link href="/signup">
+          <a className="switchForm">I do not have a account</a>
+        </Link>
+
+      </FormContainer>
+
+      <style jsx>{`
+        form {
+          width: 100%;
+          align-items: center;
+        }
+        form .formTitle {
+          text-align: center;
+          font-size: 38px;
+          font-weight: 1000;
+          letter-spacing: 1.65px;
+          color: #b2b2b2;
+          text-transform: uppercase;
+          margin-bottom: 84px;
+        }
+        .switchForm {
+          color: #b2b2b2;
+          margin-top: 12px;
+          font-weight: 500;
+        }
+      `}</style>
     </PageContainer>
   );
 }

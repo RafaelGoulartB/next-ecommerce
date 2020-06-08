@@ -3,9 +3,12 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import PageContainer from '../components/page-container';
 import api from '../services/api';
-import styles from './Auth-form.module.css';
 
+import AlertError from '../components/alerts/error';
 import Button from '../components/form/button';
+import Input from '../components/form/input';
+import InputContainer from '../components/form/InputContainer';
+import FormContainer from '../components/form/formContainer';
 
 export default function SignUp() {
   const router = useRouter();
@@ -52,55 +55,74 @@ export default function SignUp() {
 
   return (
     <PageContainer title="Quantum E-commerce - Sign Up">
-      <div className={styles.loginContainer}>
-        <h1 className={styles.title}>quantum ecommerce</h1>
+      <FormContainer>
         <form onSubmit={handleSubmit}>
-          <h3 className={styles.formTitle}>sign up</h3>
+          <h3 className="formTitle">sign up</h3>
+
           {msgError && (
-            <p className={styles.errorMsg}>{msgError}</p>
+            <AlertError message={msgError}/>
           )}
-          <div className={styles.inputs}>
-            <div className={styles.inputRow}>
-              <input
-                type="text"
-                name="name"
-                placeholder="Name"
-                onChange={(e) => setName(e.target.value)}
-                value={name}
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
-              />
-            </div>
-            <div className={styles.inputRow}>
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                onChange={(e) => setPassword(e.target.value)}
-                value={password}
-              />
-              <input
-                type="password"
-                name="confirm_password"
-                placeholder="Repeat Password"
-                onChange={(e) => setConfirm_password(e.target.value)}
-                value={confirm_password}
-              />
-            </div>
-          </div>
+          <InputContainer>
+            <Input
+              type="text"
+              name="name"
+              placeholder="Name"
+              onChange={value => setName(value)}
+              value={name}
+            />
+            <Input
+              type="email"
+              name="email"
+              placeholder="Email"
+              onChange={value => setEmail(value)}
+              value={email}
+            />
+            <Input
+              type="password"
+              name="password"
+              placeholder="Password"
+              onChange={value => setPassword(value)}
+              value={password}
+            />
+            <Input
+              type="password"
+              name="confirm_password"
+              placeholder="Repeat Password"
+              onChange={value => setConfirm_password(value)}
+              value={confirm_password}
+            />
 
           <Button type="submit" title="Sign Up"/>
 
-          <Link href="/login">
-            <a className={styles.switchForm}>I already have a account</a>
-          </Link>
+          </InputContainer>
         </form>
-      </div>
+
+        <Link href="/login">
+          <a className="switchForm">I already have a account</a>
+        </Link>
+
+      </FormContainer>
+
+      <style jsx>{`
+        form {
+          width: 100%;
+          align-items: center;
+        }
+        form .formTitle {
+          text-align: center;
+          font-size: 38px;
+          font-weight: 1000;
+          letter-spacing: 1.65px;
+          color: #b2b2b2;
+          text-transform: uppercase;
+          margin-bottom: 84px;
+        }
+        .switchForm {
+          color: #b2b2b2;
+          margin-top: 12px;
+          font-weight: 500;
+        }
+      `}</style>
     </PageContainer>
   );
 }
