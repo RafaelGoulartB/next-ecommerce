@@ -44,8 +44,8 @@ This project was made using the follow technologies:
 - [ ] Live search
 - [ ] Add products to Wishlist
 - [ ] Add products to Cart
-- [ ] Checkout
-- [ ] Payment
+- [ ] Checkout with Paypal and MercadoPago
+- [ ] Payment with Paypal and MercadoPago
 - [ ] Review Products
 - [ ] Contact us Form
 
