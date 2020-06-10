@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import PageContainer from '../components/page-container';
 import Link from 'next/link';
@@ -16,6 +16,14 @@ export default function Login() {
   const [msgError, setMsgError] = useState('');
 
   const router = useRouter();
+
+  useEffect(() => {
+    if(window != 'undefined') {
+      const isLogged = localStorage.getItem('auth_token');
+      if(isLogged) router.push('/')
+      else return;
+    }
+  });
 
   async function handleSubmit(e) {
     e.preventDefault();
