@@ -13,7 +13,7 @@
 </p>
 
 > This project was made to show a full ecommerce plataform with front-end build with Next.Js hosting by Vercel.
-> This project use the following API: https://github.com/RafaelGoulartB/Nodejs-Ecommerce-Api 
+> And using the API in next.Js with GraphQL to make the backend.
 
 # :pushpin: Table of Contents
 
