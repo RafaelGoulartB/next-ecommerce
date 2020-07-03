@@ -50,19 +50,6 @@ This project was made using the follow technologies:
 - [ ] Contact us Form
 
 # :construction_worker: How to run
-First, clone and run the API: https://github.com/RafaelGoulartB/Nodejs-Ecommerce-Api
-```bash
-git clone https://github.com/RafaelGoulartB/Nodejs-Ecommerce-Api.git
-# and
-cd Nodejs-Ecommerce-Api
-# and
-npm install
-# and
-npm run dev
-```
-
-Afeter in the Next.js Project, run the development front-end server:
-
 ```bash
 npm run dev
 # or
