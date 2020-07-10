@@ -29,7 +29,7 @@
 This project was made using the follow technologies:
 <ul>
   <li><a href="https://nextjs.org/">Next.js</a>  - To Server-Side-Render</li>
-  <li><a href="https://github.com/axios/axios">Axios</a> - To connection with API</li>
+  <li><a href="https://graphql.org/">GraphQL</a> - To server Queries</li>
   <li><a href="https://reactjs.org/docs/getting-started.html">React.js</a></li>
   <li><a href="https://eslint.org/docs/user-guide/getting-started">Eslint</a></li>
 </ul>
