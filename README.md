@@ -57,6 +57,9 @@ yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<br>
+<br>
+Open [http://localhost:3000/api/graphql](http://localhost:3000/api/graphql) with your browser to run queries or see docs on server.
 
 
 # :bug: Issues
