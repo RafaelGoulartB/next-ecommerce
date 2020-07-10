@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import PageContainer from '../components/page-container';
-import api from '../services/api';
 
 import AlertError from '../components/alerts/error';
 import Button from '../components/form/button';
@@ -20,9 +19,9 @@ export default function SignUp() {
   const [msgError, setMsgError] = useState('');
 
   useEffect(() => {
-    if(window != 'undefined') {
+    if (window != 'undefined') {
       const isLogged = localStorage.getItem('auth_token');
-      if(isLogged) router.push('/')
+      if (isLogged) router.push('/');
       else return;
     }
   });
@@ -30,35 +29,14 @@ export default function SignUp() {
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if(password != confirm_password) {
-      setMsgError('The password doesn\'t match');
+    if (password != confirm_password) {
+      setMsgError('The passwords do not match');
       setPassword('');
       setConfirm_password('');
       return;
     }
-    const data = {
-      name,
-      email,
-      password
-    }
-    try {
-      const response = await api.post('user/signup', data);
-      if(response.data.error) {
-        setMsgError(response.data.error);
-        return;
-      }
-      if(!response.data) {
-        setMsgError('Network error, please try again later.')
-        return;
-      }
 
-      localStorage.setItem('user', response.data.user);
-      localStorage.setItem('auth_token', response.data.token);
-      router.push('/')
-    } catch {
-      setMsgError('Network error, please try again later.')
-      return;
-    }
+    console.log('handle submit');
   }
 
   return (
@@ -67,48 +45,44 @@ export default function SignUp() {
         <form onSubmit={handleSubmit}>
           <h3 className="formTitle">sign up</h3>
 
-          {msgError && (
-            <AlertError message={msgError}/>
-          )}
+          {msgError && <AlertError message={msgError} />}
           <InputContainer>
             <Input
               type="text"
               name="name"
               placeholder="Name"
-              onChange={value => setName(value)}
+              onChange={(value) => setName(value)}
               value={name}
             />
             <Input
               type="email"
               name="email"
               placeholder="Email"
-              onChange={value => setEmail(value)}
+              onChange={(value) => setEmail(value)}
               value={email}
             />
             <Input
               type="password"
               name="password"
               placeholder="Password"
-              onChange={value => setPassword(value)}
+              onChange={(value) => setPassword(value)}
               value={password}
             />
             <Input
               type="password"
               name="confirm_password"
               placeholder="Repeat Password"
-              onChange={value => setConfirm_password(value)}
+              onChange={(value) => setConfirm_password(value)}
               value={confirm_password}
             />
 
-          <Button type="submit" title="Sign Up"/>
-
+            <Button type="submit" title="Sign Up" />
           </InputContainer>
         </form>
 
         <Link href="/login">
           <a className="switchForm">I already have a account</a>
         </Link>
-
       </FormContainer>
 
       <style jsx>{`
