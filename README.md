@@ -51,9 +51,11 @@ This project was made using the follow technologies:
 
 # :construction_worker: How to run
 ```bash
-npm run dev
+yarn install # Install Dependencies
+# and
+yarn dev # To run in development
 # or
-yarn dev
+yarn start # To build for production
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
