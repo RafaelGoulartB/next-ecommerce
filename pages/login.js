@@ -40,8 +40,8 @@ export default function Login() {
       await client.resetStore();
       const { data } = await signIn({
         variables: {
-          email,
-          password,
+          email: email.trim(),
+          password: password.trim(),
         },
       });
       if (data.signIn.user) {

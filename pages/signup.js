@@ -47,14 +47,13 @@ export default function SignUp() {
     try {
       const result = await signUp({
         variables: {
-          name,
-          email,
-          password,
+          name: name.trim(),
+          email: email.trim(),
+          password: password.trim(),
         },
       });
 
-      console.log(result);
-      // router.push('/login');
+      router.push('/login');
     } catch (error) {
       setMsgError(getErrorMessage(error));
     }
