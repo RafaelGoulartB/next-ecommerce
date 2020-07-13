@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import PageContainer from '../components/page-container';
+import gql from 'graphql-tag';
+import { useMutation } from '@apollo/react-hooks';
+import { getErrorMessage } from '../lib/form';
 
 import AlertError from '../components/alerts/error';
 import Button from '../components/form/button';
@@ -9,7 +12,20 @@ import Input from '../components/form/input';
 import InputContainer from '../components/form/InputContainer';
 import FormContainer from '../components/form/formContainer';
 
+const SignUpMutation = gql`
+  mutation SignUpMutation($name: String!, $email: String!, $password: String!) {
+    signUp(input: { name: $name, email: $email, password: $password }) {
+      user {
+        id
+        name
+        email
+      }
+    }
+  }
+`;
+
 export default function SignUp() {
+  const [signUp] = useMutation(SignUpMutation);
   const router = useRouter();
 
   const [name, setName] = useState('');
@@ -17,14 +33,6 @@ export default function SignUp() {
   const [password, setPassword] = useState('');
   const [confirm_password, setConfirm_password] = useState('');
   const [msgError, setMsgError] = useState('');
-
-  useEffect(() => {
-    if (window != 'undefined') {
-      const isLogged = localStorage.getItem('auth_token');
-      if (isLogged) router.push('/');
-      else return;
-    }
-  });
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -36,7 +44,20 @@ export default function SignUp() {
       return;
     }
 
-    console.log('handle submit');
+    try {
+      const result = await signUp({
+        variables: {
+          name,
+          email,
+          password,
+        },
+      });
+
+      console.log(result);
+      // router.push('/login');
+    } catch (error) {
+      setMsgError(getErrorMessage(error));
+    }
   }
 
   return (

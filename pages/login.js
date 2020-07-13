@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import PageContainer from '../components/page-container';
 import Link from 'next/link';
+import gql from 'graphql-tag';
+import { useMutation, useApolloClient } from '@apollo/react-hooks';
+import { getErrorMessage } from '../lib/form';
 
 import AlertError from '../components/alerts/error';
 import Button from '../components/form/button';
@@ -9,30 +12,44 @@ import Input from '../components/form/input';
 import InputContainer from '../components/form/InputContainer';
 import FormContainer from '../components/form/formContainer';
 
+const SignInMutation = gql`
+  mutation SignInMutation($email: String!, $password: String!) {
+    signIn(input: { email: $email, password: $password }) {
+      user {
+        id
+        name
+        email
+      }
+    }
+  }
+`;
+
 export default function Login() {
+  const client = useApolloClient();
+  const [signIn] = useMutation(SignInMutation);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [msgError, setMsgError] = useState('');
 
   const router = useRouter();
 
-  useEffect(() => {
-    if (window != 'undefined') {
-      const isLogged = localStorage.getItem('auth_token');
-      if (isLogged) router.push('/');
-      else return;
-    }
-  });
-
   async function handleSubmit(e) {
     e.preventDefault();
 
-    const data = {
-      email,
-      password,
-    };
-
-    console.log('handle submit');
+    try {
+      await client.resetStore();
+      const { data } = await signIn({
+        variables: {
+          email,
+          password,
+        },
+      });
+      if (data.signIn.user) {
+        await router.push('/');
+      }
+    } catch (error) {
+      setMsgError(getErrorMessage(error));
+    }
   }
 
   return (

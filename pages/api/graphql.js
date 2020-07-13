@@ -1,13 +1,17 @@
 import { ApolloServer } from 'apollo-server-micro';
+import { schema } from '../../apollo/schema';
 import Cors from 'micro-cors';
-import typeDefs from '../../typeDefs';
-import resolvers from '../../resolvers/user';
 
 const cors = Cors({
   allowMethods: ['POST', 'OPTIONS'],
 });
 
-const apolloServer = new ApolloServer({ typeDefs, resolvers });
+const apolloServer = new ApolloServer({
+  schema,
+  context(ctx) {
+    return ctx;
+  },
+});
 
 export const config = {
   api: {
