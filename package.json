@@ -25,6 +25,7 @@
     "next": "9.4.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-icons": "^3.10.0",
     "sqlite3": "^5.0.0",
     "uuidv4": "^6.1.1",
     "validator": "^13.1.1"

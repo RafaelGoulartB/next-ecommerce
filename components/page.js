@@ -5,7 +5,7 @@ import Footer from './footer';
 export default function Page({ title, description, children }) {
   return (
     <PageContainer title={title} description={description}>
-      <Header/>
+      <Header />
 
       {children}
 
