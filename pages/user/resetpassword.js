@@ -37,7 +37,7 @@ export default function Login() {
               value={email}
             />
 
-            <Button type="submit" title="Sent Email" />
+            <Button type="submit" title="Send Email" />
           </InputContainer>
         </form>
 

@@ -83,6 +83,9 @@ export default function Login() {
         <Link href="/user/signup">
           <a className="switchForm">I do not have a account</a>
         </Link>
+        <Link href="/user/resetpassword">
+          <a className="switchForm">I forgot my password</a>
+        </Link>
       </FormContainer>
 
       <style jsx>{`
