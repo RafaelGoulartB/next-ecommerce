@@ -22,7 +22,7 @@ export default function PageContainer({ title, description, children }) {
       <style jsx>{`
         main {
           display: flex;
-          background-color: '#FAFAFA';
+          background-color: #fafafa;
           align-items: center;
           justify-content: center;
           flex-direction: column;
