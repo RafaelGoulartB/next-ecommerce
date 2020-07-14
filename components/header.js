@@ -247,7 +247,6 @@ export default function Header({ viewer }) {
           align-items: center;
         }
         header .header-bottom .main-nav a {
-          font-family: Roboto;
           font-style: normal;
           font-weight: 500;
           font-size: 14px;
