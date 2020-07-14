@@ -24,17 +24,10 @@ module.exports = {
   production: {
     client: 'sqlite3',
     connection: {
-<<<<<<< HEAD
       filename: `${__dirname}/db/db.sqlite`,
     },
     migrations: {
       directory: `${__dirname}/db/migrations`,
-=======
-      filename: './db/db.sqlite',
-    },
-    migrations: {
-      directory: './db/migrations',
->>>>>>> efafd7b79cd19babcb613edb4145a3d74eaaa5a4
     },
     useNullAsDefault: true,
   },
