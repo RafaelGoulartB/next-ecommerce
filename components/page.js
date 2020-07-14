@@ -7,9 +7,17 @@ export default function Page({ title, description, viewer, children }) {
     <PageContainer title={title} description={description}>
       <Header viewer={viewer} />
 
-      {children}
+      <div className="content">{children}</div>
 
       <Footer />
+      <style jsx>{`
+        .content {
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+          width: 80%;
+        }
+      `}</style>
     </PageContainer>
   );
 }
