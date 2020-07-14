@@ -5,12 +5,13 @@ import {
   FaUser,
   FaSearch,
   FaSignOutAlt,
+  FaBars,
 } from 'react-icons/fa';
 
 export default function Header({ viewer }) {
   return (
     <header>
-      <div className="header-top">
+      <div className="header header-top">
         <h1 className="logo">Quantum</h1>
 
         <div className="search-box">
@@ -69,9 +70,47 @@ export default function Header({ viewer }) {
           )}
         </div>
       </div>
-      <div className="header-nav"></div>
+      <div className="header header-bottom">
+        <div className="all-categories-box">
+          <FaBars color="#d8d8d8" />
+          <select name="categories" id="categories">
+            <option value="All Categories" selected>
+              All Categories
+            </option>
+            <option value="DB">DB</option>
+          </select>
+        </div>
+
+        <nav className="main-nav">
+          <Link href="#">
+            <a>Super Deals</a>
+          </Link>
+          <Link href="#">
+            <a>Featured Brands</a>
+          </Link>
+          <Link href="#">
+            <a>Collections</a>
+          </Link>
+          <Link href="#">
+            <a>Bestselling</a>
+          </Link>
+        </nav>
+
+        <div className="settings">
+          <div className="menu-dropdown">
+            <p>Help</p>
+          </div>
+          <div className="menu-dropdown">
+            <p>USD</p>
+          </div>
+          <div className="menu-dropdown">
+            <p>Language</p>
+          </div>
+        </div>
+      </div>
 
       <style jsx>{`
+        /* Header Top */
         header {
           width: 100vw;
           display: flex;
@@ -80,7 +119,7 @@ export default function Header({ viewer }) {
           background-color: #ffffff;
           box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
         }
-        header .header-top {
+        header .header {
           display: flex;
           flex-direction: row;
           justify-content: space-between;
@@ -169,6 +208,69 @@ export default function Header({ viewer }) {
         }
         header .nav-buttons a p {
           margin-left: 8px;
+        }
+        /* Header Bottom */
+        header .header-bottom {
+          padding: 0px 10vw;
+          border-top: 2px solid #f5f5f5;
+        }
+        header .header-bottom .all-categories-box {
+          height: 100%;
+          display: flex;
+          align-items: center;
+          /* Border */
+          border-right: 2px solid #f5f5f5;
+          padding-top: 20px;
+          padding-bottom: 20px;
+          padding-right: 48px;
+        }
+        header .header-bottom .all-categories-box select {
+          height: 100%;
+          padding-left: 15px;
+          font-family: Roboto;
+          font-style: normal;
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 60px;
+          color: #808080;
+          border: none;
+          background: none;
+        }
+        header .header-bottom .all-categories-box select:focus {
+          outline: none;
+        }
+        header .header-bottom .main-nav {
+          display: flex;
+          align-items: center;
+        }
+        header .header-bottom .main-nav a {
+          font-family: Roboto;
+          font-style: normal;
+          font-weight: 500;
+          font-size: 14px;
+          color: #666666;
+          text-decoration: none;
+          margin-left: 16px;
+          margin-right: 16px;
+        }
+        header .header-bottom .main-nav a:hover {
+          text-decoration: underline;
+        }
+        header .header-bottom .settings {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+        }
+        header .header-bottom .settings .menu-dropdown {
+          /* Border */
+          border-left: 2px solid #f5f5f5;
+          padding: 20px 24px;
+        }
+        header .header-bottom .settings .menu-dropdown p {
+          font-style: normal;
+          font-weight: 500;
+          font-size: 14px;
+          color: #b3b3b3;
         }
       `}</style>
     </header>
