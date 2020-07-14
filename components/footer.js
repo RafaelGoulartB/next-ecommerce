@@ -1,5 +1,14 @@
 import Link from 'next/link';
-import { FaFacebookF, FaTwitter, FaInstagram, FaYoutube } from 'react-icons/fa';
+import {
+  FaFacebookF,
+  FaTwitter,
+  FaInstagram,
+  FaYoutube,
+  FaCcVisa,
+  FaCcMastercard,
+  FaCcPaypal,
+  FaCcAmazonPay,
+} from 'react-icons/fa';
 
 export default function Fotter() {
   return (
@@ -46,7 +55,30 @@ export default function Fotter() {
           </Link>
         </div>
       </div>
-      <div className="footer footer-bottom"></div>
+      <div className="footer footer-bottom">
+        <div className="texts">
+          <p>© 2016. Quantum UI kit</p>
+          <p>Privacy Policy</p>
+          <p>Terms of Use</p>
+        </div>
+        <div className="payment-info">
+          <p className="text">Accepted payment methods</p>
+          <div className="payment-methods">
+            <div>
+              <FaCcVisa color="#424242" size="32px" />
+            </div>
+            <div>
+              <FaCcMastercard color="#424242" size="32px" />
+            </div>
+            <div>
+              <FaCcPaypal color="#424242" size="32px" />
+            </div>
+            <div>
+              <FaCcAmazonPay color="#424242" size="32px" />
+            </div>
+          </div>
+        </div>
+      </div>
       <style jsx>{`
         footer {
           width: 100vw;
@@ -98,6 +130,41 @@ export default function Fotter() {
         /* Footer Bottom */
         footer .footer-bottom {
           border-top: 2px solid #f5f5f5;
+        }
+        footer .footer-bottom .texts {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+        }
+        footer .footer-bottom .texts p {
+          font-style: normal;
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 60px;
+          color: #b3b3b3;
+          margin-right: 15px;
+          margin-left: 15px;
+        }
+        footer .footer-bottom .payment-info {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+        }
+        footer .footer-bottom .payment-info .text {
+          font-style: normal;
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 60px;
+          color: #b3b3b3;
+        }
+        footer .footer-bottom .payment-info .payment-methods {
+          display: flex;
+          flex-direction: row;
+          margin-left: 12px;
+        }
+        footer .footer-bottom .payment-info .payment-methods div {
+          margin-left: 5px;
+          margin-right: 5px;
         }
       `}</style>
     </footer>
