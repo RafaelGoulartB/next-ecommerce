@@ -21,6 +21,11 @@ export const resolvers = {
   },
   Mutation: {
     async signUp(_parent, args, _context, _info) {
+      const userExist = await findUser({ email: args.input.email });
+
+      if (userExist)
+        throw new UserInputError('email is already in use, try to login');
+
       const user = await createUser(args.input);
       return { user };
     },
