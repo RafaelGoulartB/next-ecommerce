@@ -1,7 +1,13 @@
 import Link from 'next/link';
-import { FaShoppingCart, FaRegHeart, FaUser, FaSearch } from 'react-icons/fa';
+import {
+  FaShoppingCart,
+  FaRegHeart,
+  FaUser,
+  FaSearch,
+  FaSignOutAlt,
+} from 'react-icons/fa';
 
-export default function Header() {
+export default function Header({ viewer }) {
   return (
     <header>
       <div className="header-top">
@@ -38,12 +44,29 @@ export default function Header() {
               <p>Wishlist</p>
             </a>
           </Link>
-          <Link href="/login">
-            <a className="nav-buttons-signin">
-              <FaUser color="#808080" />
-              <p>Sign In</p>
-            </a>
-          </Link>
+          {!viewer && (
+            <Link href="/login">
+              <a className="nav-buttons-signin">
+                <FaUser color="#808080" />
+                <p>Sign In</p>
+              </a>
+            </Link>
+          )}
+          {viewer && (
+            <>
+              <Link href="/profile">
+                <a className="nav-buttons-profile">
+                  <FaUser color="#808080" />
+                  <p>{viewer.name}</p>
+                </a>
+              </Link>
+              <Link href="/signout">
+                <a className="nav-buttons-signout">
+                  <FaSignOutAlt />
+                </a>
+              </Link>
+            </>
+          )}
         </div>
       </div>
       <div className="header-nav"></div>
@@ -137,6 +160,9 @@ export default function Header() {
           font-size: 14px;
           text-decoration: none;
           color: #808080;
+        }
+        header .nav-buttons .nav-buttons-signout {
+          margin-left: 12px;
         }
         header .nav-buttons a:hover {
           text-decoration: underline;

@@ -34,13 +34,8 @@ export default function Index() {
   if (loading) return <p>Loading...</p>;
 
   return (
-    <Page>
-      {viewer && (
-        <Link href="/signout">
-          <a>signout</a>
-        </Link>
-      )}
-      <p>Test</p>
+    <Page viewer={viewer}>
+      <p>Page</p>
     </Page>
   );
 }
