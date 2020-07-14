@@ -12,7 +12,9 @@ export default function Header({ viewer }) {
   return (
     <header>
       <div className="header header-top">
-        <h1 className="logo">Quantum</h1>
+        <Link href="/">
+          <a className="logo">Quantum</a>
+        </Link>
 
         <div className="search-box">
           <button className="search-button">
@@ -134,6 +136,7 @@ export default function Header({ viewer }) {
           letter-spacing: 1.65px;
           text-transform: uppercase;
           color: #4d4d4d;
+          text-decoration: none;
         }
         header .search-box {
           display: flex;
