@@ -1,16 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import PageContainer from '../components/page-container';
+import PageContainer from '../../components/page-container';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
-import { getErrorMessage } from '../lib/form';
+import { getErrorMessage } from '../../lib/form';
 
-import AlertError from '../components/alerts/error';
-import Button from '../components/form/button';
-import Input from '../components/form/input';
-import InputContainer from '../components/form/InputContainer';
-import FormContainer from '../components/form/formContainer';
+import AlertError from '../../components/alerts/error';
+import Button from '../../components/form/button';
+import Input from '../../components/form/input';
+import InputContainer from '../../components/form/InputContainer';
+import FormContainer from '../../components/form/formContainer';
 
 const SignUpMutation = gql`
   mutation SignUpMutation($name: String!, $email: String!, $password: String!) {
@@ -53,7 +53,7 @@ export default function SignUp() {
         },
       });
 
-      router.push('/login');
+      router.push('/user/login');
     } catch (error) {
       setMsgError(getErrorMessage(error));
     }
@@ -100,7 +100,7 @@ export default function SignUp() {
           </InputContainer>
         </form>
 
-        <Link href="/login">
+        <Link href="/user/login">
           <a className="switchForm">I already have a account</a>
         </Link>
       </FormContainer>

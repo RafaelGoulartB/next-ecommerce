@@ -1,16 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/router';
-import PageContainer from '../components/page-container';
+import PageContainer from '../../components/page-container';
 import Link from 'next/link';
 import gql from 'graphql-tag';
 import { useMutation, useApolloClient } from '@apollo/react-hooks';
-import { getErrorMessage } from '../lib/form';
+import { getErrorMessage } from '../../lib/form';
 
-import AlertError from '../components/alerts/error';
-import Button from '../components/form/button';
-import Input from '../components/form/input';
-import InputContainer from '../components/form/InputContainer';
-import FormContainer from '../components/form/formContainer';
+import AlertError from '../../components/alerts/error';
+import Button from '../../components/form/button';
+import Input from '../../components/form/input';
+import InputContainer from '../../components/form/InputContainer';
+import FormContainer from '../../components/form/formContainer';
 
 const SignInMutation = gql`
   mutation SignInMutation($email: String!, $password: String!) {
@@ -80,7 +80,7 @@ export default function Login() {
           </InputContainer>
         </form>
 
-        <Link href="/signup">
+        <Link href="/user/signup">
           <a className="switchForm">I do not have a account</a>
         </Link>
       </FormContainer>

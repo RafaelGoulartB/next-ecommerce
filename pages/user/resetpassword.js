@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import PageContainer from '../components/page-container';
+import PageContainer from '../../components/page-container';
 import Link from 'next/link';
-import { getErrorMessage } from '../lib/form';
+import { getErrorMessage } from '../../lib/form';
 
-import AlertError from '../components/alerts/error';
-import Button from '../components/form/button';
-import Input from '../components/form/input';
-import InputContainer from '../components/form/InputContainer';
-import FormContainer from '../components/form/formContainer';
+import AlertError from '../../components/alerts/error';
+import Button from '../../components/form/button';
+import Input from '../../components/form/input';
+import InputContainer from '../../components/form/InputContainer';
+import FormContainer from '../../components/form/formContainer';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -41,7 +41,7 @@ export default function Login() {
           </InputContainer>
         </form>
 
-        <Link href="/signup">
+        <Link href="/user/signup">
           <a className="switchForm">I do not have a account</a>
         </Link>
       </FormContainer>

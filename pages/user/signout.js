@@ -17,7 +17,7 @@ function SignOut() {
   useEffect(() => {
     signOut().then(() => {
       client.resetStore().then(() => {
-        router.push('/login');
+        router.push('/user/login');
       });
     });
   }, [signOut, router, client]);

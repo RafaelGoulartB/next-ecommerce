@@ -48,7 +48,7 @@ export default function Header({ viewer }) {
             </a>
           </Link>
           {!viewer && (
-            <Link href="/login">
+            <Link href="/user/login">
               <a className="nav-buttons-signin">
                 <FaUser color="#808080" />
                 <p>Sign In</p>
@@ -63,7 +63,7 @@ export default function Header({ viewer }) {
                   <p>{viewer.name}</p>
                 </a>
               </Link>
-              <Link href="/signout">
+              <Link href="/user/signout">
                 <a className="nav-buttons-signout">
                   <FaSignOutAlt />
                 </a>
