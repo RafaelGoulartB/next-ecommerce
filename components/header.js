@@ -38,7 +38,7 @@ export default function Header() {
               <p>Wishlist</p>
             </a>
           </Link>
-          <Link href="/">
+          <Link href="/login">
             <a className="nav-buttons-signin">
               <FaUser color="#808080" />
               <p>Sign In</p>
