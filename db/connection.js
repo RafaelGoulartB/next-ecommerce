@@ -9,10 +9,10 @@ if (process.env.NODE_ENV === 'production')
   config = {
     client: 'sqlite3',
     connection: {
-      filename: './db.sqlite',
+      filename: `${__dirname}/db.sqlite`,
     },
     migrations: {
-      directory: './migrations',
+      directory: `${__dirname}/migrations`,
     },
     useNullAsDefault: true,
   };
