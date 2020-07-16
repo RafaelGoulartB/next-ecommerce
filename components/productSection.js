@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import AsideCategories from './asideCategories';
 import PromoCard from './promoCard';
+import HeaderBarProducts from './headerBarProducts';
 
 export default function ProductSection() {
   return (
@@ -10,7 +11,7 @@ export default function ProductSection() {
         <PromoCard />
       </aside>
       <div className="main">
-        <div className="header">header</div>
+        <HeaderBarProducts />
         <div className="products">products</div>
       </div>
 
@@ -20,6 +21,10 @@ export default function ProductSection() {
           flex-direction: row;
           justify-content: space-between;
           width: 100%;
+        }
+        #product .main {
+          flex-grow: 1;
+          padding-left: 30px;
         }
       `}</style>
     </section>
