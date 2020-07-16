@@ -59,8 +59,6 @@ This project was made using the follow technologies:
 yarn install # Install Dependencies
 # and
 yarn dev # To run in development
-# or
-yarn start # To build for production
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
