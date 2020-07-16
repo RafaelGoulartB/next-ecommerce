@@ -1,12 +1,13 @@
 import Link from 'next/link';
 import AsideCategories from './asideCategories';
+import PromoCard from './promoCard';
 
 export default function ProductSection() {
   return (
     <section id="product">
       <aside>
         <AsideCategories />
-        <div className="promo-card">promo-card</div>
+        <PromoCard />
       </aside>
       <div className="main">
         <div className="header">header</div>
