@@ -32,6 +32,11 @@ export default function PromoCard() {
           mix-blend-mode: normal;
           opacity: 0.3;
         }
+        @media (max-width: 850px) {
+          .promo-card {
+            display: none;
+          }
+        }
       `}</style>
     </div>
   );
