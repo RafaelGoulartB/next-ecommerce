@@ -35,13 +35,13 @@ export default function Header({ viewer }) {
         </div>
 
         <div className="nav-buttons">
-          <Link href="/">
+          <Link href="/cart">
             <a className="nav-buttons-items">
               <FaShoppingCart color="#808080" />
               <p>Items</p>
             </a>
           </Link>
-          <Link href="/">
+          <Link href="/wishlist">
             <a className="nav-buttons-wishlist">
               <FaRegHeart color="#808080" />
               <p>Wishlist</p>

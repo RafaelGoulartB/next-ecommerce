@@ -17,7 +17,7 @@ export default function AsideCategories() {
   return (
     <ul className="categories">
       <li>
-        <Link href="#">
+        <Link href="/category/computers">
           <a>
             <div className="content">
               <div className="icon">
@@ -32,7 +32,7 @@ export default function AsideCategories() {
         </Link>
       </li>
       <li>
-        <Link href="#">
+        <Link href="/category/mac">
           <a>
             <div className="content">
               <div className="icon">
@@ -47,7 +47,7 @@ export default function AsideCategories() {
         </Link>
       </li>
       <li>
-        <Link href="#">
+        <Link href="/category/laptop">
           <a>
             <div className="content">
               <div className="icon">
@@ -62,7 +62,7 @@ export default function AsideCategories() {
         </Link>
       </li>
       <li>
-        <Link href="#">
+        <Link href="/category/keyboard">
           <a>
             <div className="content">
               <div className="icon">
@@ -77,7 +77,7 @@ export default function AsideCategories() {
         </Link>
       </li>
       <li>
-        <Link href="#">
+        <Link href="/category/components">
           <a>
             <div className="content">
               <div className="icon">
@@ -92,7 +92,7 @@ export default function AsideCategories() {
         </Link>
       </li>
       <li>
-        <Link href="#">
+        <Link href="/category/speaker">
           <a>
             <div className="content">
               <div className="icon">
@@ -107,7 +107,7 @@ export default function AsideCategories() {
         </Link>
       </li>
       <li>
-        <Link href="#">
+        <Link href="/category/smartphone">
           <a>
             <div className="content">
               <div className="icon">
@@ -122,7 +122,7 @@ export default function AsideCategories() {
         </Link>
       </li>
       <li>
-        <Link href="#">
+        <Link href="/category/tv">
           <a>
             <div className="content">
               <div className="icon">
@@ -137,7 +137,7 @@ export default function AsideCategories() {
         </Link>
       </li>
       <li>
-        <Link href="#">
+        <Link href="/category/videogame">
           <a>
             <div className="content">
               <div className="icon">
@@ -152,7 +152,7 @@ export default function AsideCategories() {
         </Link>
       </li>
       <li>
-        <Link href="#">
+        <Link href="/category/watch">
           <a>
             <div className="content">
               <div className="icon">
