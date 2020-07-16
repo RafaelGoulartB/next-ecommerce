@@ -172,8 +172,9 @@ export default function AsideCategories() {
           width: 255px;
           max-width: 255px;
           background: #ffff;
-          border-radius: 8px;
+          border-radius: 6px;
           margin-bottom: 30px;
+          box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
         }
         .categories li a {
           display: flex;
