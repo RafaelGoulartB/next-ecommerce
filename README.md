@@ -1,6 +1,5 @@
 <h1 align="center">NextJS Ecommerce Quantum</h1>
 <p>
-  <img src="https://img.shields.io/badge/version-2.0.0-blue.svg?cacheSeconds=2592000" />
   <a href="https://github.com/RafaelGoulartB/Next.js-Ecommerce#readme">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" target="_blank" />
   </a>
@@ -10,6 +9,9 @@
   <a href="https://github.com/RafaelGoulartB/Ecommerce-Quantum/blob/master/LICENSE">
     <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" target="_blank" />
   </a>
+  <img alt="GitHub Pull Requests" src="https://img.shields.io/github/issues-pr/RafaelGoulartB/Next.js-Ecommerce" />
+  <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/RafaelGoulartB/Next.js-Ecommerce" />
+  <img alt="" src="https://img.shields.io/github/repo-size/RafaelGoulartB/Next.js-Ecommerce" />
 </p>
 
 > This project was made to show a full ecommerce plataform with front-end build with Next.Js hosting by Vercel.
