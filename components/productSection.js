@@ -2,8 +2,11 @@ import Link from 'next/link';
 import AsideCategories from './asideCategories';
 import PromoCard from './promoCard';
 import HeaderBarProducts from './headerBarProducts';
+import EmptySection from './emptySection';
 
 export default function ProductSection() {
+  const product = null;
+
   return (
     <section id="product">
       <aside>
@@ -12,7 +15,7 @@ export default function ProductSection() {
       </aside>
       <div className="main">
         <HeaderBarProducts />
-        <div className="products">products</div>
+        {!product && <EmptySection />}
       </div>
 
       <style jsx>{`

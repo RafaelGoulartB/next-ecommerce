@@ -3,9 +3,20 @@ import Link from 'next/link';
 export default function EmptySection({ name }) {
   return (
     <>
-      <Link href="/">
-        <p className="empty-cart">You do not have any product in your {name}</p>
-      </Link>
+      {name && (
+        <Link href="/">
+          <p className="empty-cart">
+            You do not have any product in your {name}
+          </p>
+        </Link>
+      )}
+
+      {!name && (
+        <Link href="/">
+          <p className="empty-cart">This section is empty</p>
+        </Link>
+      )}
+
       <style jsx>{`
         .empty-cart {
           box-sizing: border-box;
