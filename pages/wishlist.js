@@ -1,17 +1,20 @@
 import Page from '../components/page';
 import AlertError from '../components/alerts/error';
+import EmptySection from '../components/emptySection';
 import HeaderBarProducts from '../components/headerBarProducts';
 import Title from '../components/title';
 import AsideCategories from '../components/asideCategories';
 
 export default function Profile() {
+  const product = null;
+
   return (
     <Page>
       <Title title="Wishlist" />
       <section className="wishlist">
         <div className="main">
           <HeaderBarProducts />
-          <p>Products in Wishlist</p>
+          {!product && <EmptySection name="wishlist" />}
         </div>
         <aside>
           <AsideCategories />

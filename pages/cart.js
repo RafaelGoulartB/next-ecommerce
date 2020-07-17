@@ -14,7 +14,7 @@ export default function Profile() {
       <section className="cart">
         <div className="main">
           <HeaderBarProducts />
-          {!product && <EmptySection />}
+          {!product && <EmptySection name="cart" />}
         </div>
         <aside>{product && <FinishOrderCart />}</aside>
       </section>

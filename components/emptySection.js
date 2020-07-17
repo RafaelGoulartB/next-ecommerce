@@ -1,10 +1,10 @@
 import Link from 'next/link';
 
-export default function EmptySection() {
+export default function EmptySection({ name }) {
   return (
     <>
       <Link href="/">
-        <p className="empty-cart">You do not have any product in your cart</p>
+        <p className="empty-cart">You do not have any product in your {name}</p>
       </Link>
       <style jsx>{`
         .empty-cart {
