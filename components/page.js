@@ -16,6 +16,7 @@ export default function Page({ title, description, viewer, children }) {
           align-items: center;
           flex-direction: column;
           width: 80%;
+          max-width: 1700px;
         }
       `}</style>
     </PageContainer>
