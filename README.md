@@ -43,7 +43,7 @@ This project was made using the follow technologies:
 
 # :rocket: Features
 
-- Authentication with JWT and LocalStorage.
+- Authentication with Cookies Sessions.
 - Reset Password using email
 - List Products
 - Filter products by Category
