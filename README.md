@@ -43,18 +43,18 @@ This project was made using the follow technologies:
 
 # :rocket: Features
 
-- [x] Authentication with JWT and LocalStorage.
-- [ ] Reset Password using email
-- [ ] List Products
-- [ ] Filter products by Category
-- [ ] Sort list of products
-- [ ] Live search
-- [ ] Add products to Wishlist
-- [ ] Add products to Cart
-- [ ] Checkout with Paypal and MercadoPago
-- [ ] Payment with Paypal and MercadoPago
-- [ ] Review Products
-- [ ] Contact us Form
+- Authentication with Cookies Sessions.
+- Reset Password using email
+- List Products
+- Filter products by Category
+- Sort list of products
+- Live search
+- Add products to Wishlist
+- Add products to Cart
+- Checkout with Paypal and MercadoPago
+- Payment with Paypal and MercadoPago
+- Review Products
+- Contact us Form
 
 # :construction_worker: How to run
 ```bash
