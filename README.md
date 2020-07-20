@@ -1,3 +1,6 @@
+<p align="center">
+   <img src="https://github.com/RafaelGoulartB/Next.js-Ecommerce/blob/master/.github/logo.png" width="150"/>
+</p>
 <h1 align="center">NextJS Ecommerce Quantum</h1>
 <p>
   <a href="https://github.com/RafaelGoulartB/Next.js-Ecommerce#readme">
