@@ -27,6 +27,7 @@
 * [Features](#rocket-features)
 * [How to run](#construction_worker-how-to-run)
 * [Found a bug? Missing a specific feature?](#bug-issues)
+* [Contributing](#tada-contributing)
 * [License](#closed_book-license)
 
 ![Project Image](https://github.com/RafaelGoulartB/Ecommerce-Quantum/blob/master/Ecommerce.jpg)
@@ -75,6 +76,10 @@ Open [http://localhost:3000/api/graphql](http://localhost:3000/api/graphql) with
 # :bug: Issues
 
 Feel free to **file a new issue** with a respective title and description on the the [NextJS Ecommerce](https://github.com/RafaelGoulartB/Next.js-Ecommerce/issues) repository. If you already found a solution to your problem, **i would love to review your pull request**!
+
+# :tada: Contributing
+
+Check out the [contributing](https://github.com/RafaelGoulartB/Next.js-Ecommerce/blob/master/CONTRIBUTING.md) page to see the best places to file issues, start discussions and begin contributing.
 
 # :closed_book: License
 
