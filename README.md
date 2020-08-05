@@ -28,13 +28,6 @@
   </sub>
 </div>
 
-<h2 align="left"> 📥 Layout available at: </h2>
-<p align="center">
-    <a title="Acess Figma Web" href="https://www.figma.com/file/fDLkOXAz4k3ILWb8PoDivJZF/E-Commerce-Quantum?node-id=0%3A1">
-        <img alt="Direct Download" src="https://img.shields.io/badge/Acess Figma Web-black?style=flat-square&logo=figma&logoColor=red" width="200px" />
-    </a>
-</p>
-
 # :pushpin: Table of Contents
 
 * [Demo Website](#eyes-demo-website)
@@ -45,15 +38,14 @@
 * [Contributing](#tada-contributing)
 * [License](#closed_book-license)
 
-
-![Project Image](https://github.com/RafaelGoulartB/Ecommerce-Quantum/blob/master/Ecommerce.jpg)
-
 <h2 align="left"> 📥 Layout available at: </h2>
 <p align="center">
     <a title="Acess Figma Web" href="https://www.figma.com/file/fDLkOXAz4k3ILWb8PoDivJZF/E-Commerce-Quantum?node-id=0%3A1">
         <img alt="Direct Download" src="https://img.shields.io/badge/Acess Figma Web-black?style=flat-square&logo=figma&logoColor=red" width="200px" />
     </a>
 </p>
+
+![Project Image](https://github.com/RafaelGoulartB/Ecommerce-Quantum/blob/master/Ecommerce.jpg)
 
 # :eyes: Demo Website
 The demo website can be missing some features, clone and run the project to a full experience. <br>
