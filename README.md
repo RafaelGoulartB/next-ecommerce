@@ -17,8 +17,16 @@
   <img alt="" src="https://img.shields.io/github/repo-size/RafaelGoulartB/Next.js-Ecommerce" />
 </p>
 
-> This project was made to show a full ecommerce plataform with front-end build with Next.Js hosting by Vercel.
-> And using the API in next.Js with GraphQL to make the backend.
+> This project was made to show a full ecommerce plataform with front-end build with Next.Js hosting by Vercel. And using the API in next.Js with GraphQL to make the backend.
+
+<div align="center">
+  <sub>The ecommerce project. Built with ❤︎ by
+    <a href="https://github.com/RafaelGoulartB">Rafael Goulart</a> and
+    <a href="https://github.com/RafaelGoulartB/Next.js-Ecommerce/graphs/contributors">
+      contributors
+    </a>
+  </sub>
+</div>
 
 # :pushpin: Table of Contents
 
