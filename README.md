@@ -1,7 +1,4 @@
-<p align="center">
-   <img src="https://github.com/RafaelGoulartB/Next.js-Ecommerce/blob/master/.github/logo.png" width="150"/>
-</p>
-<h1 align="center">NextJS Ecommerce Quantum</h1>
+<h1 align="center">ECOMMERCE QUANTUM</h1>
 
 <p align="center">	
    <a href="https://www.linkedin.com/in/rafael-goulartb/">
@@ -56,7 +53,10 @@
 </p>
 
 ### Screenshots
-![Project Image](https://github.com/RafaelGoulartB/Ecommerce-Quantum/blob/master/Ecommerce.jpg)
+<div align="center">
+  <img src="https://github.com/RafaelGoulartB/Ecommerce-Quantum/blob/master/Ecommerce.jpg" width="580">
+</div>
+
 
 # :eyes: Demo Website
 The demo website can be missing some features, clone and run the project to a full experience. <br>
@@ -64,12 +64,11 @@ The demo website can be missing some features, clone and run the project to a fu
 
 # :computer: Technologies
 This project was made using the follow technologies:
-<ul>
-  <li><a href="https://nextjs.org/">Next.js</a>  - To Server-Side-Render</li>
-  <li><a href="https://graphql.org/">GraphQL</a> - To server Queries</li>
-  <li><a href="https://reactjs.org/docs/getting-started.html">React.js</a></li>
-  <li><a href="https://eslint.org/docs/user-guide/getting-started">Eslint</a></li>
-</ul>
+
+[Next.js](https://nextjs.org/) - To SSR and routes control     
+[GraphQL](https://graphql.org/) - To query language     
+[Apollo](https://www.apollographql.com/) - To graphql server and client       
+[Vercel](https://vercel.com/) - To host website     
 
 # :rocket: Features
 
@@ -105,11 +104,11 @@ Feel free to **file a new issue** with a respective title and description on the
 
 # :tada: Contributing
 
-Check out the [contributing](https://github.com/RafaelGoulartB/Next.js-Ecommerce/blob/master/CONTRIBUTING.md) page to see the best places to file issues, start discussions and begin contributing.
+Check out the [contributing](./CONTRIBUTING.md) page to see the best places to file issues, start discussions and begin contributing.
 
 # :closed_book: License
 
 Released in 2020.
-This project is under the [MIT license](https://github.com/RafaelGoulartB/Next.js-Ecommerce/master/LICENSE).
+This project is under the [MIT license](./LICENSE).
 
 Made with love by [RafaelGoulartB](https://github.com/RafaelGoulartB) 🚀
