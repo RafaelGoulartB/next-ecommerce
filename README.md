@@ -2,7 +2,11 @@
    <img src="https://github.com/RafaelGoulartB/Next.js-Ecommerce/blob/master/.github/logo.png" width="150"/>
 </p>
 <h1 align="center">NextJS Ecommerce Quantum</h1>
-<p>
+
+<p align="center">	
+   <a href="https://www.linkedin.com/in/rafael-goulartb/">
+      <img alt="Rafael Goulart" src="https://img.shields.io/badge/-RafaelGoulartB-blue?style=flat&logo=Linkedin&logoColor=white" />
+   </a>
   <a href="https://github.com/RafaelGoulartB/Next.js-Ecommerce#readme">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" target="_blank" />
   </a>
@@ -18,6 +22,12 @@
 </p>
 
 > This project was made to show a full ecommerce plataform with front-end build with Next.Js hosting by Vercel. And using the API in next.Js with GraphQL to make the backend.
+
+<p align="center">
+    <a href="README.md">English</a>
+    ·
+    <a href="README-pt.md">Portuguese</a>
+ </p>
 
 <div align="center">
   <sub>The ecommerce project. Built with ❤︎ by
