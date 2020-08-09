@@ -101,138 +101,138 @@ export default function Header({ viewer }) {
             </div>
           </div>
         </div>
+      </header>
 
-        <style jsx>{`
+      <style jsx>{`
+        #mobile {
+          display: none;
+          z-index: 0;
+        }
+        @media (max-width: 1000px) {
           #mobile {
+            display: flex;
+            z-index: 1;
+          }
+          #desktop {
             display: none;
             z-index: 0;
           }
-          @media (max-width: 900px) {
-            #mobile {
-              display: flex;
-              z-index: 1;
-            }
-            #desktop {
-              display: none;
-              z-index: 0;
-            }
-          }
-          /* Header Top */
-          header {
-            width: 100vw;
-            display: flex;
-            flex-direction: column;
-            margin-bottom: 30px;
-            background-color: #ffffff;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
-          }
-          header .header {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            padding: 28px 10vw;
-          }
-          header .header-top .logo {
-            font-style: normal;
-            font-weight: 900;
-            font-size: 22px;
-            line-height: 60px;
-            letter-spacing: 1.65px;
-            text-transform: uppercase;
-            color: #4d4d4d;
-            text-decoration: none;
-          }
+        }
+        /* Header Top */
+        header {
+          width: 100vw;
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 30px;
+          background-color: #ffffff;
+          box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        header .header {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          padding: 28px 10vw;
+        }
+        header .header-top .logo {
+          font-style: normal;
+          font-weight: 900;
+          font-size: 22px;
+          line-height: 60px;
+          letter-spacing: 1.65px;
+          text-transform: uppercase;
+          color: #4d4d4d;
+          text-decoration: none;
+        }
 
-          header .nav-buttons {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-          }
-          header .nav-buttons a {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            margin-left: 32px;
-            font-style: normal;
-            font-weight: 500;
-            font-size: 14px;
-            text-decoration: none;
-            color: #808080;
-          }
-          header .nav-buttons .nav-buttons-signout {
-            margin-left: 12px;
-          }
-          header .nav-buttons a:hover {
-            text-decoration: underline;
-          }
-          header .nav-buttons a p {
-            margin-left: 8px;
-          }
-          /* Header Bottom */
-          header .header-bottom {
-            padding: 0px 10vw;
-            border-top: 2px solid #f5f5f5;
-          }
-          header .header-bottom .all-categories-box {
-            height: 100%;
-            display: flex;
-            align-items: center;
-            /* Border */
-            border-right: 2px solid #f5f5f5;
-            padding-top: 20px;
-            padding-bottom: 20px;
-            padding-right: 48px;
-          }
-          header .header-bottom .all-categories-box select {
-            height: 100%;
-            padding-left: 15px;
-            font-family: Roboto;
-            font-style: normal;
-            font-weight: 500;
-            font-size: 14px;
-            line-height: 60px;
-            color: #808080;
-            border: none;
-            background: none;
-          }
-          header .header-bottom .all-categories-box select:focus {
-            outline: none;
-          }
-          header .header-bottom .main-nav {
-            display: flex;
-            align-items: center;
-          }
-          header .header-bottom .main-nav a {
-            font-style: normal;
-            font-weight: 500;
-            font-size: 14px;
-            color: #666666;
-            text-decoration: none;
-            margin-left: 16px;
-            margin-right: 16px;
-          }
-          header .header-bottom .main-nav a:hover {
-            text-decoration: underline;
-          }
-          header .header-bottom .settings {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-          }
-          header .header-bottom .settings .menu-dropdown {
-            /* Border */
-            border-left: 2px solid #f5f5f5;
-            padding: 20px 24px;
-          }
-          header .header-bottom .settings .menu-dropdown p {
-            font-style: normal;
-            font-weight: 500;
-            font-size: 14px;
-            color: #b3b3b3;
-          }
-        `}</style>
-      </header>
+        header .nav-buttons {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+        }
+        header .nav-buttons a {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          margin-left: 32px;
+          font-style: normal;
+          font-weight: 500;
+          font-size: 14px;
+          text-decoration: none;
+          color: #808080;
+        }
+        header .nav-buttons .nav-buttons-signout {
+          margin-left: 12px;
+        }
+        header .nav-buttons a:hover {
+          text-decoration: underline;
+        }
+        header .nav-buttons a p {
+          margin-left: 8px;
+        }
+        /* Header Bottom */
+        header .header-bottom {
+          padding: 0px 10vw;
+          border-top: 2px solid #f5f5f5;
+        }
+        header .header-bottom .all-categories-box {
+          height: 100%;
+          display: flex;
+          align-items: center;
+          /* Border */
+          border-right: 2px solid #f5f5f5;
+          padding-top: 20px;
+          padding-bottom: 20px;
+          padding-right: 48px;
+        }
+        header .header-bottom .all-categories-box select {
+          height: 100%;
+          padding-left: 15px;
+          font-family: Roboto;
+          font-style: normal;
+          font-weight: 500;
+          font-size: 14px;
+          line-height: 60px;
+          color: #808080;
+          border: none;
+          background: none;
+        }
+        header .header-bottom .all-categories-box select:focus {
+          outline: none;
+        }
+        header .header-bottom .main-nav {
+          display: flex;
+          align-items: center;
+        }
+        header .header-bottom .main-nav a {
+          font-style: normal;
+          font-weight: 500;
+          font-size: 14px;
+          color: #666666;
+          text-decoration: none;
+          margin-left: 16px;
+          margin-right: 16px;
+        }
+        header .header-bottom .main-nav a:hover {
+          text-decoration: underline;
+        }
+        header .header-bottom .settings {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+        }
+        header .header-bottom .settings .menu-dropdown {
+          /* Border */
+          border-left: 2px solid #f5f5f5;
+          padding: 20px 24px;
+        }
+        header .header-bottom .settings .menu-dropdown p {
+          font-style: normal;
+          font-weight: 500;
+          font-size: 14px;
+          color: #b3b3b3;
+        }
+      `}</style>
     </>
   );
 }
