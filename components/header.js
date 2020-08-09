@@ -3,12 +3,12 @@ import {
   FaShoppingCart,
   FaRegHeart,
   FaUser,
-  FaSearch,
   FaSignOutAlt,
   FaBars,
 } from 'react-icons/fa';
 
 import HeaderMobile from './header-mobile';
+import SearchBox from './search-box';
 
 export default function Header({ viewer }) {
   return (
@@ -23,23 +23,7 @@ export default function Header({ viewer }) {
             <a className="logo">Quantum</a>
           </Link>
 
-          <div className="search-box">
-            <button className="search-button">
-              <FaSearch color="#D8D8D8" size="15px" />
-            </button>
-            <input
-              id="search"
-              type="text"
-              name="search"
-              placeholder="Search goods"
-            />
-            <select id="categories-search" name="categories-search">
-              <option value="" selected>
-                Category
-              </option>
-              <option value="DB">DB</option>
-            </select>
-          </div>
+          <SearchBox />
 
           <div className="nav-buttons">
             <Link href="/cart">
@@ -159,55 +143,7 @@ export default function Header({ viewer }) {
             color: #4d4d4d;
             text-decoration: none;
           }
-          header .search-box {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            padding-left: 12px;
-            padding-right: 12px;
-            height: 42px;
-            background: #ffffff;
-            border: 2px solid #f5f5f5;
-            box-sizing: border-box;
-            border-radius: 4px;
-          }
-          header .search-box .search-button {
-            display: flex;
-            align-items: center;
-            background: none;
-            border: none;
-            height: 100%;
-          }
-          header .search-box .search-button:focus {
-            outline: none;
-          }
-          header .search-box .search-button:hover {
-            opacity: 40%;
-          }
-          header .search-box input {
-            width: 210px;
 
-            height: 100%;
-            border: none;
-            padding-left: 8px;
-          }
-          header .search-box input:focus {
-            outline: none;
-          }
-          header .search-box select {
-            height: 100%;
-            text-transform: uppercase;
-            font-style: normal;
-            font-weight: 900;
-            font-size: 10px;
-            letter-spacing: 1px;
-            color: #b2b2b2;
-            border: none;
-            background: none;
-          }
-          header .search-box select:focus {
-            outline: none;
-          }
           header .nav-buttons {
             display: flex;
             flex-direction: row;
