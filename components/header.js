@@ -9,6 +9,7 @@ import {
 
 import HeaderMobile from './header-mobile';
 import SearchBox from './search-box';
+import Logo from './logo';
 
 export default function Header({ viewer }) {
   return (
@@ -19,9 +20,7 @@ export default function Header({ viewer }) {
 
       <header id="desktop">
         <div className="header header-top">
-          <Link href="/">
-            <a className="logo">Quantum</a>
-          </Link>
+          <Logo />
 
           <SearchBox />
 
@@ -134,17 +133,6 @@ export default function Header({ viewer }) {
           align-items: center;
           padding: 28px 10vw;
         }
-        header .header-top .logo {
-          font-style: normal;
-          font-weight: 900;
-          font-size: 22px;
-          line-height: 60px;
-          letter-spacing: 1.65px;
-          text-transform: uppercase;
-          color: #4d4d4d;
-          text-decoration: none;
-        }
-
         header .nav-buttons {
           display: flex;
           flex-direction: row;
