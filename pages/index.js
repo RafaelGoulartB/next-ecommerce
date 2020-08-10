@@ -6,6 +6,7 @@ import { useQuery } from '@apollo/react-hooks';
 import Page from '../components/page';
 import AlertError from '../components/alerts/error';
 import ProductSection from '../components/productSection';
+import LoadingPage from '../components/loading-page';
 
 const ViewerQuery = gql`
   query ViewerQuery {
@@ -31,7 +32,7 @@ export default function Index() {
 
   if (error) return <AlertError>{error.message}</AlertError>;
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <LoadingPage />;
 
   return (
     <Page viewer={viewer}>
