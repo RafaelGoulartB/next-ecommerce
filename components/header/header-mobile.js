@@ -1,19 +1,10 @@
 import Logo from '../logo';
+import ToggleDrawerButton from './toggle-drawer-button';
 
 export default function HeaderMobile() {
   return (
     <div className="header-mobile">
-      <div className="menu">
-        <a id="home" className="menu-item" href="/">
-          Home
-        </a>
-        <a id="about" className="menu-item" href="/about">
-          About
-        </a>
-        <a id="contact" className="menu-item" href="/contact">
-          Contact
-        </a>
-      </div>
+      <ToggleDrawerButton />
 
       <Logo />
       <style jsx>{`
@@ -22,8 +13,14 @@ export default function HeaderMobile() {
           align-items: center;
           padding: 18px 48px;
         }
-        .header-mobile .menu {
+        .header-mobile .drawer-menu {
           padding-right: 18px;
+        }
+        .header-mobile .drawer-menu .items .item a {
+          text-decoration: none;
+          color: #6666;
+          font-weight: 500;
+          font-size: 18px;
         }
       `}</style>
     </div>

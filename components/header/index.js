@@ -1,11 +1,13 @@
 import HeaderMobile from './header-mobile';
 import HeaderDesktop from './header-desktop';
+import SideDrawer from './side-drawer';
 
 export default function Header({ viewer }) {
   return (
     <header>
       <nav id="mobile">
         <HeaderMobile />
+        <SideDrawer />
       </nav>
 
       <nav id="desktop">
