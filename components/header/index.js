@@ -4,13 +4,13 @@ import HeaderDesktop from './header-desktop';
 export default function Header({ viewer }) {
   return (
     <header>
-      <div id="mobile">
+      <nav id="mobile">
         <HeaderMobile />
-      </div>
+      </nav>
 
-      <div id="desktop">
+      <nav id="desktop">
         <HeaderDesktop />
-      </div>
+      </nav>
 
       <style jsx>{`
         header {
