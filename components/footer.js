@@ -9,14 +9,14 @@ import {
   FaCcPaypal,
   FaCcAmazonPay,
 } from 'react-icons/fa';
+import Logo from './logo';
 
 export default function Fotter() {
   return (
     <footer>
       <div className="footer footer-top">
-        <Link href="/">
-          <a className="logo">Quantum</a>
-        </Link>
+        <Logo />
+
         <div className="footer-nav">
           <Link href="/">
             <a>Shop</a>
@@ -96,16 +96,6 @@ export default function Fotter() {
           justify-content: space-between;
           align-items: center;
           padding: 28px 10vw;
-        }
-        footer .footer-top .logo {
-          font-style: normal;
-          font-weight: 900;
-          font-size: 22px;
-          line-height: 60px;
-          letter-spacing: 1.65px;
-          text-transform: uppercase;
-          color: #4d4d4d;
-          text-decoration: none;
         }
         footer .footer-top .footer-nav {
           display: flex;
