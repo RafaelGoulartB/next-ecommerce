@@ -1,6 +1,6 @@
-export default function ToggleDrawerButton() {
+export default function ToggleDrawerButton({ openDrawer }) {
   return (
-    <button>
+    <button onClick={openDrawer}>
       <div className="button-line" />
       <div className="button-line" />
       <div className="button-line" />
@@ -10,18 +10,21 @@ export default function ToggleDrawerButton() {
           display: flex;
           flex-direction: column;
           justify-content: space-between;
-          height: 22px;
-          width: 28px;
+          height: 20px;
+          width: 26px;
           background: transparent;
           border: none;
           cursor: pointer;
           padding: 0;
           box-sizing: border-box;
-          margin-right: 18px;
+          margin-right: 28px;
+        }
+        button:focus {
+          outline: none;
         }
         button .button-line {
           width: 100%;
-          height: 4px;
+          height: 3px;
           border-radius: 2px;
           background: #4d4d4d;
         }

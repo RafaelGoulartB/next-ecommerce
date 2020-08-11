@@ -7,7 +7,6 @@ export default function Header({ viewer }) {
     <header>
       <nav id="mobile">
         <HeaderMobile />
-        <SideDrawer />
       </nav>
 
       <nav id="desktop">

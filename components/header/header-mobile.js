@@ -1,26 +1,25 @@
+import { useState } from 'react';
 import Logo from '../logo';
-import ToggleDrawerButton from './toggle-drawer-button';
+import OpenDrawerButton from './open-drawer-button';
+import SideDrawer from './side-drawer';
 
 export default function HeaderMobile() {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const toggleDrawer = () => setIsDrawerOpen(!isDrawerOpen);
+
   return (
     <div className="header-mobile">
-      <ToggleDrawerButton />
+      <OpenDrawerButton openDrawer={toggleDrawer} />
+
+      <SideDrawer closeDrawer={toggleDrawer} show={isDrawerOpen} />
 
       <Logo />
+
       <style jsx>{`
         .header-mobile {
           display: flex;
           align-items: center;
           padding: 18px 48px;
-        }
-        .header-mobile .drawer-menu {
-          padding-right: 18px;
-        }
-        .header-mobile .drawer-menu .items .item a {
-          text-decoration: none;
-          color: #6666;
-          font-weight: 500;
-          font-size: 18px;
         }
       `}</style>
     </div>
