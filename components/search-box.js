@@ -47,8 +47,7 @@ export default function SearchBox() {
           opacity: 40%;
         }
         .search-box input {
-          width: 210px;
-
+          width: 75%;
           height: 100%;
           border: none;
           padding-left: 8px;
@@ -57,6 +56,8 @@ export default function SearchBox() {
           outline: none;
         }
         .search-box select {
+          align-self: flex-end;
+          max-width: 120px;
           height: 100%;
           text-transform: uppercase;
           font-style: normal;
