@@ -65,10 +65,10 @@ The demo website can be missing some features, clone and run the project to a fu
 # :computer: Technologies
 This project was made using the follow technologies:
 
-[Next.js](https://nextjs.org/) - To SSR and routes control     
-[GraphQL](https://graphql.org/) - To query language     
-[Apollo](https://www.apollographql.com/) - To graphql server and client       
-[Vercel](https://vercel.com/) - To host website     
+* [Next.js](https://nextjs.org/) - To SSR and routes control     
+* [GraphQL](https://graphql.org/) - To query language     
+* [Apollo](https://www.apollographql.com/) - To graphql server and client       
+* [Vercel](https://vercel.com/) - To host website     
 
 # :rocket: Features
 
