@@ -9,7 +9,7 @@ import {
   FaCcPaypal,
   FaCcAmazonPay,
 } from 'react-icons/fa';
-import Logo from './logo';
+import Logo from '../logo';
 
 export default function Fotter() {
   return (

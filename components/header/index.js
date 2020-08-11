@@ -1,6 +1,5 @@
 import HeaderMobile from './header-mobile';
 import HeaderDesktop from './header-desktop';
-import SideDrawer from './side-drawer';
 
 export default function Header({ viewer }) {
   return (
