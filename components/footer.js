@@ -9,11 +9,11 @@ import {
   FaCcPaypal,
   FaCcAmazonPay,
 } from 'react-icons/fa';
-import Logo from '../logo';
+import Logo from './logo';
 
-export default function FooterDesktop() {
+export default function Fotter() {
   return (
-    <>
+    <footer>
       <div className="footer footer-top">
         <Logo />
 
@@ -79,7 +79,18 @@ export default function FooterDesktop() {
           </div>
         </div>
       </div>
+
       <style jsx>{`
+        footer {
+          width: 100vw;
+          display: flex;
+          flex-direction: column;
+          margin-top: 30px;
+          background-color: #ffffff;
+          box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.05);
+          box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
+          overflow-x: hidden;
+        }
         .footer {
           display: flex;
           flex-direction: row;
@@ -146,7 +157,38 @@ export default function FooterDesktop() {
           margin-left: 5px;
           margin-right: 5px;
         }
+
+        @media (max-width: 1000px) {
+          .footer-top .footer-nav {
+            display: none;
+          }
+          .footer-bottom {
+            display: flex;
+            flex-direction: column;
+          }
+          .footer-bottom .texts {
+            flex-direction: column;
+          }
+          .footer-bottom .texts p {
+            line-height: 40px;
+          }
+          .footer-bottom .payment-info .text {
+            display: none;
+          }
+          .footer-bottom .payment-info {
+            margin-top: 24px;
+          }
+        }
+        @media (max-width: 700px) {
+          .footer-top {
+            display: flex;
+            flex-direction: column;
+          }
+          .footer-top .social-links {
+            margin-top: 8px;
+          }
+        }
       `}</style>
-    </>
+    </footer>
   );
 }
