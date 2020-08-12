@@ -37,6 +37,11 @@ export default function EmptySection({ name }) {
             font-size: 28px;
           }
         }
+        @media (max-width: 700px) {
+          .empty-cart {
+            font-size: 25px;
+          }
+        }
       `}</style>
     </>
   );

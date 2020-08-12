@@ -55,7 +55,20 @@ export default function HeaderBarProducts() {
         }
         @media (max-width: 850px) {
           .header {
+            width: 80vw;
             justify-content: center;
+            align-items: center;
+          }
+          .header .sort-list {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding-left: 24px;
+            padding-right: 24px;
+          }
+          .header .sort-list a {
+            font-size: 12px;
+            margin-left: 0px;
           }
         }
       `}</style>

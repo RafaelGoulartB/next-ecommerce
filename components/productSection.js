@@ -29,6 +29,11 @@ export default function ProductSection() {
           flex-grow: 1;
           padding-left: 30px;
         }
+        @media (max-width: 850px) {
+          #product .main {
+            padding-left: 0;
+          }
+        }
       `}</style>
     </section>
   );
