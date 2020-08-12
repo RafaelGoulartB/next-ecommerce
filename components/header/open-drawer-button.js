@@ -17,7 +17,7 @@ export default function ToggleDrawerButton({ openDrawer }) {
           cursor: pointer;
           padding: 0;
           box-sizing: border-box;
-          margin-right: 28px;
+          margin-right: 16px;
         }
         button:focus {
           outline: none;
