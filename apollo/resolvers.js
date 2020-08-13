@@ -1,6 +1,11 @@
 import { AuthenticationError, UserInputError } from 'apollo-server-micro';
 import { createUser, findUser, validatePassword } from '../lib/user';
-import { listProducts, findProduct } from '../lib/product';
+import {
+  listProducts,
+  findProduct,
+  CreateProduct,
+  DeleteProduct,
+} from '../lib/product';
 import { setLoginSession, getLoginSession } from '../lib/auth';
 import { removeTokenCookie } from '../lib/auth-cookies';
 
@@ -19,16 +24,16 @@ export const resolvers = {
         );
       }
     },
-    async products(_parent, _args, context, _info) {
+    async products(_parent, _args, _context, _info) {
       try {
         return listProducts();
       } catch (error) {
         throw new Error('It is not possible list products');
       }
     },
-    async product(_parent, _args, context, _info) {
+    async product(_parent, args, _context, _info) {
       try {
-        return findProduct({ id: _args.id });
+        return findProduct({ id: args.id });
       } catch (error) {
         throw new Error('It is not possible list product');
       }
@@ -63,6 +68,35 @@ export const resolvers = {
     async signOut(_parent, _args, context, _info) {
       removeTokenCookie(context.res);
       return true;
+    },
+    async createProduct(_parent, args, _context, _info) {
+      try {
+        const product = {
+          name: args.input.name,
+          description: args.input.description,
+          img_url: args.input.img_url,
+          price: args.input.price,
+          rating: args.input.rating,
+          category_id: args.input.category_id,
+        };
+
+        const createdProduct = await CreateProduct(product);
+
+        return createdProduct;
+      } catch (error) {
+        throw new Error('It is not possible create a new product');
+      }
+    },
+    async deleteProduct(_parent, args, _context, _info) {
+      try {
+        await DeleteProduct({ id: args.id });
+        return true;
+      } catch (error) {
+        throw new Error('It is not possible delete the product');
+      }
+    },
+    async updateProduct(_parent, args, _context, _info) {
+      return;
     },
   },
 };

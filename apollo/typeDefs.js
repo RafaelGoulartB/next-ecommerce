@@ -26,12 +26,13 @@ export const typeDefs = gql`
     email: String!
     password: String!
   }
-  type ProductInput {
+  input ProductInput {
     name: String!
     description: String!
     img_url: String!
     price: String!
     rating: String!
+    category_id: String!
   }
   type SignUpPayload {
     user: User!
@@ -53,5 +54,8 @@ export const typeDefs = gql`
     signUp(input: SignUpInput!): SignUpPayload!
     signIn(input: SignInInput!): SignInPayload!
     signOut: Boolean!
+    createProduct(input: ProductInput!): ProductPayload
+    deleteProduct(id: ID!): Boolean!
+    updateProduct(input: ProductInput!): ProductPayload
   }
 `;
