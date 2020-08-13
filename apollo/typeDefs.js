@@ -7,6 +7,16 @@ export const typeDefs = gql`
     email: String!
     createdAt: Int!
   }
+  type Product {
+    id: ID!
+    name: String!
+    description: String!
+    img_url: String!
+    price: String!
+    rating: String!
+    createdAt: Int
+    updatedAt: Int
+  }
   input SignUpInput {
     name: String!
     email: String!
@@ -16,16 +26,28 @@ export const typeDefs = gql`
     email: String!
     password: String!
   }
+  type ProductInput {
+    name: String!
+    description: String!
+    img_url: String!
+    price: String!
+    rating: String!
+  }
   type SignUpPayload {
     user: User!
   }
   type SignInPayload {
     user: User!
   }
+  type ProductPayload {
+    product: Product!
+  }
   type Query {
     user(id: ID!): User!
     users: [User]!
     viewer: User
+    products: [Product]!
+    product(id: ID!): Product
   }
   type Mutation {
     signUp(input: SignUpInput!): SignUpPayload!

@@ -1,5 +1,6 @@
 import { AuthenticationError, UserInputError } from 'apollo-server-micro';
 import { createUser, findUser, validatePassword } from '../lib/user';
+import { listProducts, findProduct } from '../lib/product';
 import { setLoginSession, getLoginSession } from '../lib/auth';
 import { removeTokenCookie } from '../lib/auth-cookies';
 
@@ -16,6 +17,20 @@ export const resolvers = {
         throw new AuthenticationError(
           'Authentication token is invalid, please log in'
         );
+      }
+    },
+    async products(_parent, _args, context, _info) {
+      try {
+        return listProducts();
+      } catch (error) {
+        throw new Error('It is not possible list products');
+      }
+    },
+    async product(_parent, _args, context, _info) {
+      try {
+        return findProduct({ id: _args.id });
+      } catch (error) {
+        throw new Error('It is not possible list product');
       }
     },
   },
