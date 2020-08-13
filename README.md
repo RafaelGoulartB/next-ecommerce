@@ -86,6 +86,11 @@ This project was made using the follow technologies:
 - Contact us Form
 
 # :construction_worker: How to run
+### Set up database
+```bash
+yarn knex:migrate # Create DB using migrations
+```
+### Run Aplication
 ```bash
 yarn install # Install Dependencies
 # and
