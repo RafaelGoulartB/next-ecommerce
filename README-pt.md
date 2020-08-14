@@ -86,12 +86,22 @@ Esse projeto foi feito utilizando as seguintes tecnologias:
 - Formulario de contato
 
 # :construction_worker: Como rodar
+### Instalar Dependencias
 ```bash
-yarn install # Instale as dependencias
-# e
-yarn dev # Para rodar em modo de desenvolvimento
+yarn install
 ```
+### Configurar banco de dados
+```bash
+# Criar DB usando migrations
+yarn knex:migrate
 
+# Rodar seeds para popular o banco de dados
+yarn knex:seed 
+```
+### Rodar Aplicação
+```bash 
+yarn dev 
+```
 Acesse [http://localhost:3000](http://localhost:3000) para ver o resultado.
 <br>
 <br>
