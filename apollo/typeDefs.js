@@ -17,6 +17,13 @@ export const typeDefs = gql`
     createdAt: Int
     updatedAt: Int
   }
+  type Category {
+    id: ID!
+    name: String!
+    label: String!
+    md_icon: String!
+    createdAt: Int
+  }
   input SignUpInput {
     name: String!
     email: String!
@@ -49,6 +56,7 @@ export const typeDefs = gql`
     viewer: User
     products: [Product]!
     product(id: ID!): Product
+    categories: [Category]!
   }
   type Mutation {
     signUp(input: SignUpInput!): SignUpPayload!

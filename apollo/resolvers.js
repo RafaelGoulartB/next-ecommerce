@@ -1,5 +1,6 @@
 import { AuthenticationError, UserInputError } from 'apollo-server-micro';
 import { createUser, findUser, validatePassword } from '../lib/user';
+import { listCategories } from '../lib/category';
 import {
   listProducts,
   findProduct,
@@ -36,6 +37,13 @@ export const resolvers = {
         return findProduct({ id: args.id });
       } catch (error) {
         throw new Error('It is not possible list product');
+      }
+    },
+    async categories(_parent, _args, _context, _info) {
+      try {
+        return listCategories();
+      } catch (error) {
+        throw new Error('It is not possible list categories');
       }
     },
   },
