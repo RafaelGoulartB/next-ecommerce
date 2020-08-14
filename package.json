@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "knex:migrate": "knex migrate:latest"
+    "knex:migrate": "knex migrate:latest",
+    "knex:seed": "knex seed:run"
   },
   "dependencies": {
     "@apollo/react-hooks": "^3.1.5",
