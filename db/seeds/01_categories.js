@@ -71,7 +71,7 @@ exports.seed = function (knex) {
         {
           id: 10,
           name: 'watch',
-          label: 'MdWatch',
+          label: 'Watch',
           md_icon: 'MdWatch',
           created_at: Date.now(),
         },

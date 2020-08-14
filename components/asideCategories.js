@@ -1,4 +1,6 @@
+import { useQuery } from '@apollo/react-hooks';
 import Link from 'next/link';
+import gql from 'graphql-tag';
 import {
   MdDesktopWindows,
   MdDesktopMac,
@@ -13,159 +15,57 @@ import {
   MdKeyboardArrowRight,
 } from 'react-icons/md';
 
+const CategoriesQuery = gql`
+  query CategoriesQuery {
+    categories {
+      id
+      name
+      label
+      md_icon
+    }
+  }
+`;
+
+const iconSlugs = {
+  MdDesktopWindows,
+  MdDesktopMac,
+  MdLaptop,
+  MdKeyboard,
+  MdMemory,
+  MdSpeaker,
+  MdSmartphone,
+  MdTv,
+  MdVideogameAsset,
+  MdWatch,
+};
+
 export default function AsideCategories() {
+  const { data, loading, error } = useQuery(CategoriesQuery);
+
+  if (loading) return <></>;
+
   return (
     <ul className="categories">
-      <li>
-        <Link href="/category/computers">
-          <a>
-            <div className="content">
-              <div className="icon">
-                <MdDesktopWindows color="#D8D8D8" size="22" />
-              </div>
-              <p>Computers</p>
-            </div>
-            <div className="arrow-button">
-              <MdKeyboardArrowRight color="#D8D8D8" size="26" />
-            </div>
-          </a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/category/mac">
-          <a>
-            <div className="content">
-              <div className="icon">
-                <MdDesktopMac color="#D8D8D8" size="22" />
-              </div>
-              <p>Apple Computers</p>
-            </div>
-            <div className="arrow-button">
-              <MdKeyboardArrowRight color="#D8D8D8" size="26" />
-            </div>
-          </a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/category/laptop">
-          <a>
-            <div className="content">
-              <div className="icon">
-                <MdLaptop color="#D8D8D8" size="22" />
-              </div>
-              <p>Laptop</p>
-            </div>
-            <div className="arrow-button">
-              <MdKeyboardArrowRight color="#D8D8D8" size="26" />
-            </div>
-          </a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/category/keyboard">
-          <a>
-            <div className="content">
-              <div className="icon">
-                <MdKeyboard color="#D8D8D8" size="22" />
-              </div>
-              <p>Keyboards</p>
-            </div>
-            <div className="arrow-button">
-              <MdKeyboardArrowRight color="#D8D8D8" size="26" />
-            </div>
-          </a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/category/components">
-          <a>
-            <div className="content">
-              <div className="icon">
-                <MdMemory color="#D8D8D8" size="22" />
-              </div>
-              <p>Computer Components</p>
-            </div>
-            <div className="arrow-button">
-              <MdKeyboardArrowRight color="#D8D8D8" size="26" />
-            </div>
-          </a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/category/speaker">
-          <a>
-            <div className="content">
-              <div className="icon">
-                <MdSpeaker color="#D8D8D8" size="22" />
-              </div>
-              <p>Accessories</p>
-            </div>
-            <div className="arrow-button">
-              <MdKeyboardArrowRight color="#D8D8D8" size="26" />
-            </div>
-          </a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/category/smartphone">
-          <a>
-            <div className="content">
-              <div className="icon">
-                <MdSmartphone color="#D8D8D8" size="22" />
-              </div>
-              <p>Cell Phone</p>
-            </div>
-            <div className="arrow-button">
-              <MdKeyboardArrowRight color="#D8D8D8" size="26" />
-            </div>
-          </a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/category/tv">
-          <a>
-            <div className="content">
-              <div className="icon">
-                <MdTv color="#D8D8D8" size="22" />
-              </div>
-              <p>TV & Video</p>
-            </div>
-            <div className="arrow-button">
-              <MdKeyboardArrowRight color="#D8D8D8" size="26" />
-            </div>
-          </a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/category/videogame">
-          <a>
-            <div className="content">
-              <div className="icon">
-                <MdVideogameAsset color="#D8D8D8" size="22" />
-              </div>
-              <p>Game Console</p>
-            </div>
-            <div className="arrow-button">
-              <MdKeyboardArrowRight color="#D8D8D8" size="26" />
-            </div>
-          </a>
-        </Link>
-      </li>
-      <li>
-        <Link href="/category/watch">
-          <a>
-            <div className="content">
-              <div className="icon">
-                <MdWatch color="#D8D8D8" size="22" />
-              </div>
-              <p>Watches</p>
-            </div>
-            <div className="arrow-button">
-              <MdKeyboardArrowRight color="#D8D8D8" size="26" />
-            </div>
-          </a>
-        </Link>
-      </li>
+      {data.categories.map((category) => {
+        const Icon = iconSlugs[category.md_icon];
+        return (
+          <li key={category.id}>
+            <Link href={`/category/${category.name}`}>
+              <a>
+                <div className="content">
+                  <div className="icon">
+                    <Icon color="#D8D8D8" size="22" />
+                  </div>
+                  <p>{category.label}</p>
+                </div>
+                <div className="arrow-button">
+                  <MdKeyboardArrowRight color="#D8D8D8" size="26" />
+                </div>
+              </a>
+            </Link>
+          </li>
+        );
+      })}
 
       <style jsx>{`
         .categories {
