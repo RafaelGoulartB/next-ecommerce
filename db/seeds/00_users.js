@@ -9,14 +9,14 @@ exports.seed = async function (knex) {
       // Inserts seed entries
       return knex('user').insert([
         {
-          id: 0,
+          id: 1,
           name: 'admin',
           email: 'admin@admin.com',
           password: cryptoPassword,
           createdAt: Date.now(),
         },
         {
-          id: 1,
+          id: 2,
           name: 'test',
           email: 'test@test.com',
           password: cryptoPassword,

@@ -5,16 +5,16 @@ exports.seed = function (knex) {
     .then(function () {
       // Inserts seed entries
       return knex('category').insert([
-        { name: 'computers', created_at: Date.now() },
-        { name: 'mac', created_at: Date.now() },
-        { name: 'laptop', created_at: Date.now() },
-        { name: 'keyboard', created_at: Date.now() },
-        { name: 'components', created_at: Date.now() },
-        { name: 'speaker', created_at: Date.now() },
-        { name: 'smartphone', created_at: Date.now() },
-        { name: 'tv', created_at: Date.now() },
-        { name: 'videogame', created_at: Date.now() },
-        { name: 'watch', created_at: Date.now() },
+        { id: 1, name: 'computers', created_at: Date.now() },
+        { id: 2, name: 'mac', created_at: Date.now() },
+        { id: 3, name: 'laptop', created_at: Date.now() },
+        { id: 4, name: 'keyboard', created_at: Date.now() },
+        { id: 5, name: 'components', created_at: Date.now() },
+        { id: 6, name: 'speaker', created_at: Date.now() },
+        { id: 7, name: 'smartphone', created_at: Date.now() },
+        { id: 8, name: 'tv', created_at: Date.now() },
+        { id: 9, name: 'videogame', created_at: Date.now() },
+        { id: 10, name: 'watch', created_at: Date.now() },
       ]);
     });
 };
