@@ -82,7 +82,7 @@ export const resolvers = {
 
         const createdProduct = await CreateProduct(product);
 
-        return createdProduct;
+        return { product: createdProduct };
       } catch (error) {
         throw new Error('It is not possible create a new product');
       }

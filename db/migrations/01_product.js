@@ -10,7 +10,7 @@ exports.up = function (knex) {
     table.timestamp('updated_at').defaultTo('now()').notNullable();
 
     table
-      .integer('user_id')
+      .string('user_id')
       .notNullable()
       .references('id')
       .inTable('user')

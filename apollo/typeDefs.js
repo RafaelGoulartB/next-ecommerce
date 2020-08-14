@@ -32,7 +32,7 @@ export const typeDefs = gql`
     img_url: String!
     price: String!
     rating: String!
-    category_id: String!
+    category_id: Int!
   }
   type SignUpPayload {
     user: User!
