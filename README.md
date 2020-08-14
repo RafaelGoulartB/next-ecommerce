@@ -86,15 +86,21 @@ This project was made using the follow technologies:
 - Contact us Form
 
 # :construction_worker: How to run
+### Install Dependencies
+```bash
+yarn install
+```
 ### Set up database
 ```bash
-yarn knex:migrate # Create DB using migrations
+# Create DB using migrations
+yarn knex:migrate
+
+# Run seeds to populate database
+yarn knex:seed 
 ```
 ### Run Aplication
-```bash
-yarn install # Install Dependencies
-# and
-yarn dev # To run in development
+```bash 
+yarn dev 
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
