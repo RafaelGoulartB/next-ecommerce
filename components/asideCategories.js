@@ -44,6 +44,8 @@ export default function AsideCategories() {
 
   if (loading) return <></>;
 
+  if (error) return <></>;
+
   return (
     <ul className="categories">
       {data.categories.map((category) => {
