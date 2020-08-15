@@ -16,6 +16,7 @@ export const typeDefs = gql`
     rating: String!
     createdAt: Int
     updatedAt: Int
+    user_id: ID!
   }
   type Category {
     id: ID!
@@ -41,6 +42,13 @@ export const typeDefs = gql`
     rating: String!
     category_id: Int!
   }
+  input UpdateProductInput {
+    name: String!
+    description: String!
+    img_url: String!
+    price: String!
+    rating: String!
+  }
   type SignUpPayload {
     user: User!
   }
@@ -64,6 +72,6 @@ export const typeDefs = gql`
     signOut: Boolean!
     createProduct(input: ProductInput!): ProductPayload
     deleteProduct(id: ID!): Boolean!
-    updateProduct(input: ProductInput!): ProductPayload
+    updateProduct(id: ID!, input: UpdateProductInput!): ProductPayload
   }
 `;

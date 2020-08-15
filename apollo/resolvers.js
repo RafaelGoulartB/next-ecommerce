@@ -6,6 +6,7 @@ import {
   findProduct,
   CreateProduct,
   DeleteProduct,
+  UpdateProduct,
 } from '../lib/product';
 import { setLoginSession, getLoginSession } from '../lib/auth';
 import { removeTokenCookie } from '../lib/auth-cookies';
@@ -79,18 +80,9 @@ export const resolvers = {
     },
     async createProduct(_parent, args, _context, _info) {
       try {
-        const product = {
-          name: args.input.name,
-          description: args.input.description,
-          img_url: args.input.img_url,
-          price: args.input.price,
-          rating: args.input.rating,
-          category_id: args.input.category_id,
-        };
+        const product = await CreateProduct(args.input);
 
-        const createdProduct = await CreateProduct(product);
-
-        return { product: createdProduct };
+        return { product };
       } catch (error) {
         throw new Error('It is not possible create a new product');
       }
@@ -104,7 +96,12 @@ export const resolvers = {
       }
     },
     async updateProduct(_parent, args, _context, _info) {
-      return;
+      try {
+        const product = await UpdateProduct(args.id, args.input);
+        return { product };
+      } catch (error) {
+        throw new Error('it is not possible update the product');
+      }
     },
   },
 };
