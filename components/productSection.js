@@ -1,11 +1,31 @@
-import Link from 'next/link';
+import { useQuery } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
+
 import AsideCategories from './asideCategories';
 import PromoCard from './promoCard';
 import HeaderBarProducts from './headerBarProducts';
 import EmptySection from './emptySection';
+import ProductItem from './productItem';
+
+const ProductsQuery = gql`
+  query ProductsQuery {
+    products {
+      id
+      name
+      description
+      img_url
+      price
+      rating
+    }
+  }
+`;
 
 export default function ProductSection() {
-  const product = null;
+  const { data, loading, error } = useQuery(ProductsQuery);
+
+  if (loading) return <></>;
+
+  if (error) return <EmptySection />;
 
   return (
     <section id="product">
@@ -15,7 +35,19 @@ export default function ProductSection() {
       </aside>
       <div className="main">
         <HeaderBarProducts />
-        {!product && <EmptySection />}
+        {!data.products && <EmptySection />}
+        <div className="products-grid">
+          {data.products.map((product) => (
+            <ProductItem
+              key={product.id}
+              id={product.id}
+              name={product.name}
+              rating={product.rating}
+              img_url={product.img_url}
+              price={product.price}
+            />
+          ))}
+        </div>
       </div>
 
       <style jsx>{`
@@ -28,6 +60,11 @@ export default function ProductSection() {
         #product .main {
           flex-grow: 1;
           padding-left: 30px;
+        }
+        #product .main .products-grid {
+          display: grid;
+          grid-gap: 28px;
+          grid: auto-flow / 1fr 1fr 1fr;
         }
         @media (max-width: 850px) {
           #product .main {
