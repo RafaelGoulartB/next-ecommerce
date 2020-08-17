@@ -54,9 +54,12 @@ export default function ProductSection({ id, name, rating, img_url, price }) {
         }
         .product-img {
           width: 225px;
-          max-height: 220px;
+          height: 160px;
+          margin-bottom: 28px;
         }
         .product-name {
+          width: 80%;
+          line-height: 20px;
           text-decoration: none;
           font-weight: 500;
           font-size: 14px;

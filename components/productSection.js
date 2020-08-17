@@ -66,9 +66,24 @@ export default function ProductSection() {
           grid-gap: 28px;
           grid: auto-flow / 1fr 1fr 1fr;
         }
-        @media (max-width: 850px) {
+        @media (min-width: 1650px) {
+          #product .main .products-grid {
+            grid: auto-flow / 1fr 1fr 1fr 1fr;
+          }
+        }
+        @media (max-width: 1360px) {
+          #product .main .products-grid {
+            grid: auto-flow / 1fr 1fr;
+          }
+        }
+        @media (max-width: 900px) {
           #product .main {
             padding-left: 0;
+          }
+        }
+        @media (max-width: 700px) {
+          #product .main .products-grid {
+            grid: auto-flow / 1fr;
           }
         }
       `}</style>

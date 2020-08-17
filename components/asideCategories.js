@@ -105,7 +105,7 @@ export default function AsideCategories() {
         .categories li a .arrow-button {
           align-self: flex-end;
         }
-        @media (max-width: 850px) {
+        @media (max-width: 1000px) {
           .categories {
             display: none;
           }
