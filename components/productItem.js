@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { FaShoppingCart, FaRegHeart } from 'react-icons/fa';
+import StarRatings from 'react-star-ratings';
 
 export default function ProductSection({ id, name, rating, img_url, price }) {
   return (
@@ -19,7 +20,14 @@ export default function ProductSection({ id, name, rating, img_url, price }) {
       </Link>
 
       <div className="rating">
-        <p>{rating}</p>
+        <StarRatings
+          rating={parseFloat(rating)}
+          starRatedColor="#F9AD3D"
+          numberOfStars={5}
+          name="rating"
+          starDimension="20px"
+          starSpacing="1px"
+        />
       </div>
 
       <div className="price">
@@ -65,10 +73,10 @@ export default function ProductSection({ id, name, rating, img_url, price }) {
           font-size: 14px;
           text-align: center;
           color: #666666;
-          margin-bottom: 28px;
+          margin-bottom: 18px;
         }
         .rating {
-          margin-bottom: 28px;
+          margin-bottom: 24px;
         }
         .price {
           display: flex;
