@@ -87,6 +87,8 @@ This project was made using the follow technologies:
 - Contact us Form
 
 # :construction_worker: How to run
+### Rename env file
+Rename `.env.local-exemple` to `.env.local`
 ### Install Dependencies
 ```bash
 yarn install
