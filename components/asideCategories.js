@@ -1,6 +1,7 @@
 import { useQuery } from '@apollo/react-hooks';
+import { CATEGORIES } from '../apollo/queries';
+
 import Link from 'next/link';
-import gql from 'graphql-tag';
 import {
   MdDesktopWindows,
   MdDesktopMac,
@@ -14,17 +15,6 @@ import {
   MdWatch,
   MdKeyboardArrowRight,
 } from 'react-icons/md';
-
-const CategoriesQuery = gql`
-  query CategoriesQuery {
-    categories {
-      id
-      name
-      label
-      md_icon
-    }
-  }
-`;
 
 const iconSlugs = {
   MdDesktopWindows,
@@ -40,7 +30,7 @@ const iconSlugs = {
 };
 
 export default function AsideCategories() {
-  const { data, loading, error } = useQuery(CategoriesQuery);
+  const { data, loading, error } = useQuery(CATEGORIES);
 
   if (loading) return <></>;
 

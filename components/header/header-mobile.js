@@ -3,7 +3,7 @@ import Logo from '../logo';
 import OpenDrawerButton from './open-drawer-button';
 import SideDrawer from './side-drawer';
 
-export default function HeaderMobile() {
+export default function HeaderMobile({ viewer }) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const toggleDrawer = () => setIsDrawerOpen(!isDrawerOpen);
 

@@ -1,15 +1,21 @@
+import { useQuery } from '@apollo/react-hooks';
+import { VIEWER } from '../../apollo/queries';
+
 import HeaderMobile from './header-mobile';
 import HeaderDesktop from './header-desktop';
 
-export default function Header({ viewer }) {
+export default function Header() {
+  const { data, loading, error } = useQuery(VIEWER);
+  const viewer = data?.viewer;
+
   return (
     <header>
       <nav id="mobile">
-        <HeaderMobile />
+        <HeaderMobile viewer={viewer} />
       </nav>
 
       <nav id="desktop">
-        <HeaderDesktop />
+        <HeaderDesktop viewer={viewer} />
       </nav>
 
       <style jsx>{`

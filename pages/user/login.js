@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import PageContainer from '../../components/page-container';
 import Link from 'next/link';
-import gql from 'graphql-tag';
+import { SIGN_IN } from '../../apollo/mutations';
 import { useMutation, useApolloClient } from '@apollo/react-hooks';
 import { getErrorMessage } from '../../lib/form';
 
@@ -12,21 +12,9 @@ import Input from '../../components/form/input';
 import InputContainer from '../../components/form/InputContainer';
 import FormContainer from '../../components/form/formContainer';
 
-const SignInMutation = gql`
-  mutation SignInMutation($email: String!, $password: String!) {
-    signIn(input: { email: $email, password: $password }) {
-      user {
-        id
-        name
-        email
-      }
-    }
-  }
-`;
-
 export default function Login() {
   const client = useApolloClient();
-  const [signIn] = useMutation(SignInMutation);
+  const [signIn] = useMutation(SIGN_IN);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [msgError, setMsgError] = useState('');

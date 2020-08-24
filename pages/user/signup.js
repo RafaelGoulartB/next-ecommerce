@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import PageContainer from '../../components/page-container';
-import gql from 'graphql-tag';
+import { SIGN_UP } from '../../apollo/mutations';
 import { useMutation } from '@apollo/react-hooks';
 import { getErrorMessage } from '../../lib/form';
 
@@ -12,20 +12,8 @@ import Input from '../../components/form/input';
 import InputContainer from '../../components/form/InputContainer';
 import FormContainer from '../../components/form/formContainer';
 
-const SignUpMutation = gql`
-  mutation SignUpMutation($name: String!, $email: String!, $password: String!) {
-    signUp(input: { name: $name, email: $email, password: $password }) {
-      user {
-        id
-        name
-        email
-      }
-    }
-  }
-`;
-
 export default function SignUp() {
-  const [signUp] = useMutation(SignUpMutation);
+  const [signUp] = useMutation(SIGN_UP);
   const router = useRouter();
 
   const [name, setName] = useState('');

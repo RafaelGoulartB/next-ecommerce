@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/react-hooks';
-import gql from 'graphql-tag';
+import { PRODUCTS } from '../apollo/queries';
 
 import AsideCategories from './asideCategories';
 import PromoCard from './promoCard';
@@ -7,21 +7,8 @@ import HeaderBarProducts from './headerBarProducts';
 import EmptySection from './emptySection';
 import ProductItem from './productItem';
 
-const ProductsQuery = gql`
-  query ProductsQuery {
-    products {
-      id
-      name
-      description
-      img_url
-      price
-      rating
-    }
-  }
-`;
-
 export default function ProductSection() {
-  const { data, loading, error } = useQuery(ProductsQuery);
+  const { data, loading, error } = useQuery(PRODUCTS);
 
   if (loading) return <></>;
 
