@@ -87,6 +87,8 @@ This project was made using the follow technologies:
 - Contact us Form
 
 # :construction_worker: How to run
+### Rename env file
+Rename `.env.local-exemple` to `.env.local`
 ### Install Dependencies
 ```bash
 yarn install
@@ -115,6 +117,12 @@ Open [http://localhost:3000/api/graphql](http://localhost:3000/api/graphql) with
 Feel free to **file a new issue** with a respective title and description on the the [NextJS Ecommerce](https://github.com/RafaelGoulartB/Next.js-Ecommerce/issues) repository. If you already found a solution to your problem, **i would love to review your pull request**!
 
 # :tada: Contributing
+First of all, thank you for being interested in helping out, your time is always appreciated in every way. :100:
+
+Here's some tips:
+
+* Check the [issues page](https://github.com/RafaelGoulartB/next.js-ecommerce/issues) for already opened issues (or maybe even closed ones) that might already address your question/bug/feature request.
+* Feature requests are welcomed! Provide some details on why it would be helpful for you and others, explain how you're using bull-board and if possible even some screenshots if you are willing to mock something!
 
 Check out the [contributing](./CONTRIBUTING.md) page to see the best places to file issues, start discussions and begin contributing.
 

@@ -67,7 +67,8 @@ Esse projeto foi feito utilizando as seguintes tecnologias:
 
 * [Next.js](https://nextjs.org/) - Para o SSR e controle de rotas  
 * [GraphQL](https://graphql.org/) - Para linguagem de query     
-* [Apollo](https://www.apollographql.com/) - Para o cliente/servidor graphql       
+* [Apollo](https://www.apollographql.com/) - Para o cliente/servidor graphql  
+* [Knex](https://knexjs.org/) - ORM   
 * [Vercel](https://vercel.com/) - Para hostear o site      
 
 # :rocket: Funcionalidades
@@ -86,6 +87,8 @@ Esse projeto foi feito utilizando as seguintes tecnologias:
 - Formulario de contato
 
 # :construction_worker: Como rodar
+### Renomear arquivo de variaveis de ambiente
+Renomear `.env.local-exemple` para `.env.local`
 ### Instalar Dependencias
 ```bash
 yarn install
