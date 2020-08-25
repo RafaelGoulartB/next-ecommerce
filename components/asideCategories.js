@@ -1,5 +1,5 @@
-import { useQuery } from '@apollo/react-hooks';
-import { CATEGORIES } from '../apollo/queries';
+import { useQuery } from '@apollo/client';
+import { CATEGORIES } from '../apollo/client/queries';
 
 import Link from 'next/link';
 import {

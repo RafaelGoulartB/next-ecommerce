@@ -1,17 +1,20 @@
-import { useState } from 'react';
+import { isDrawerOpen } from '../../apollo/client/cache';
+
 import Logo from '../logo';
 import OpenDrawerButton from './open-drawer-button';
 import SideDrawer from './side-drawer';
 
 export default function HeaderMobile({ viewer }) {
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const toggleDrawer = () => setIsDrawerOpen(!isDrawerOpen);
+  const toggleDrawer = () => {
+    isDrawerOpen(!isDrawerOpen())
+    console.log(isDrawerOpen());
+  };
 
   return (
     <div className="header-mobile">
       <OpenDrawerButton openDrawer={toggleDrawer} />
 
-      <SideDrawer closeDrawer={toggleDrawer} show={isDrawerOpen} />
+      <SideDrawer closeDrawer={toggleDrawer} />
 
       <Logo />
 

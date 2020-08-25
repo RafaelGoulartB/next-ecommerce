@@ -1,9 +1,23 @@
 import Link from 'next/link';
+import { useApolloClient } from '@apollo/client';
+import { gql } from '@apollo/client';
 import SearchBox from '../search-box';
 
-export default function SideDrawer({ closeDrawer, show }) {
+export default function SideDrawer({ closeDrawer }) {
+  const client = useApolloClient();
+
+  // const { isDrawerOpen } = client.readQuery({
+  //   query: gql`
+  //     query isDrawerOpen {
+  //       isDrawerOpen @client
+  //     }
+  //   `,
+  // });
+
+  // console.log(isDrawerOpen)
+
   return (
-    <div className={`side-drawer ${show ? 'show' : 'hide'}`} id="side-drawer">
+    <div className={`side-drawer ${false ? 'show' : 'hide'}`} id="side-drawer">
       <button className="close-drawer" onClick={closeDrawer}>
         X
       </button>

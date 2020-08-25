@@ -1,5 +1,5 @@
-import { useQuery } from '@apollo/react-hooks';
-import { PRODUCTS } from '../apollo/queries';
+import { useQuery } from '@apollo/client';
+import { PRODUCTS } from '../apollo/client/queries';
 
 import AsideCategories from './asideCategories';
 import PromoCard from './promoCard';

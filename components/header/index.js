@@ -1,5 +1,5 @@
-import { useQuery } from '@apollo/react-hooks';
-import { VIEWER } from '../../apollo/queries';
+import { useQuery } from '@apollo/client';
+import { VIEWER } from '../../apollo/client/queries';
 
 import HeaderMobile from './header-mobile';
 import HeaderDesktop from './header-desktop';

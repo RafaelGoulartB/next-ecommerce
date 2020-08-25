@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import PageContainer from '../../components/page-container';
-import { SIGN_UP } from '../../apollo/mutations';
-import { useMutation } from '@apollo/react-hooks';
+import { SIGN_UP } from '../../apollo/client/mutations';
+import { useMutation } from '@apollo/client';
 import { getErrorMessage } from '../../lib/form';
 
 import AlertError from '../../components/alerts/error';
