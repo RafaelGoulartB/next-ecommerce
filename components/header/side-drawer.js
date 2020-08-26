@@ -4,8 +4,6 @@ import SearchBox from '../search-box';
 import { GET_DRAWER_STATE } from '../../apollo/client/queries';
 
 export default function SideDrawer({ closeDrawer }) {
-  // const client = useApolloClient();
-
   const { data, loading, error } = useQuery(GET_DRAWER_STATE);
 
   return (
