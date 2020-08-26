@@ -54,7 +54,7 @@
 
 ### Screenshots
 <div align="center">
-  <img src="https://github.com/RafaelGoulartB/Ecommerce-Quantum/blob/master/Ecommerce.jpg" width="580">
+  <img src="https://github.com/RafaelGoulartB/Ecommerce-Quantum/blob/master/Ecommerce.jpg" width="720">
 </div>
 
 
@@ -85,7 +85,7 @@ This project was made using the follow technologies:
 - Payment with Paypal and MercadoPago
 - Review Products
 - Contact us Form
-
+  
 # :construction_worker: How to run
 ### Rename env file
 Rename `.env.local-exemple` to `.env.local`
