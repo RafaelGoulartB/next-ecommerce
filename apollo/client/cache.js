@@ -1,6 +1,4 @@
-import { makeVar, InMemoryCache } from '@apollo/client';
-
-export const isDrawerOpen = makeVar(true);
+import { InMemoryCache } from '@apollo/client';
 
 export const cache = new InMemoryCache({
   typePolicies: {
@@ -8,10 +6,12 @@ export const cache = new InMemoryCache({
       fields: {
         isDrawerOpen: {
           read() {
-            return isDrawerOpen();
-          }
-        }
-      }
-    }
-  }
+            return isDrawerOpenVar();
+          },
+        },
+      },
+    },
+  },
 });
+
+export const isDrawerOpenVar = cache.makeVar(false);

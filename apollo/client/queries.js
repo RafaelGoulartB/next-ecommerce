@@ -1,4 +1,10 @@
-import { gql } from '@apollo/client'
+import { gql } from '@apollo/client';
+
+export const GET_DRAWER_STATE = gql`
+  query isDrawerOpen {
+    isDrawerOpen @client
+  }
+`;
 
 export const VIEWER = gql`
   query ViewerQuery {

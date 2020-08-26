@@ -1,7 +1,6 @@
 import { useMemo } from 'react';
 import { ApolloClient } from '@apollo/client';
 
-import { typeDefs } from './typeDefs';
 import { cache } from './cache';
 
 let apolloClient;
@@ -25,7 +24,6 @@ function createApolloClient() {
     ssrMode: typeof window === 'undefined',
     link: createIsomorphLink(),
     cache: cache,
-    typeDefs: typeDefs
   });
 }
 
