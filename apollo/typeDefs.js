@@ -58,11 +58,28 @@ export const typeDefs = gql`
   type ProductPayload {
     product: Product!
   }
+
+  enum SortableField {
+    id
+    name
+    price
+    rating
+    createdAt
+  }
+  enum SortOrder {
+    ASC
+    DESC
+  }
+  input Sort {
+    field: SortableField
+    order: SortOrder = ASC
+  }
+
   type Query {
     user(id: ID!): User!
     users: [User]!
     viewer: User
-    products: [Product]!
+    products(sort: [Sort!]): [Product]!
     product(id: ID!): Product
     categories: [Category]!
   }
