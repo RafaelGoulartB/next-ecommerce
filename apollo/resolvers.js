@@ -26,8 +26,11 @@ export const resolvers = {
         );
       }
     },
-    async products(_parent, _args, _context, _info) {
+    async products(_parent, args, _context, _info) {
       try {
+        if (args.sort) {
+          return listProducts(args.sort);
+        }
         return listProducts();
       } catch (error) {
         throw new Error('It is not possible list products');
