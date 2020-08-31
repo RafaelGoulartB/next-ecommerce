@@ -9,9 +9,16 @@ export const cache = new InMemoryCache({
             return isDrawerOpenVar();
           },
         },
+        sortProductSection: {
+          read() {
+            return sortProductSectionVar();
+          },
+        },
       },
     },
   },
 });
 
 export const isDrawerOpenVar = cache.makeVar(false);
+
+export const sortProductSectionVar = cache.makeVar(['rating', 'DESC']);

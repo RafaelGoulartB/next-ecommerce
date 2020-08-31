@@ -1,5 +1,5 @@
 import { useQuery } from '@apollo/client';
-import { PRODUCTS } from '../apollo/client/queries';
+import { PRODUCTS, SORT_PRODUCT_SECTION } from '../apollo/client/queries';
 
 import AsideCategories from './asideCategories';
 import PromoCard from './promoCard';
@@ -8,7 +8,14 @@ import EmptySection from './emptySection';
 import ProductItem from './productItem';
 
 export default function ProductSection() {
-  const { data, loading, error } = useQuery(PRODUCTS);
+  const sortQueryResult = useQuery(SORT_PRODUCT_SECTION);
+
+  const { data, loading, error } = useQuery(PRODUCTS, {
+    variables: {
+      field: sortQueryResult.data.sortProductSection[0],
+      order: sortQueryResult.data.sortProductSection[1],
+    },
+  });
 
   if (loading) return <></>;
 

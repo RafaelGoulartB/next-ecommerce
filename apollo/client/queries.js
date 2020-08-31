@@ -6,6 +6,12 @@ export const GET_DRAWER_STATE = gql`
   }
 `;
 
+export const SORT_PRODUCT_SECTION = gql`
+  query sortProductSection {
+    sortProductSection @client
+  }
+`;
+
 export const VIEWER = gql`
   query ViewerQuery {
     viewer {
@@ -17,8 +23,8 @@ export const VIEWER = gql`
 `;
 
 export const PRODUCTS = gql`
-  query ProductsQuery {
-    products {
+  query ProductsQuery($field: String!, $order: String!) {
+    products(sort: { field: $field, order: $order }) {
       id
       name
       description
