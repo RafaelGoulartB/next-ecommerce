@@ -3,7 +3,7 @@ import PromoCard from './promoCard';
 import HeaderBarProducts from './headerBarProducts';
 import Products from './products';
 
-export default function ProductSection() {
+export default function ProductSection({ category }) {
   return (
     <section id="product">
       <aside>
@@ -12,7 +12,7 @@ export default function ProductSection() {
       </aside>
       <div className="main">
         <HeaderBarProducts />
-        <Products />
+        <Products category={category} />
       </div>
 
       <style jsx>{`

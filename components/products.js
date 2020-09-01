@@ -3,15 +3,25 @@ import ProductItem from './productItem';
 import EmptySection from './emptySection';
 import { PRODUCTS, SORT_PRODUCT_SECTION } from '../apollo/client/queries';
 
-export default function Products() {
+export default function Products({ category }) {
   const sortQueryResult = useQuery(SORT_PRODUCT_SECTION);
 
-  const { data, loading, error } = useQuery(PRODUCTS, {
-    variables: {
-      field: sortQueryResult.data.sortProductSection[0],
-      order: sortQueryResult.data.sortProductSection[1],
-    },
-  });
+  if (category) {
+    var { data, loading, error } = useQuery(PRODUCTS, {
+      variables: {
+        field: sortQueryResult.data.sortProductSection[0],
+        order: sortQueryResult.data.sortProductSection[1],
+        category: category,
+      },
+    });
+  } else if (!category) {
+    var { data, loading, error } = useQuery(PRODUCTS, {
+      variables: {
+        field: sortQueryResult.data.sortProductSection[0],
+        order: sortQueryResult.data.sortProductSection[1],
+      },
+    });
+  }
 
   if (loading) return <></>;
 
