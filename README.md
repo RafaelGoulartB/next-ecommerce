@@ -2,20 +2,20 @@
 
 <p align="center">	
    <a href="https://www.linkedin.com/in/rafael-goulartb/">
-      <img alt="Rafael Goulart" src="https://img.shields.io/badge/-RafaelGoulartB-blue?style=flat&logo=Linkedin&logoColor=white" />
+      <img alt="Rafael Goulart" src="https://img.shields.io/badge/-RafaelGoulartB-03B0E8?style=flat&logo=Linkedin&logoColor=white" />
    </a>
-  <a href="https://github.com/RafaelGoulartB/Next.js-Ecommerce#readme">
-    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" target="_blank" />
+  <a href="https://github.com/RafaelGoulartB/next.js-ecommerce#readme">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-03B0E8.svg" target="_blank" />
   </a>
-  <a href="https://github.com/RafaelGoulartB/Next.js-Ecommerce/graphs/commit-activity">
-    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-brightgreen.svg" target="_blank" />
+  <a href="https://github.com/RafaelGoulartB/next.js-ecommerce/graphs/commit-activity">
+    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-03B0E8.svg" target="_blank" />
   </a>
-  <a href="https://github.com/RafaelGoulartB/Ecommerce-Quantum/blob/master/LICENSE">
-    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg" target="_blank" />
+  <a href="https://github.com/RafaelGoulartB/next.js-ecommerce/blob/master/LICENSE">
+    <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-03B0E8.svg" target="_blank" />
   </a>
-  <img alt="GitHub Pull Requests" src="https://img.shields.io/github/issues-pr/RafaelGoulartB/Next.js-Ecommerce" />
-  <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/RafaelGoulartB/Next.js-Ecommerce" />
-  <img alt="" src="https://img.shields.io/github/repo-size/RafaelGoulartB/Next.js-Ecommerce" />
+  <img alt="GitHub Pull Requests" src="https://img.shields.io/github/issues-pr/RafaelGoulartB/next.js-ecommerce?color=03B0E8" />
+  <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/RafaelGoulartB/next.js-ecommerce?color=03B0E8" />
+  <img alt="" src="https://img.shields.io/github/repo-size/RafaelGoulartB/next.js-ecommerce?color=03B0E8" />
 </p>
 
 > This project was made to show a full ecommerce plataform with front-end build with Next.Js hosting by Vercel. And using the API in next.Js with GraphQL to make the backend.
