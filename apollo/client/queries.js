@@ -23,8 +23,8 @@ export const VIEWER = gql`
 `;
 
 export const PRODUCTS = gql`
-  query ProductsQuery($field: String!, $order: String!) {
-    products(sort: { field: $field, order: $order }) {
+  query ProductsQuery($field: String!, $order: String!, $category: String) {
+    products(sort: { field: $field, order: $order }, category: $category) {
       id
       name
       description
