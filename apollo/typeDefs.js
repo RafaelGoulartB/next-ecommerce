@@ -68,6 +68,7 @@ export const typeDefs = gql`
     users: [User]!
     viewer: User
     products(sort: [Sort!], category: String): [Product]!
+    productsById(id: [ID!]!): [Product]!
     product(id: ID!): Product
     categories: [Category]!
   }

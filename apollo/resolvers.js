@@ -7,6 +7,7 @@ import {
   CreateProduct,
   DeleteProduct,
   UpdateProduct,
+  findProductsById,
 } from '../lib/product';
 import { setLoginSession, getLoginSession } from '../lib/auth';
 import { removeTokenCookie } from '../lib/auth-cookies';
@@ -38,6 +39,13 @@ export const resolvers = {
           return listProducts({ category: args.category });
         // Default
         return listProducts({ sort: false, category: false });
+      } catch (error) {
+        throw new Error('It is not possible list products');
+      }
+    },
+    async productsById(_parent, args, _context, _info) {
+      try {
+        return findProductsById({ id: args.id });
       } catch (error) {
         throw new Error('It is not possible list products');
       }
