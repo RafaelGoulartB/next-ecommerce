@@ -2,6 +2,7 @@ import { useQuery } from '@apollo/client';
 import ProductItem from './productItem';
 import EmptySection from './emptySection';
 import { PRODUCTS, SORT_PRODUCT_SECTION } from '../apollo/client/queries';
+import ProductsGrid from './productsGrid';
 
 export default function Products({ category }) {
   const sortQueryResult = useQuery(SORT_PRODUCT_SECTION);
@@ -30,7 +31,7 @@ export default function Products({ category }) {
   if (!data.products) return <EmptySection />;
 
   return (
-    <div className="products-grid">
+    <ProductsGrid>
       {data.products.map((product) => (
         <ProductItem
           key={product.id}
@@ -41,28 +42,6 @@ export default function Products({ category }) {
           price={product.price}
         />
       ))}
-      <style jsx>{`
-        .products-grid {
-          display: grid;
-          grid-gap: 28px;
-          grid: auto-flow / 1fr 1fr 1fr;
-        }
-        @media (min-width: 1650px) {
-          .products-grid {
-            grid: auto-flow / 1fr 1fr 1fr 1fr;
-          }
-        }
-        @media (max-width: 1360px) {
-          .products-grid {
-            grid: auto-flow / 1fr 1fr;
-          }
-        }
-        @media (max-width: 700px) {
-          .products-grid {
-            grid: auto-flow / 1fr;
-          }
-        }
-      `}</style>
-    </div>
+    </ProductsGrid>
   );
 }
