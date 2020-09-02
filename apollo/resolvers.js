@@ -37,7 +37,7 @@ export const resolvers = {
         else if (args.category)
           return listProducts({ category: args.category });
         // Default
-        return listProducts();
+        return listProducts({ sort: false, category: false });
       } catch (error) {
         throw new Error('It is not possible list products');
       }
