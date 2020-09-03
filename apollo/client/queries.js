@@ -25,7 +25,7 @@ export const WISHLIST = gql`
   query wishlist {
     wishlist @client {
       products
-      cartCount
+      wishlistCount
     }
   }
 `;
@@ -41,7 +41,7 @@ export const CART_COUNT = gql`
 export const WISHLIST_COUNT = gql`
   query wishlist {
     wishlist @client {
-      cartCount
+      wishlistCount
     }
   }
 `;
