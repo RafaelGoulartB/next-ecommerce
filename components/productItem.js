@@ -1,13 +1,42 @@
+import { useQuery } from '@apollo/client';
 import Link from 'next/link';
-import { FaShoppingCart, FaRegHeart } from 'react-icons/fa';
+import {
+  FaCartArrowDown,
+  FaCartPlus,
+  FaRegHeart,
+  FaHeart,
+} from 'react-icons/fa';
 import StarRatings from 'react-star-ratings';
+import { wishlistProductsVar, cartProductsVar } from '../apollo/client/cache';
+import { CART, WISHLIST } from '../apollo/client/queries';
 
 export default function ProductSection({ id, name, rating, img_url, price }) {
+  const cart = useQuery(CART);
+  const wishlist = useQuery(WISHLIST);
+
+  function handleAddToWishlist() {
+    if (wishlistProductsVar().includes(id)) {
+      const newWishlist = wishlistProductsVar().filter((item) => item != id);
+      wishlistProductsVar(newWishlist);
+    } else wishlistProductsVar([...wishlistProductsVar(), id]);
+  }
+
+  function handleAddToCart() {
+    if (cartProductsVar().includes(id)) {
+      const newCartList = cartProductsVar().filter((item) => item != id);
+      cartProductsVar(newCartList);
+    } else cartProductsVar([...cartProductsVar(), id]);
+  }
   return (
     <article>
       <div className="top-buttons">
-        <button className="add-wishlist">
-          <FaRegHeart size={20} color="#D8D8D8" />
+        <button className="add-wishlist" onClick={handleAddToWishlist}>
+          {wishlist.data.wishlist.products.includes(id) && (
+            <FaHeart size={20} color="#D8D8D8" />
+          )}
+          {!wishlist.data.wishlist.products.includes(id) && (
+            <FaRegHeart size={20} color="#D8D8D8" />
+          )}
         </button>
       </div>
 
@@ -32,8 +61,13 @@ export default function ProductSection({ id, name, rating, img_url, price }) {
 
       <div className="price">
         <p className="price-value">${price}</p>
-        <button className="add-cart">
-          <FaShoppingCart size={18} color="#D8D8D8" />
+        <button className="add-cart" onClick={handleAddToCart}>
+          {cart.data.cart.products.includes(id) && (
+            <FaCartArrowDown size={18} color="#D8D8D8" />
+          )}
+          {!cart.data.cart.products.includes(id) && (
+            <FaCartPlus size={18} color="#D8D8D8" />
+          )}
         </button>
       </div>
 
