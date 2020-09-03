@@ -45,7 +45,7 @@ export const resolvers = {
     },
     async productsById(_parent, args, _context, _info) {
       try {
-        return findProductsById({ id: args.id });
+        return await findProductsById({ id: args.id });
       } catch (error) {
         throw new Error('It is not possible list products');
       }

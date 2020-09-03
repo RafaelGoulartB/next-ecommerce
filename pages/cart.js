@@ -1,22 +1,43 @@
+import { useQuery } from '@apollo/client';
 import Page from '../components/page';
-import AlertError from '../components/alerts/error';
 import EmptySection from '../components/emptySection';
 import Title from '../components/title';
-import HeaderBarProducts from '../components/headerBarProducts';
 import FinishOrderCart from '../components/finishOrderCart';
+import ProductItem from '../components/productItem';
+import { CART, PRODUCTS_BY_IDS } from '../apollo/client/queries';
+import ProductsGrid from '../components/productsGrid';
 
 export default function Profile() {
-  const product = null;
+  const cart = useQuery(CART);
+
+  const { data, loading, error } = useQuery(PRODUCTS_BY_IDS, {
+    variables: {
+      id: cart.data.cart.products,
+    },
+  });
+
+  if (loading) return <></>;
 
   return (
     <Page>
       <Title title="Cart" />
       <section className="cart">
+        <aside>{data.productsById.length != 0 && <FinishOrderCart />}</aside>
         <div className="main">
-          <HeaderBarProducts />
-          {!product && <EmptySection name="cart" />}
+          {!data?.productsById.length && <EmptySection name="cart" />}
+          <ProductsGrid>
+            {data?.productsById.map((product) => (
+              <ProductItem
+                key={product.id}
+                id={product.id}
+                name={product.name}
+                rating={product.rating}
+                img_url={product.img_url}
+                price={product.price}
+              />
+            ))}
+          </ProductsGrid>
         </div>
-        <aside>{product && <FinishOrderCart />}</aside>
       </section>
 
       <style jsx>{`
@@ -28,19 +49,23 @@ export default function Profile() {
         }
         .cart .main {
           flex-grow: 1;
-          padding-right: 30px;
+          padding-left: 30px;
+        }
+        .cart aside {
+          max-width: 280px;
         }
 
         @media (max-width: 1100px) {
           .cart {
-            flex-direction: column-reverse;
+            flex-direction: column;
             justify-content: space-between;
           }
           .cart aside {
             flex-grow: 1;
+            max-width: 100%;
           }
           .cart .main {
-            padding-right: 0px;
+            padding-left: 0px;
           }
         }
       `}</style>

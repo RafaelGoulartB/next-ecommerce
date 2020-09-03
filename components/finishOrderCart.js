@@ -1,9 +1,25 @@
+import { useQuery } from '@apollo/client';
+import { CART, PRODUCTS_BY_IDS_PRICE } from '../apollo/client/queries';
+import { useState } from 'react';
+
 export default function FinishOrderCart() {
+  const [finalPrice, setFinalPrice] = useState(0);
+  const cart = useQuery(CART);
+
+  const { data, loading, error } = useQuery(PRODUCTS_BY_IDS_PRICE, {
+    variables: {
+      id: cart.data.cart.products,
+    },
+  });
+
+  if (loading) return <></>;
+
   return (
     <div className="finishOrder">
       <div className="info">
-        <p className="total">Total(1 Item):</p>
-        <p className="price">$356.15</p>
+        <p className="total">Total({cart?.data.cart.cartCount} Item):</p>
+        <p className="price">$ {finalPrice}</p>
+        <p className="price">{error && <p>Error</p>}</p>
       </div>
       <button>Finish Order</button>
       <style jsx>{`
@@ -14,8 +30,7 @@ export default function FinishOrderCart() {
           justify-content: center;
           background: #ffff;
           border-radius: 6px;
-          width: 260px;
-          max-width: 255px;
+          width: 280px;
           box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
           padding-top: 30px;
           padding-bottom: 30px;
