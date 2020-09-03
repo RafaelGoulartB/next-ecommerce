@@ -18,6 +18,14 @@ export default function Profile() {
 
   if (loading) return <></>;
 
+  if (error)
+    return (
+      <Page>
+        <Title title="Cart" />
+        <EmptySection name="cart" />
+      </Page>
+    );
+
   return (
     <Page>
       <Title title="Cart" />

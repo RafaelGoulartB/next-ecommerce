@@ -14,12 +14,13 @@ export default function FinishOrderCart() {
 
   if (loading) return <></>;
 
+  if (error) return <></>;
+
   return (
     <div className="finishOrder">
       <div className="info">
         <p className="total">Total({cart?.data.cart.cartCount} Item):</p>
         <p className="price">$ {finalPrice}</p>
-        <p className="price">{error && <p>Error</p>}</p>
       </div>
       <button>Finish Order</button>
       <style jsx>{`
