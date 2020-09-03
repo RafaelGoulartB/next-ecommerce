@@ -12,6 +12,40 @@ export const SORT_PRODUCT_SECTION = gql`
   }
 `;
 
+export const CART = gql`
+  query cart {
+    cart @client {
+      products
+      cartCount
+    }
+  }
+`;
+
+export const WISHLIST = gql`
+  query wishlist {
+    wishlist @client {
+      products
+      cartCount
+    }
+  }
+`;
+
+export const CART_COUNT = gql`
+  query cart {
+    cart @client {
+      cartCount
+    }
+  }
+`;
+
+export const WISHLIST_COUNT = gql`
+  query wishlist {
+    wishlist @client {
+      cartCount
+    }
+  }
+`;
+
 export const VIEWER = gql`
   query ViewerQuery {
     viewer {
@@ -31,6 +65,27 @@ export const PRODUCTS = gql`
       img_url
       price
       rating
+    }
+  }
+`;
+
+export const PRODUCTS_BY_IDS = gql`
+  query productsByIds($id: [ID]!) {
+    productsById(id: $id) {
+      id
+      name
+      description
+      img_url
+      price
+      rating
+    }
+  }
+`;
+
+export const PRODUCTS_BY_IDS_PRICE = gql`
+  query productsByIds($id: [ID]!) {
+    productsById(id: $id) {
+      price
     }
   }
 `;
