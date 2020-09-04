@@ -1,3 +1,4 @@
+import { useQuery } from '@apollo/client';
 import Link from 'next/link';
 import {
   FaShoppingCart,
@@ -6,11 +7,14 @@ import {
   FaSignOutAlt,
   FaBars,
 } from 'react-icons/fa';
+import { CART_COUNT } from '../../apollo/client/queries';
 
 import Logo from '../logo';
 import SearchBox from '../search-box';
 
 export default function HeaderDesktop({ viewer }) {
+  const cart = useQuery(CART_COUNT);
+
   return (
     <>
       <div className="header header-top">
@@ -22,7 +26,10 @@ export default function HeaderDesktop({ viewer }) {
           <Link href="/cart">
             <a className="nav-buttons-items">
               <FaShoppingCart color="#808080" />
-              <p>Items</p>
+              <p>
+                <sup className="items-total">{cart.data.cart.cartCount}</sup>{' '}
+                Items
+              </p>
             </a>
           </Link>
           <Link href="/wishlist">
@@ -118,6 +125,10 @@ export default function HeaderDesktop({ viewer }) {
           font-size: 14px;
           text-decoration: none;
           color: #808080;
+        }
+        .nav-buttons .items-total {
+          font-size: 12px;
+          align-self: flex-end;
         }
         .nav-buttons .nav-buttons-signout {
           margin-left: 12px;
