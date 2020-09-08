@@ -1,4 +1,4 @@
-<h1 align="center">ECOMMERCE QUANTUM</h1>
+<h1 align="center">ECOMMERCE FEITO COM NEXT.JS</h1>
 
 <p align="center">	
    <a href="https://www.linkedin.com/in/rafael-goulartb/">
