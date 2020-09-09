@@ -1,5 +1,7 @@
 // Update with your config settings.
 
+console.log(process.env.SQLITE_FILENAME);
+
 module.exports = {
   development: {
     client: 'sqlite3',
@@ -26,12 +28,9 @@ module.exports = {
   },
   production: {
     client: 'sqlite3',
-    connection: {
-      filename: `${__dirname}/db/db.sqlite`,
-    },
-    migrations: {
-      directory: `${__dirname}/db/migrations`,
-    },
+    connection: () => ({
+      filename: process.env.SQLITE_FILENAME,
+    }),
     useNullAsDefault: true,
   },
 };
