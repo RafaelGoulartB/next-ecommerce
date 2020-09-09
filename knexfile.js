@@ -1,7 +1,3 @@
-// Update with your config settings.
-
-console.log(process.env.SQLITE_FILENAME);
-
 module.exports = {
   development: {
     client: 'sqlite3',
