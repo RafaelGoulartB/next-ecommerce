@@ -29,4 +29,4 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
-/db/db.sqlite
+# /db/db.sqlite
