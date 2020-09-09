@@ -1,5 +1,6 @@
 const knex = require('knex');
 const configuration = require('../knexfile');
+const path = require('path');
 
 let config;
 
@@ -9,17 +10,19 @@ if (process.env.NODE_ENV === 'production')
   config = {
     client: 'sqlite3',
     connection: {
-      filename: '/db.sqlite',
+      filename: '../db/db.sqlite',
     },
     migrations: {
-      directory: '/migrations',
+      directory: '../db/migrations',
     },
     seeds: {
-      directory: '/seeds',
+      directory: '../db/seeds',
     },
     useNullAsDefault: true,
   };
 
+console.log(path.dirname(__filename));
+console.log(__filename);
 console.log(config);
 
 export const connection = knex(config);
