@@ -7,30 +7,17 @@ import {
   FaHeart,
 } from 'react-icons/fa';
 import StarRatings from 'react-star-ratings';
-import { wishlistProductsVar, cartProductsVar } from '../apollo/client/cache';
+import { toggleCart, toggleWishlist } from '../utils/toggleProductStates';
 import { CART, WISHLIST } from '../apollo/client/queries';
 
 export default function ProductSection({ id, name, rating, img_url, price }) {
   const cart = useQuery(CART);
   const wishlist = useQuery(WISHLIST);
 
-  function handleAddToWishlist() {
-    if (wishlistProductsVar().includes(id)) {
-      const newWishlist = wishlistProductsVar().filter((item) => item != id);
-      wishlistProductsVar(newWishlist);
-    } else wishlistProductsVar([...wishlistProductsVar(), id]);
-  }
-
-  function handleAddToCart() {
-    if (cartProductsVar().includes(id)) {
-      const newCartList = cartProductsVar().filter((item) => item != id);
-      cartProductsVar(newCartList);
-    } else cartProductsVar([...cartProductsVar(), id]);
-  }
   return (
     <article>
       <div className="top-buttons">
-        <button className="add-wishlist" onClick={handleAddToWishlist}>
+        <button className="add-wishlist" onClick={() => toggleWishlist(id)}>
           {wishlist.data.wishlist.products.includes(id) && (
             <FaHeart size={20} color="#D8D8D8" />
           )}
@@ -61,7 +48,7 @@ export default function ProductSection({ id, name, rating, img_url, price }) {
 
       <div className="price">
         <p className="price-value">${price}</p>
-        <button className="add-cart" onClick={handleAddToCart}>
+        <button className="add-cart" onClick={() => toggleCart(id)}>
           {cart.data.cart.products.includes(id) && (
             <FaCartArrowDown size={18} color="#D8D8D8" />
           )}
@@ -108,6 +95,10 @@ export default function ProductSection({ id, name, rating, img_url, price }) {
           text-align: center;
           color: #666666;
           margin-bottom: 18px;
+        }
+        .product-name:hover {
+          text-decoration: underline;
+          font-weight: 600;
         }
         .rating {
           margin-bottom: 24px;
