@@ -24,8 +24,6 @@ export default function Home() {
     },
   });
 
-  console.log(data?.productsById.length);
-
   if ((error || !data?.productsById.length) && !loading) {
     return (
       <Page title="Quantum E-commerce - Products">
