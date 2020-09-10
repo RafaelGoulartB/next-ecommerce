@@ -24,7 +24,9 @@ export default function Home() {
     },
   });
 
-  if (error) {
+  console.log(data?.productsById.length);
+
+  if ((error || !data?.productsById.length) && !loading) {
     return (
       <Page title="Quantum E-commerce - Products">
         <ErrorAlert message="This product is not found!"></ErrorAlert>
