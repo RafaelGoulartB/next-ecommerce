@@ -24,7 +24,19 @@ export default function Products({ category }) {
     });
   }
 
-  if (loading) return <></>;
+  if (loading)
+    return (
+      <>
+        <p className="loading">Loading...</p>
+        <style jsx>{`
+          .loading {
+            width: 100%;
+            text-align: center;
+            align-self: center;
+          }
+        `}</style>
+      </>
+    );
 
   if (error) return <EmptySection />;
 
