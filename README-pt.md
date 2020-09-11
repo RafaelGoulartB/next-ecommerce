@@ -35,6 +35,13 @@
   </sub>
 </div>
 
+<br/>
+<div align="center">
+  <img src="https://github.com/RafaelGoulartB/Ecommerce-Quantum/blob/master/Ecommerce.jpg" width="720">
+</div>
+
+---
+
 # :pushpin: Tabela de Conteúdo
 
 * [Site de Demostração](#eyes-site-de-demostração) 
@@ -51,12 +58,6 @@
         <img alt="Direct Download" src="https://img.shields.io/badge/Acess Figma Web-black?style=flat-square&logo=figma&logoColor=red" width="200px" />
     </a>
 </p>
-
-### Screenshots
-<div align="center">
-  <img src="https://github.com/RafaelGoulartB/Ecommerce-Quantum/blob/master/Ecommerce.jpg" width="580">
-</div>
-
 
 # :eyes: Site de Demostração
 No site de demostração pode estar faltando algumas funcionalidades, clene e rode o projeto para uma experiencia completa.    
