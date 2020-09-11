@@ -35,6 +35,13 @@
   </sub>
 </div>
 
+<br />
+<div align="center">
+  <img src="https://github.com/RafaelGoulartB/Ecommerce-Quantum/blob/master/Ecommerce.jpg" width="720">
+</div>
+
+---
+
 # :pushpin: Table of Contents
 
 * [Demo Website](#eyes-demo-website)
@@ -51,12 +58,6 @@
         <img alt="Direct Download" src="https://img.shields.io/badge/Acess Figma Web-black?style=flat-square&logo=figma&logoColor=red" width="200px" />
     </a>
 </p>
-
-### Screenshots
-<div align="center">
-  <img src="https://github.com/RafaelGoulartB/Ecommerce-Quantum/blob/master/Ecommerce.jpg" width="720">
-</div>
-
 
 # :eyes: Demo Website
 The demo website can be missing some features, clone and run the project to a full experience. <br>
