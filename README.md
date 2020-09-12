@@ -18,7 +18,7 @@
   <img alt="" src="https://img.shields.io/github/repo-size/RafaelGoulartB/next.js-ecommerce?color=03B0E8" />
 </p>
 
-> This project was made to show a full ecommerce plataform made with Next.js and Nextjs Serverless functions to build the backend, using Apollo Server and Apollo Client.
+> This project was made to show a full ecommerce plataform made with Next.js and Nextjs Serverless functions to build the backend, using Apollo Server and Apollo Client to GraphQL.
 
 <p align="center">
     <a href="README.md">English</a>
