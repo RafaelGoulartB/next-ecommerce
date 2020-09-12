@@ -18,7 +18,7 @@
   <img alt="" src="https://img.shields.io/github/repo-size/RafaelGoulartB/next.js-ecommerce?color=03B0E8" />
 </p>
 
-> Esse projeto foi feito para mostrar uma experiencia completa de um ecommerce feito utilizando Next.js e Verce e usando a API do Next.js para a criação do back-end utilizando Apollo e GraphQL.
+> Esse projeto foi feito para mostrar uma experiencia completa de um ecommerce feito utilizando Next.js e Next.js Serveless functions para construir o backend, utilizando Apollo Server e Apollo Client para o GraphQL.
 
 <p align="center">
     <a href="README.md">Inglês</a>
@@ -82,10 +82,8 @@ Esse projeto foi feito utilizando as seguintes tecnologias:
 - Pesquisa de Produtos
 - Adicionar produtos a lista de desejos
 - Adicionar produtos ao carinho
-- CHeckout com Paypal e MercadoPago
-- Pagamento com Paypal e MercadoPago
+- Checkout page
 - Review de Produtos
-- Formulario de contato
 
 # :construction_worker: Como rodar
 ### Renomear arquivo de variaveis de ambiente
