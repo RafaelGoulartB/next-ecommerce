@@ -70,7 +70,14 @@ export default function HeaderDesktop({ viewer }) {
             <option value="All Categories" selected>
               All Categories
             </option>
-            <option value="DB">DB</option>
+            <option value="#">Desktop</option>
+            <option value="#">Smartphone</option>
+            <option value="#">Watches</option>
+            <option value="#">Games</option>
+            <option value="#">Laptop</option>
+            <option value="#">Keyboards</option>
+            <option value="#">TV & Video</option>
+            <option value="#">Accessories</option>
           </select>
         </div>
 
