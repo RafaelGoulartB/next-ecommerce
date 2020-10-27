@@ -1880,7 +1880,7 @@ adjust-sourcemap-loader@2.0.0:
     assert "1.4.1"
     camelcase "5.0.0"
     loader-utils "1.2.3"
-    object-path "0.11.4"
+    object-path "0.11.5"
     regex-parser "2.2.10"
 
 aggregate-error@3.0.1, aggregate-error@^3.0.0:
