@@ -3,6 +3,7 @@ import ProductItem from './productItem';
 import EmptySection from './emptySection';
 import { PRODUCTS, SORT_PRODUCT_SECTION } from '../apollo/client/queries';
 import ProductsGrid from './productsGrid';
+import offlineProducts from '../db/offlineData/products';
 
 export default function Products({ category }) {
   const sortQueryResult = useQuery(SORT_PRODUCT_SECTION);
@@ -33,14 +34,32 @@ export default function Products({ category }) {
             width: 100%;
             text-align: center;
             align-self: center;
+            font-size: 18px;
           }
         `}</style>
       </>
     );
 
-  if (error) return <EmptySection />;
+  // Offline data
+  if (!data?.products || error)
+    return (
+      <ProductsGrid>
+        {offlineProducts.map((product) => (
+          <ProductItem
+            key={product.id}
+            id={product.id}
+            name={product.name}
+            rating={product.rating}
+            img_url={product.img_url}
+            price={product.price}
+          />
+        ))}
+      </ProductsGrid>
+    );
 
-  if (!data.products) return <EmptySection />;
+  // if (error) return <EmptySection />;
+
+  // if (!data.products) return <EmptySection />;
 
   return (
     <ProductsGrid>
