@@ -6,6 +6,7 @@ import {
   FaRegHeart,
   FaHeart,
 } from 'react-icons/fa';
+import Image from 'next/image';
 import StarRatings from 'react-star-ratings';
 import { PRODUCTS_BY_IDS, CART, WISHLIST } from '../../apollo/client/queries';
 import Page from '../../components/page';
@@ -55,7 +56,9 @@ export default function Home() {
           </button>
         </div>
 
-        <img className="product-img" src={data.productsById[0].img_url} />
+        <div className="product-img">
+          <Image src={data.productsById[0].img_url} width="320" height="230" />
+        </div>
 
         <h1 className="product-name">{data.productsById[0].name}</h1>
 
@@ -114,8 +117,6 @@ export default function Home() {
             outline: none;
           }
           .product-img {
-            width: 320px;
-            height: 230px;
             margin-bottom: 28px;
           }
           .product-name {
