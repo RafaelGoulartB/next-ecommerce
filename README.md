@@ -87,6 +87,8 @@ This project was made using the follow technologies:
 - Review Products
   
 # :construction_worker: How to run
+**You need to install [Node.js](https://nodejs.org/en/download/) and [Yarn](https://yarnpkg.com/) first, then:**
+
 ### Rename env file
 Rename `.env.local-exemple` to `.env.local`
 ### Install Dependencies
