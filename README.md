@@ -122,7 +122,7 @@ Feel free to **file a new issue** with a respective title and description on the
 ---
 
 
-[⬆ Voltar ao topo](#pushpin-table-of-contents)
+[⬆ Back to top](#pushpin-table-of-contents)
 
 
 
