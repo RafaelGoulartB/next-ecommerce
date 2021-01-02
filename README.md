@@ -52,7 +52,7 @@
 * [Contributing](#tada-contributing)
 * [License](#closed_book-license)
 
-<h2 align="left"> 📥 Layout available at: </h2>
+## 📥 Layout available at:
 <p align="center">
     <a title="Acess Figma Web" href="https://www.figma.com/file/fDLkOXAz4k3ILWb8PoDivJZF/E-Commerce-Quantum?node-id=0%3A1">
         <img alt="Direct Download" src="https://img.shields.io/badge/Acess Figma Web-black?style=flat-square&logo=figma&logoColor=red" width="200px" />
