@@ -118,6 +118,14 @@ Open [http://localhost:3000/api/graphql](http://localhost:3000/api/graphql) with
 
 Feel free to **file a new issue** with a respective title and description on the the [NextJS Ecommerce](https://github.com/RafaelGoulartB/next-ecommerce/issues) repository. If you already found a solution to your problem, **i would love to review your pull request**!
 
+
+---
+
+
+[⬆ Voltar ao topo](#pushpin-table-of-contents)
+
+
+
 # :tada: Contributing
 First of all, thank you for being interested in helping out, your time is always appreciated in every way. :100:
 
