@@ -23,10 +23,12 @@ module.exports = {
     useNullAsDefault: true,
   },
   production: {
-    client: 'sqlite3',
-    connection: () => ({
-      filename: process.env.SQLITE_FILENAME,
-    }),
-    useNullAsDefault: true,
+    client: 'mysql',
+    connection: {
+      host: '127.0.0.1',
+      user: 'your_database_user',
+      password: 'your_database_password',
+      database: 'myapp_test',
+    },
   },
 };
