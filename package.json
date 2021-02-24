@@ -19,12 +19,12 @@
     "graphql-tools": "^6.0.12",
     "knex": "^0.21.2",
     "micro-cors": "^0.1.1",
+    "mysql": "^2.18.1",
     "next": "^10.0.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-icons": "^3.10.0",
     "react-star-ratings": "^2.3.0",
-    "sqlite3": "^5.0.0",
     "uuidv4": "^6.1.1",
     "validator": "^13.1.1"
   },
