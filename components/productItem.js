@@ -6,7 +6,6 @@ import {
   FaRegHeart,
   FaHeart,
 } from 'react-icons/fa';
-import Image from 'next/image';
 import StarRatings from 'react-star-ratings';
 import { toggleCart, toggleWishlist } from '../utils/toggleProductStates';
 import { CART, WISHLIST } from '../apollo/client/queries';
@@ -28,9 +27,9 @@ export default function ProductSection({ id, name, rating, img_url, price }) {
         </button>
       </div>
 
-      <div className="product-img">
+      <div className="product-img-box">
         <Link href={`/product/${id}`}>
-          <Image src={img_url} width="225" height="160" />
+          <img className="product-img" src={img_url} />
         </Link>
       </div>
 
@@ -84,8 +83,13 @@ export default function ProductSection({ id, name, rating, img_url, price }) {
         .top-buttons .add-wishlist:focus {
           outline: none;
         }
-        .product-img {
+        .product-img-box {
           margin-bottom: 28px;
+        }
+        .product-img {
+          width: 225px;
+          height: 160px;
+          object-fit: contain;
         }
         .product-name {
           width: 80%;
