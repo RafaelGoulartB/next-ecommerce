@@ -24,6 +24,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-icons": "^3.10.0",
+    "react-loader-spinner": "^4.0.0",
     "react-star-ratings": "^2.3.0",
     "sqlite3": "^5.0.2",
     "uuidv4": "^6.1.1",

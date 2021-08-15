@@ -1,9 +1,9 @@
 import { useQuery } from '@apollo/client';
 import ProductItem from './productItem';
-import EmptySection from './emptySection';
 import { PRODUCTS, SORT_PRODUCT_SECTION } from '../apollo/client/queries';
 import ProductsGrid from './productsGrid';
 import offlineProducts from '../db/offlineData/products';
+import LoadingPage from './loading-page';
 
 export default function Products({ category }) {
   const sortQueryResult = useQuery(SORT_PRODUCT_SECTION);
@@ -25,20 +25,9 @@ export default function Products({ category }) {
     });
   }
 
-  if (loading)
-    return (
-      <>
-        <p className="loading">Loading...</p>
-        <style jsx>{`
-          .loading {
-            width: 100%;
-            text-align: center;
-            align-self: center;
-            font-size: 18px;
-          }
-        `}</style>
-      </>
-    );
+  if (loading) {
+    return <LoadingPage />
+  }
 
   // Offline data
   if (!data?.products || error)

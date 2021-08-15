@@ -1,20 +1,21 @@
+import Loader from 'react-loader-spinner';
+
 export default function LoadingPage() {
   return (
-    <div className="loading">
-      <p>Loading...</p>
-
+    <div className="spinner">
+      <Loader
+        type="Oval"
+        color="#1875f0"
+        height={60}
+        width={60}
+      />
       <style jsx>{`
-        .loading {
-          width: 100vw;
-          height: 100vh;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-        p {
-          font-size: 1.6rem;
-        }
-      `}</style>
+          .spinner {
+            display: flex;
+            justify-content: center;
+            margin-top: 3em;
+          }
+        `}</style>
     </div>
-  );
+  )
 }
