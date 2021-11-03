@@ -28,7 +28,7 @@
     "react-star-ratings": "^2.3.0",
     "sqlite3": "^5.0.2",
     "uuidv4": "^6.1.1",
-    "validator": "^13.1.1"
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "eslint": "^7.1.0",
