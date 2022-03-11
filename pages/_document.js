@@ -18,7 +18,7 @@ export default function Document() {
           `,
           }}
         />
-        <script type="text/javascript" src="https://hmlwidget.nuvidio.com/init.js" async></script>
+        <script type="text/javascript" src="https://b74f-18-228-40-209.ngrok.io/init.js" async></script>
       </body>
     </Html>
   )
