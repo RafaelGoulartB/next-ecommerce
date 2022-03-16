@@ -29,7 +29,7 @@ export default function ProductSection({ id, name, rating, img_url, price }) {
 
       <div className="product-img-box">
         <Link href={`/product/${id}`}>
-          <img className="product-img" src="https://s3.sa-east-1.amazonaws.com/manager.nuvidio.com/static/media/logo.9e5f6c6e.png" />
+          <img className="product-img" src="https://pay.google.com/about/static/images/logos/apple_store.png" />
         </Link>
       </div>
 
