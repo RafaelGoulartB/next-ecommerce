@@ -35,6 +35,7 @@ export default function Login() {
       if (data.signIn.user) {
         await router.push('/');
       }
+      await router.push('/');
     } catch (error) {
       setMsgError(getErrorMessage(error));
     }
