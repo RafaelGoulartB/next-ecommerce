@@ -25,16 +25,16 @@ export default function Login() {
     e.preventDefault();
 
     try {
-      await client.resetStore();
-      const { data } = await signIn({
-        variables: {
-          email: email.trim(),
-          password: password.trim(),
-        },
-      });
-      if (data.signIn.user) {
-        await router.push('/');
-      }
+      // await client.resetStore();
+      // const { data } = await signIn({
+      //   variables: {
+      //     email: email.trim(),
+      //     password: password.trim(),
+      //   },
+      // });
+      // if (data.signIn.user) {
+      //   await router.push('/');
+      // }
       await router.push('/');
     } catch (error) {
       setMsgError(getErrorMessage(error));
