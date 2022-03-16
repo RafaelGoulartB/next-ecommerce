@@ -29,7 +29,7 @@ export default function ProductSection({ id, name, rating, img_url, price }) {
 
       <div className="product-img-box">
         <Link href={`/product/${id}`}>
-          <img crossOrigin='anonymous' className="product-img" src="https://chrome-cors-testing.s3.eu-central-1.amazonaws.com/hacksoft.svg" />
+          <img className="product-img" src="https://s3.sa-east-1.amazonaws.com/manager.nuvidio.com/static/media/logo.9e5f6c6e.png" />
         </Link>
       </div>
 
