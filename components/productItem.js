@@ -29,7 +29,7 @@ export default function ProductSection({ id, name, rating, img_url, price }) {
 
       <div className="product-img-box">
         <Link href={`/product/${id}`}>
-          <img className="product-img" src={img_url} />
+          <img className="product-img" src="https://i.imgur.com/fRdrkI1.jpg" />
         </Link>
       </div>
 
