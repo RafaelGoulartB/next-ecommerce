@@ -26,7 +26,7 @@
     "react-icons": "^3.10.0",
     "react-loader-spinner": "^4.0.0",
     "react-star-ratings": "^2.3.0",
-    "sqlite3": "^5.0.2",
+    "sqlite3": "^5.0.3",
     "uuidv4": "^6.1.1",
     "validator": "^13.7.0"
   },
