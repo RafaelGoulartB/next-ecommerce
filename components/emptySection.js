@@ -20,12 +20,17 @@ export default function EmptySection({ name }) {
       <style jsx>{`
         .empty-cart {
           box-sizing: border-box;
-          margin-top: 80px;
-          margin-bottom: 80px;
+          width: 100%;
+          margin: 30px 0;
+          padding: 52px 24px;
+          border: 1px dashed #dce5f2;
+          border-radius: 12px;
+          background: #ffffff;
           text-align: center;
           font-weight: 500;
-          font-size: 32px;
-          color: #666666;
+          font-size: 22px;
+          font-weight: 700;
+          color: var(--quantum-text);
           text-decoration: none;
           line-height: 42px;
         }

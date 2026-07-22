@@ -5,7 +5,7 @@ export default function ProductsGrid({ children }) {
       <style jsx>{`
         .products-grid {
           display: grid;
-          grid-gap: 28px;
+          grid-gap: 20px;
           grid: auto-flow / 1fr 1fr 1fr;
         }
         @media (min-width: 1650px) {

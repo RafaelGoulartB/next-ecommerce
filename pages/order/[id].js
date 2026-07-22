@@ -47,14 +47,14 @@ export default function OrderDetails() {
       </div>
       <style jsx>{`
         .order-page { width: 100%; max-width: 980px; }
-        .back-link { display: inline-block; margin-bottom: 24px; color: #1875f0; font-size: 13px; font-weight: 800; text-decoration: none; }
+        .back-link { display: inline-block; margin-bottom: 24px; color: var(--quantum-blue); font-size: 13px; font-weight: 800; text-decoration: none; }
         .heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: 26px; }
-        .eyebrow { margin: 0; color: #1875f0; font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; }
-        h1 { margin: 6px 0 7px; color: #424b5c; font-size: 34px; font-weight: 900; }
+        .eyebrow { margin: 0; color: var(--quantum-blue); font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; }
+        h1 { margin: 6px 0 7px; color: var(--quantum-ink); font-size: 34px; font-weight: 900; letter-spacing: -.8px; }
         .heading p:last-child { margin: 0; color: #8b94a3; font-size: 13px; }
         .status { padding: 7px 11px; border-radius: 20px; background: #edf7f0; color: #25965a; font-size: 11px; font-weight: 800; text-transform: capitalize; }
         .order-layout { display: grid; grid-template-columns: minmax(0,1fr) 280px; gap: 24px; align-items: start; }
-        .items-card, .contact-card { padding: 26px; border-radius: 10px; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.05); }
+        .items-card, .contact-card { padding: 26px; border: 1px solid #edf0f5; border-radius: 12px; background: #fff; box-shadow: 0 10px 24px rgba(34,55,89,.06); }
         h2 { margin: 0 0 20px; color: #424b5c; font-size: 20px; }
         .item { display: flex; justify-content: space-between; gap: 16px; padding: 17px 0; border-bottom: 1px solid #edf0f4; color: #424b5c; }
         .item strong { font-size: 13px; line-height: 1.4; }
@@ -63,7 +63,7 @@ export default function OrderDetails() {
         .total strong { font-size: 22px; }
         .contact-card p { margin: 0 0 22px; color: #687386; font-size: 13px; line-height: 1.7; }
         .contact-card p strong { color: #424b5c; }
-        .demo-note { padding: 13px; border-radius: 6px; background: #f2f7ff; color: #59708d; font-size: 12px; line-height: 1.5; }
+        .demo-note { padding: 13px; border-radius: 9px; background: #f2f7ff; color: #59708d; font-size: 12px; line-height: 1.5; }
         @media (max-width: 720px) { .heading { align-items: flex-start; flex-direction: column; } .order-layout { grid-template-columns: 1fr; } }
       `}</style>
     </Page>

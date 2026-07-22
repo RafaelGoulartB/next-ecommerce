@@ -23,9 +23,10 @@ export default function Header() {
           width: 100vw;
           display: flex;
           flex-direction: column;
-          margin-bottom: 30px;
+          margin-bottom: 34px;
           background-color: #ffffff;
-          box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
+          border-bottom: 1px solid var(--quantum-border);
+          box-shadow: 0 8px 24px rgba(34, 55, 89, 0.05);
         }
         #mobile {
           display: none;

@@ -22,11 +22,12 @@ export default function PageContainer({ title, description, children }) {
       <style jsx>{`
         main {
           display: flex;
-          background-color: #fafafa;
+          min-height: 100vh;
+          background-color: var(--quantum-background);
           align-items: center;
           justify-content: center;
           flex-direction: column;
-          font-family: Roboto;
+          font-family: Roboto, sans-serif;
         }
       `}</style>
     </div>

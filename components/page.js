@@ -15,9 +15,12 @@ export default function Page({ title, description, children }) {
           display: flex;
           align-items: center;
           flex-direction: column;
-          width: 80%;
-          max-width: 1700px;
+          box-sizing: border-box;
+          width: min(90%, 1240px);
+          max-width: 1240px;
+          padding: 8px 0 28px;
         }
+        @media (max-width: 700px) { .content { width: 90%; padding-top: 0; } }
       `}</style>
     </PageContainer>
   );

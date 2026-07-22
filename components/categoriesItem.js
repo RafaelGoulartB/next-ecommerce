@@ -34,12 +34,12 @@ export default function CategoriesItem({ category }) {
         <a>
           <div className="content">
             <div className="icon">
-              <Icon color="#D8D8D8" size="22" />
+              <Icon color="#8a98a7" size="20" />
             </div>
             <p>{category.label}</p>
           </div>
           <div className="arrow-button">
-            <MdKeyboardArrowRight color="#D8D8D8" size="26" />
+            <MdKeyboardArrowRight color="#b2bccb" size="24" />
           </div>
         </a>
       </Link>
@@ -50,16 +50,17 @@ export default function CategoriesItem({ category }) {
           flex-direction: row;
           align-items: center;
           justify-content: space-between;
-          padding: 18px;
+          padding: 14px 16px;
           text-decoration: none;
           font-weight: 500;
           font-size: 13px;
-          color: #808080;
-          border-bottom: 2px solid #f5f5f5;
-          transition: 0.4s;
+          color: #596477;
+          border-bottom: 1px solid #eef1f5;
+          transition: background .2s, color .2s;
         }
         li a:hover {
-          background: #f2f2f2;
+          background: #f6f8fb;
+          color: var(--quantum-ink);
         }
         li a .content {
           display: flex;
@@ -67,10 +68,10 @@ export default function CategoriesItem({ category }) {
           align-items: center;
         }
         li a .content .icon {
-          padding-right: 18px;
+          padding-right: 14px;
         }
         li a .arrow-button {
-          align-self: flex-end;
+          color: #b2bccb;
         }
       `}</style>
     </li>

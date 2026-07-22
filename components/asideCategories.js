@@ -18,12 +18,13 @@ export default function AsideCategories() {
 
         <style jsx>{`
           .categories {
-            width: 255px;
-            max-width: 255px;
-            background: #ffff;
-            border-radius: 6px;
+            width: 250px;
+            max-width: 250px;
+            background: var(--quantum-surface);
+            border-radius: 12px;
             margin-bottom: 30px;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 26px rgba(34, 55, 89, .07);
+            overflow: hidden;
           }
           @media (max-width: 1000px) {
             .categories {
@@ -42,12 +43,13 @@ export default function AsideCategories() {
 
       <style jsx>{`
         .categories {
-          width: 255px;
-          max-width: 255px;
-          background: #ffff;
-          border-radius: 6px;
+          width: 250px;
+          max-width: 250px;
+          background: var(--quantum-surface);
+          border-radius: 12px;
           margin-bottom: 30px;
-          box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
+          box-shadow: 0 10px 26px rgba(34, 55, 89, .07);
+          overflow: hidden;
         }
         @media (max-width: 1000px) {
           .categories {

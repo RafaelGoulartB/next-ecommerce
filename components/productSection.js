@@ -21,10 +21,11 @@ export default function ProductSection({ category }) {
           flex-direction: row;
           justify-content: space-between;
           width: 100%;
+          align-items: flex-start;
         }
         #product .main {
           flex-grow: 1;
-          padding-left: 30px;
+          padding-left: 26px;
         }
         @media (max-width: 900px) {
           #product .main {

@@ -28,14 +28,15 @@ export default function SideDrawer({ closeDrawer, viewer }) {
         )}
       </ul>
       <style jsx>{`
-        .side-drawer { display: flex; flex-direction: column; position: fixed; z-index: 999; top: 0; left: 0; width: 80%; height: 100vh; box-sizing: border-box; background: #fff; box-shadow: 2px 0 5px rgba(0,0,0,.18); transform: translateX(-100%); transition: transform .3s ease-out; }
+        .side-drawer { display: flex; flex-direction: column; position: fixed; z-index: 999; top: 0; left: 0; width: min(86%, 360px); height: 100vh; box-sizing: border-box; background: #fff; box-shadow: 12px 0 30px rgba(34,55,89,.14); transform: translateX(-100%); transition: transform .3s ease-out; }
         .side-drawer.show { transform: translateX(0); }
-        .search { padding-top: 1rem; width: 80%; align-self: center; }
-        .items { width: 100%; padding-top: 2rem; box-sizing: border-box; }
-        .item + .item { margin-top: 1.2rem; padding-top: 1.2rem; border-top: 1px solid #eeeeee; }
-        .item a { display: flex; justify-content: space-between; padding: 0 2.4rem; color: #4d4d4d; text-decoration: none; font-size: 1.05rem; font-weight: 700; }
-        .item a span { color: #1875f0; }
-        .close-drawer { width: 100%; padding: 1rem 2rem; border: 0; background: none; color: #4d4d4d; cursor: pointer; font-size: 2rem; text-align: right; }
+        .search { padding: 0 24px; margin-top: 8px; width: 100%; align-self: center; }
+        .items { width: 100%; padding-top: 24px; box-sizing: border-box; }
+        .item + .item { margin-top: 0; padding-top: 0; border-top: 1px solid #eef1f5; }
+        .item a { display: flex; justify-content: space-between; padding: 18px 28px; color: var(--quantum-ink); text-decoration: none; font-size: 15px; font-weight: 700; }
+        .item a:hover { background: #f6f8fb; color: var(--quantum-ink); }
+        .item a span { color: var(--quantum-blue); }
+        .close-drawer { width: 100%; padding: 16px 24px 8px; border: 0; background: none; color: var(--quantum-muted); cursor: pointer; font-size: 28px; text-align: right; }
       `}</style>
     </div>
   );

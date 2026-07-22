@@ -61,8 +61,8 @@ export default function Wishlist() {
         .wishlist-page { width: 100%; }
         .wishlist-heading { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 26px; }
         .wishlist-heading :global(h1) { margin-top: 5px; }
-        .wishlist-heading span { color: #8b94a3; font-size: 14px; }
-        .eyebrow { margin: 0; color: #1875f0; font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; }
+        .wishlist-heading span { color: var(--quantum-muted); font-size: 13px; }
+        .eyebrow { margin: 0; color: var(--quantum-blue); font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; }
         .wishlist { display: flex; flex-direction: row; justify-content: space-between; width: 100%; }
         .wishlist .main { flex-grow: 1; padding-left: 30px; }
         @media (max-width: 900px) { .wishlist { display: block; } .wishlist aside { display: none; } .wishlist .main { padding-left: 0; } }

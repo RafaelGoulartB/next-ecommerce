@@ -85,10 +85,9 @@ export default function Fotter() {
           width: 100vw;
           display: flex;
           flex-direction: column;
-          margin-top: 30px;
+          margin-top: 44px;
           background-color: #ffffff;
-          box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.05);
-          box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
+          border-top: 1px solid var(--quantum-border);
           overflow-x: hidden;
         }
         .footer {
@@ -96,7 +95,9 @@ export default function Fotter() {
           flex-direction: row;
           justify-content: space-between;
           align-items: center;
-          padding: 28px 10vw;
+          width: min(90%, 1240px);
+          margin: 0 auto;
+          padding: 26px 0;
         }
         .footer-top .footer-nav {
           display: flex;
@@ -105,8 +106,8 @@ export default function Fotter() {
         .footer-top .footer-nav a {
           font-style: normal;
           font-weight: 500;
-          font-size: 16px;
-          color: #666666;
+          font-size: 13px;
+          color: var(--quantum-text);
           text-decoration: none;
           margin-left: 18px;
           margin-right: 18px;
@@ -120,7 +121,7 @@ export default function Fotter() {
         }
         /* Footer Bottom */
         .footer-bottom {
-          border-top: 2px solid #f5f5f5;
+          border-top: 1px solid #f0f3f7;
         }
         .footer-bottom .texts {
           display: flex;
@@ -132,7 +133,7 @@ export default function Fotter() {
           font-weight: 500;
           font-size: 14px;
           line-height: 60px;
-          color: #b3b3b3;
+          color: var(--quantum-muted);
           margin-right: 15px;
           margin-left: 15px;
         }
@@ -146,7 +147,7 @@ export default function Fotter() {
           font-weight: 500;
           font-size: 14px;
           line-height: 60px;
-          color: #b3b3b3;
+          color: var(--quantum-muted);
         }
         .footer-bottom .payment-info .payment-methods {
           display: flex;

@@ -1,71 +1,44 @@
 import { useState } from 'react';
-import { useRouter } from 'next/router';
-import PageContainer from '../../components/page-container';
 import Link from 'next/link';
-import { getErrorMessage } from '../../lib/form';
+import AuthLayout from '../../components/auth/auth-layout';
+import AuthField from '../../components/auth/auth-field';
+import AuthSubmit from '../../components/auth/auth-submit';
 
-import AlertError from '../../components/alerts/error';
-import Button from '../../components/form/button';
-import Input from '../../components/form/input';
-import InputContainer from '../../components/form/InputContainer';
-import FormContainer from '../../components/form/formContainer';
-
-export default function Login() {
+export default function ResetPassword() {
   const [email, setEmail] = useState('');
-  const [msgError, setMsgError] = useState('');
 
-  const router = useRouter();
-
-  async function handleSubmit(e) {
-    e.preventDefault();
+  function handleSubmit(event) {
+    event.preventDefault();
   }
 
   return (
-    <PageContainer title="Quantum E-commerce - Reset Password">
-      <FormContainer>
-        <form onSubmit={handleSubmit}>
-          <h3 className="formTitle">Reset Password</h3>
-
-          {msgError && <AlertError message={msgError} />}
-
-          <InputContainer>
-            <Input
-              type="email"
-              name="email"
-              placeholder="Email"
-              onChange={(value) => setEmail(value)}
-              value={email}
-            />
-
-            <Button type="submit" title="Send Email" />
-          </InputContainer>
-        </form>
-
-        <Link href="/user/signup">
-          <a className="switchForm">I do not have a account</a>
-        </Link>
-      </FormContainer>
-
+    <AuthLayout title="Reset password" eyebrow="Need a hand?" heading="Reset your password">
+      <p className="intro">Enter the email connected to your account and we’ll help you get back in.</p>
+      <form onSubmit={handleSubmit} noValidate>
+        <AuthField
+          id="reset-email"
+          name="email"
+          label="Email address"
+          type="email"
+          value={email}
+          onChange={setEmail}
+          placeholder="you@example.com"
+          autoComplete="email"
+        />
+        <AuthSubmit loading={false}>Send reset link</AuthSubmit>
+      </form>
+      <p className="switch-copy">
+        Remember your password? <Link href="/user/login"><a>Sign in</a></Link>
+      </p>
+      <p className="switch-copy secondary">
+        New to Quantum? <Link href="/user/signup"><a>Create an account</a></Link>
+      </p>
       <style jsx>{`
-        form {
-          width: 100%;
-          align-items: center;
-        }
-        form .formTitle {
-          text-align: center;
-          font-size: 38px;
-          font-weight: 1000;
-          letter-spacing: 1.65px;
-          color: #b2b2b2;
-          text-transform: uppercase;
-          margin-bottom: 84px;
-        }
-        .switchForm {
-          color: #b2b2b2;
-          margin-top: 12px;
-          font-weight: 500;
-        }
+        .intro { margin: -10px 0 26px; color: #8b94a3; font-size: 13px; line-height: 1.6; }
+        .switch-copy { margin: 24px 0 0; color: #8b94a3; font-size: 13px; text-align: center; }
+        .switch-copy.secondary { margin-top: 10px; }
+        .switch-copy a { color: #1875f0; font-weight: 800; text-decoration: none; }
       `}</style>
-    </PageContainer>
+    </AuthLayout>
   );
 }

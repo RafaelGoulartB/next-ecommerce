@@ -5,13 +5,14 @@ export default function Profile({ title }) {
       <style jsx>{`
         h2 {
           font-weight: 900;
-          font-size: 48px;
-          letter-spacing: 1.65px;
-          color: #4d4d4d;
-          margin-top: 15px;
-          margin-bottom: 30px;
+          font-size: 38px;
+          letter-spacing: -1px;
+          color: var(--quantum-ink);
+          margin-top: 6px;
+          margin-bottom: 24px;
           align-self: flex-start;
         }
+        @media (max-width: 560px) { h2 { font-size: 30px; } }
       `}</style>
     </>
   );

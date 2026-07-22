@@ -9,14 +9,15 @@ export default function Warning({ message }) {
           text-align: center;
           align-self: center;
           box-sizing: border-box;
-          padding: 15px;
+          padding: 13px 16px;
           margin-bottom: 20px;
 
           color: #856404;
           background-color: #fff3cd;
           border: 1px solid transparent;
           border-color: #ffeeba;
-          border-radius: 4px;
+          border-radius: 9px;
+          font-size: 13px;
         }
       `}</style>
     </>

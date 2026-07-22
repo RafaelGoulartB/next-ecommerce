@@ -63,9 +63,10 @@ export default function HeaderBarProducts() {
           justify-content: space-between;
           width: 100%;
           background: #ffffff;
-          box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
-          border-radius: 6px;
-          margin-bottom: 30px;
+          border: 1px solid #edf0f5;
+          box-shadow: 0 8px 22px rgba(34, 55, 89, .05);
+          border-radius: 12px;
+          margin-bottom: 20px;
         }
         .header .sort-list {
           height: 100%;
@@ -75,18 +76,17 @@ export default function HeaderBarProducts() {
         }
         .header .sort-list a {
           box-sizing: border-box;
-          margin-left: 35px;
-          padding-top: 18px;
-          padding-bottom: 18px;
+          margin-left: 24px;
+          padding: 16px 0;
           text-decoration: none;
           font-weight: bold;
           font-size: 13px;
           text-align: center;
-          color: #b3b3b3;
+          color: #9da6b3;
         }
         .header .sort-list a.active {
-          color: #1875f0;
-          border-bottom: 2px solid #1875f0;
+          color: var(--quantum-ink);
+          border-bottom: 2px solid #91a5b8;
         }
         .header .sort-list a:hover {
           cursor: pointer;

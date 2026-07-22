@@ -1,3 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800;900&display=swap');
+
+:root {
+	--quantum-blue: #607b96;
+	--quantum-blue-dark: #4c657d;
+	--quantum-ink: #252b3a;
+	--quantum-text: #596477;
+	--quantum-muted: #8b94a3;
+	--quantum-border: #e4e9f1;
+	--quantum-surface: #ffffff;
+	--quantum-background: #f7f9fc;
+}
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -24,8 +37,11 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-  line-height: 1;
-  overflow-x : hidden;
+  min-width: 320px;
+  line-height: 1.4;
+  overflow-x: hidden;
+  background: var(--quantum-background);
+  color: var(--quantum-ink);
 }
 ol, ul {
 	list-style: none;
@@ -43,8 +59,14 @@ table {
 	border-spacing: 0;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap');
-
 * {
+	box-sizing: border-box;
 	font-family: 'Roboto', sans-serif;
+}
+
+button,
+input,
+select,
+textarea {
+	font: inherit;
 }

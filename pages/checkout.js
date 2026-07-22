@@ -105,21 +105,23 @@ export default function Checkout() {
       <style jsx>{`
         .checkout-page { width: 100%; max-width: 1000px; }
         .checkout-heading { margin-bottom: 28px; }
-        .eyebrow, .card-eyebrow { margin: 0; color: #1875f0; font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; }
-        .checkout-heading h1 { margin: 6px 0 8px; color: #424b5c; font-size: 38px; font-weight: 900; }
+        .eyebrow, .card-eyebrow { margin: 0; color: var(--quantum-blue); font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; }
+        .checkout-heading h1 { margin: 6px 0 8px; color: var(--quantum-ink); font-size: 38px; font-weight: 900; letter-spacing: -1px; }
         .checkout-heading > p:last-child { margin: 0; color: #8b94a3; font-size: 14px; }
         .checkout-layout { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr); gap: 26px; align-items: start; }
-        .contact-card, .summary-card { box-sizing: border-box; padding: 28px; border-radius: 10px; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,.05); }
+        .contact-card, .summary-card { box-sizing: border-box; padding: 28px; border: 1px solid #edf0f5; border-radius: 12px; background: #ffffff; box-shadow: 0 10px 24px rgba(34,55,89,.06); }
         .card-heading { display: flex; align-items: center; gap: 12px; margin-bottom: 22px; }
         .card-heading h2 { margin: 0; color: #424b5c; font-size: 21px; }
         .card-eyebrow { display: flex; align-items: center; justify-content: center; width: 25px; height: 25px; border-radius: 50%; background: #edf4ff; font-size: 10px; }
-        .signin-note { margin-bottom: 18px; padding: 13px 14px; border-radius: 6px; background: #f2f7ff; color: #59708d; font-size: 13px; line-height: 1.5; }
-        .form-error { padding: 12px; border-radius: 6px; background: #fff4f4; color: #b54747; font-size: 13px; }
+        .signin-note { margin-bottom: 18px; padding: 13px 14px; border-radius: 9px; background: #f2f7ff; color: #59708d; font-size: 13px; line-height: 1.5; }
+        .form-error { padding: 12px; border-radius: 9px; background: #fff4f4; color: #b54747; font-size: 13px; }
         label { display: block; margin-top: 16px; color: #555f70; font-size: 13px; font-weight: 800; }
         label span { color: #9da6b3; font-weight: 400; }
-        input { box-sizing: border-box; width: 100%; min-height: 48px; margin-top: 7px; padding: 0 13px; border: 1px solid #e1e6ee; border-radius: 7px; background: #fbfcfe; color: #424b5c; font: inherit; font-size: 14px; outline: none; }
-        input:focus { border-color: #1875f0; box-shadow: 0 0 0 4px rgba(24,117,240,.1); }
-        .contact-card button { width: 100%; min-height: 48px; margin-top: 24px; border: 0; border-radius: 7px; background: #1875f0; color: #fff; cursor: pointer; font: inherit; font-weight: 800; }
+        input { box-sizing: border-box; width: 100%; min-height: 50px; margin-top: 7px; padding: 0 14px; border: 1px solid #e1e6ee; border-radius: 9px; background: #fbfcfe; color: #424b5c; font: inherit; font-size: 14px; outline: none; transition: border-color .2s, box-shadow .2s, background .2s; }
+        input:focus { background: #ffffff; }
+        input:focus { border-color: var(--quantum-blue); box-shadow: 0 0 0 4px rgba(96,123,150,.12); }
+        .contact-card button { width: 100%; min-height: 50px; margin-top: 24px; border: 0; border-radius: 9px; background: var(--quantum-blue); color: #fff; cursor: pointer; font: inherit; font-weight: 800; transition: transform .2s, box-shadow .2s; }
+        .contact-card button:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 8px 18px rgba(24,117,240,.2); }
         .contact-card button:disabled { cursor: wait; opacity: .65; }
         .contact-card small { display: block; margin-top: 13px; color: #9da6b3; font-size: 11px; line-height: 1.5; text-align: center; }
         .summary-items { display: grid; gap: 15px; padding: 2px 0 20px; }
@@ -127,7 +129,7 @@ export default function Checkout() {
         .summary-item strong { color: #424b5c; white-space: nowrap; }
         .total-row { display: flex; justify-content: space-between; padding-top: 18px; border-top: 1px solid #e9edf3; color: #424b5c; font-size: 16px; font-weight: 800; }
         .total-row strong { font-size: 23px; }
-        .back-link { display: block; margin-top: 22px; color: #1875f0; font-size: 12px; text-align: center; text-decoration: none; }
+        .back-link { display: block; margin-top: 22px; color: var(--quantum-blue); font-size: 12px; text-align: center; text-decoration: none; }
         @media (max-width: 780px) { .checkout-layout { grid-template-columns: 1fr; } .summary-card { order: -1; } }
       `}</style>
     </Page>

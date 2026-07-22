@@ -20,8 +20,9 @@ export default function HeaderMobile({ viewer }) {
       <style jsx>{`
         .header-mobile {
           display: flex;
+          justify-content: space-between;
           align-items: center;
-          padding: 18px 48px;
+          padding: 14px 5%;
         }
       `}</style>
     </div>

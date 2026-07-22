@@ -5,15 +5,17 @@ export default function LoadingPage() {
     <div className="spinner">
       <Loader
         type="Oval"
-        color="#1875f0"
+        color="#71869a"
         height={60}
         width={60}
       />
       <style jsx>{`
           .spinner {
             display: flex;
-            justify-content: center;
-            margin-top: 3em;
+                align-items: center;
+                justify-content: center;
+                min-height: 180px;
+                margin-top: 1em;
           }
         `}</style>
     </div>

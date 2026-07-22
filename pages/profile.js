@@ -89,21 +89,22 @@ export default function Profile() {
       <style jsx>{`
         .profile-page { width: 100%; max-width: 1080px; }
         .page-heading { margin-bottom: 28px; }
-        .eyebrow, .card-eyebrow { margin: 0; color: #1875f0; font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; }
-        .page-heading h1 { margin: 6px 0 8px; color: #424b5c; font-size: 38px; font-weight: 900; }
+        .eyebrow, .card-eyebrow { margin: 0; color: var(--quantum-blue); font-size: 11px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; }
+        .page-heading h1 { margin: 6px 0 8px; color: var(--quantum-ink); font-size: 38px; font-weight: 900; letter-spacing: -1px; }
         .page-heading > p:last-child { margin: 0; color: #8b94a3; font-size: 14px; }
         .profile-layout { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 24px; align-items: start; }
-        .profile-card, .orders-card { box-sizing: border-box; padding: 26px; border-radius: 10px; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.05); }
+        .profile-card, .orders-card { box-sizing: border-box; padding: 26px; border: 1px solid #edf0f5; border-radius: 12px; background: #fff; box-shadow: 0 10px 24px rgba(34,55,89,.06); }
         h2 { margin: 8px 0 22px; color: #424b5c; font-size: 22px; }
         .profile-card h2 { font-size: 25px; }
         label { display: block; margin-top: 17px; color: #555f70; font-size: 12px; font-weight: 800; }
-        input { box-sizing: border-box; width: 100%; min-height: 44px; margin-top: 7px; padding: 0 11px; border: 1px solid #e1e6ee; border-radius: 6px; background: #fbfcfe; color: #424b5c; font: inherit; font-size: 13px; }
-        input:focus { border-color: #1875f0; outline: none; box-shadow: 0 0 0 3px rgba(24,117,240,.1); }
+        input { box-sizing: border-box; width: 100%; min-height: 46px; margin-top: 7px; padding: 0 12px; border: 1px solid #e1e6ee; border-radius: 9px; background: #fbfcfe; color: #424b5c; font: inherit; font-size: 13px; transition: border-color .2s, box-shadow .2s, background .2s; }
+        input:focus { border-color: var(--quantum-blue); outline: none; box-shadow: 0 0 0 3px rgba(96,123,150,.12); }
         input[readonly] { color: #919aa8; }
         .joined { margin: 16px 0; color: #9da6b3; font-size: 11px; line-height: 1.5; }
-        .profile-card button { width: 100%; min-height: 42px; border: 0; border-radius: 6px; background: #1875f0; color: #fff; cursor: pointer; font: inherit; font-size: 12px; font-weight: 800; }
+        .profile-card button { width: 100%; min-height: 46px; border: 0; border-radius: 9px; background: var(--quantum-blue); color: #fff; cursor: pointer; font: inherit; font-size: 12px; font-weight: 800; transition: transform .2s, box-shadow .2s; }
+        .profile-card button:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 8px 18px rgba(24,117,240,.2); }
         .profile-card button:disabled { opacity: .65; cursor: wait; }
-        .message { padding: 10px; border-radius: 6px; font-size: 12px; }
+        .message { padding: 10px; border-radius: 9px; font-size: 12px; }
         .message.error { background: #fff4f4; color: #b54747; }
         .message.success { background: #effaf3; color: #25965a; }
         .orders-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
@@ -116,7 +117,7 @@ export default function Profile() {
         .order-row small { display: block; margin-top: 5px; color: #9da6b3; font-size: 11px; }
         .order-status { padding: 5px 8px; border-radius: 20px; background: #edf7f0; color: #25965a; font-size: 10px; font-weight: 800; text-transform: capitalize; }
         .empty-orders { padding: 40px 0 18px; color: #8b94a3; font-size: 14px; text-align: center; }
-        .empty-orders a { display: inline-block; margin-top: 10px; color: #1875f0; font-weight: 800; text-decoration: none; }
+        .empty-orders a { display: inline-block; margin-top: 10px; color: var(--quantum-blue); font-weight: 800; text-decoration: none; }
         @media (max-width: 760px) { .profile-layout { grid-template-columns: 1fr; } .profile-card { max-width: none; } .order-row { grid-template-columns: minmax(0,1fr) auto; } .order-row > strong { grid-column: 1 / -1; } }
       `}</style>
     </Page>
