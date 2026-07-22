@@ -12,36 +12,59 @@ export const SORT_PRODUCT_SECTION = gql`
   }
 `;
 
-export const CART = gql`
-  query cart {
-    cart @client {
-      products
-      cartCount
+export const GUEST_CART = gql`
+  query guestCart {
+    guestCart @client {
+      items {
+        id
+        quantity
+      }
+      itemCount
     }
   }
 `;
 
-export const WISHLIST = gql`
-  query wishlist {
-    wishlist @client {
+export const GUEST_WISHLIST = gql`
+  query guestWishlist {
+    guestWishlist @client {
       products
       wishlistCount
     }
   }
 `;
 
-export const CART_COUNT = gql`
-  query cart {
-    cart @client {
-      cartCount
+export const MY_CART = gql`
+  query MyCart {
+    myCart {
+      items {
+        productId
+        quantity
+        unitPrice
+        lineTotal
+        product {
+          id
+          name
+          description
+          img_url
+          price
+          rating
+        }
+      }
+      itemCount
+      subtotal
     }
   }
 `;
 
-export const WISHLIST_COUNT = gql`
-  query wishlist {
-    wishlist @client {
-      wishlistCount
+export const MY_WISHLIST = gql`
+  query MyWishlist {
+    myWishlist {
+      id
+      name
+      description
+      img_url
+      price
+      rating
     }
   }
 `;
@@ -52,6 +75,53 @@ export const VIEWER = gql`
       id
       name
       email
+      createdAt
+    }
+  }
+`;
+
+export const MY_ORDERS = gql`
+  query MyOrders {
+    myOrders {
+      id
+      order_number
+      status
+      contact_name
+      contact_email
+      phone
+      subtotal
+      total
+      created_at
+      items {
+        product_id
+        product_name
+        unit_price
+        quantity
+        line_total
+      }
+    }
+  }
+`;
+
+export const ORDER_DETAILS = gql`
+  query OrderDetails($id: ID!) {
+    order(id: $id) {
+      id
+      order_number
+      status
+      contact_name
+      contact_email
+      phone
+      subtotal
+      total
+      created_at
+      items {
+        product_id
+        product_name
+        unit_price
+        quantity
+        line_total
+      }
     }
   }
 `;
@@ -82,6 +152,15 @@ export const PRODUCTS_BY_IDS = gql`
   }
 `;
 
+export const PRODUCTS_BY_IDS_PRICE = gql`
+  query productsByIds($id: [ID]!) {
+    productsById(id: $id) {
+      id
+      price
+    }
+  }
+`;
+
 export const PRODUCT_DETAILS = gql`
   query ProductDetails($id: ID!) {
     product(id: $id) {
@@ -106,6 +185,7 @@ export const PRODUCT_DETAILS = gql`
       }
       reviews {
         id
+        product_id
         author_name
         rating
         title
@@ -124,10 +204,17 @@ export const PRODUCT_DETAILS = gql`
   }
 `;
 
-export const PRODUCTS_BY_IDS_PRICE = gql`
-  query productsByIds($id: [ID]!) {
-    productsById(id: $id) {
-      price
+export const VIEWER_REVIEW = gql`
+  query ViewerReview($productId: ID!) {
+    viewerReview(productId: $productId) {
+      id
+      product_id
+      author_name
+      rating
+      title
+      comment
+      verified_purchase
+      created_at
     }
   }
 `;

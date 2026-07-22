@@ -7,13 +7,17 @@ import {
   FaSignOutAlt,
   FaBars,
 } from 'react-icons/fa';
-import { CART_COUNT } from '../../apollo/client/queries';
+import { GUEST_CART, MY_CART } from '../../apollo/client/queries';
 
 import Logo from '../logo';
 import SearchBox from '../search-box';
 
 export default function HeaderDesktop({ viewer }) {
-  const cart = useQuery(CART_COUNT);
+  const { data: guestCartData } = useQuery(GUEST_CART);
+  const { data: myCartData } = useQuery(MY_CART, { skip: !viewer });
+  const cartCount = viewer
+    ? myCartData?.myCart?.itemCount || 0
+    : guestCartData?.guestCart?.itemCount || 0;
 
   return (
     <>
@@ -27,7 +31,7 @@ export default function HeaderDesktop({ viewer }) {
             <a className="nav-buttons-items">
               <FaShoppingCart color="#808080" />
               <p>
-                <sup className="items-total">{cart.data.cart.cartCount}</sup>{' '}
+                <sup className="items-total">{cartCount}</sup>{' '}
                 Items
               </p>
             </a>
@@ -66,8 +70,8 @@ export default function HeaderDesktop({ viewer }) {
       <div className="header header-bottom">
         <div className="all-categories-box">
           <FaBars color="#d8d8d8" />
-          <select name="categories" id="categories">
-            <option value="All Categories" selected>
+          <select name="categories" id="categories" defaultValue="All Categories">
+            <option value="All Categories">
               All Categories
             </option>
             <option value="#">Desktop</option>

@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import {
   FaArrowLeft,
   FaCartArrowDown,
@@ -11,13 +11,18 @@ import {
   FaRegHeart,
 } from 'react-icons/fa';
 import StarRatings from 'react-star-ratings';
-import { PRODUCT_DETAILS, CART, WISHLIST } from '../../apollo/client/queries';
+import { PRODUCT_DETAILS, VIEWER_REVIEW } from '../../apollo/client/queries';
+import {
+  CREATE_REVIEW,
+  DELETE_REVIEW,
+  UPDATE_REVIEW,
+} from '../../apollo/client/mutations';
 import Page from '../../components/page';
 import ErrorAlert from '../../components/alerts/error';
 import LoadingPage from '../../components/loading-page';
 import ProductItem from '../../components/productItem';
 import ProductsGrid from '../../components/productsGrid';
-import { toggleCart, toggleWishlist } from '../../utils/toggleProductStates';
+import useShoppingState from '../../hooks/use-shopping-state';
 
 function formatPrice(price) {
   return new Intl.NumberFormat('en-US', {
@@ -110,12 +115,31 @@ export default function ProductDetails() {
   const router = useRouter();
   const { id } = router.query;
   const [showAllReviews, setShowAllReviews] = useState(false);
-  const cart = useQuery(CART);
-  const wishlist = useQuery(WISHLIST);
-  const { data, loading, error } = useQuery(PRODUCT_DETAILS, {
+  const [reviewRating, setReviewRating] = useState(5);
+  const [reviewTitle, setReviewTitle] = useState('');
+  const [reviewComment, setReviewComment] = useState('');
+  const [reviewError, setReviewError] = useState('');
+  const [reviewSuccess, setReviewSuccess] = useState('');
+  const { isAuthenticated, cartItems, wishlistIds, toggleCartItem, toggleWishlistItem } = useShoppingState();
+  const { data, loading, error, refetch: refetchProduct } = useQuery(PRODUCT_DETAILS, {
     variables: { id: typeof id === 'string' ? id : '' },
     skip: !router.isReady || typeof id !== 'string',
   });
+  const { data: viewerReviewData, refetch: refetchViewerReview } = useQuery(VIEWER_REVIEW, {
+    variables: { productId: typeof id === 'string' ? id : '' },
+    skip: !router.isReady || typeof id !== 'string' || !isAuthenticated,
+  });
+  const [createReview, { loading: creatingReview }] = useMutation(CREATE_REVIEW);
+  const [updateReview, { loading: updatingReview }] = useMutation(UPDATE_REVIEW);
+  const [deleteReview, { loading: deletingReview }] = useMutation(DELETE_REVIEW);
+
+  const viewerReview = viewerReviewData?.viewerReview;
+  useEffect(() => {
+    if (!viewerReview) return;
+    setReviewRating(viewerReview.rating);
+    setReviewTitle(viewerReview.title);
+    setReviewComment(viewerReview.comment);
+  }, [viewerReview]);
 
   if (!router.isReady || loading) {
     return (
@@ -141,12 +165,59 @@ export default function ProductDetails() {
     total: reviews.length,
     distribution: [],
   };
-  const cartProducts = cart.data?.cart?.products || [];
-  const wishlistProducts = wishlist.data?.wishlist?.products || [];
-  const isInCart = cartProducts.includes(product.id);
-  const isInWishlist = wishlistProducts.includes(product.id);
+  const cartProduct = cartItems.find((item) => String(item.productId) === String(product.id));
+  const isInCart = Boolean(cartProduct);
+  const isInWishlist = wishlistIds.includes(String(product.id));
   const visibleReviews = showAllReviews ? reviews : reviews.slice(0, 5);
   const category = categories[0];
+
+  async function handleReviewSubmit(event) {
+    event.preventDefault();
+    setReviewError('');
+    setReviewSuccess('');
+    try {
+      if (viewerReview) {
+        await updateReview({
+          variables: {
+            id: viewerReview.id,
+            input: { rating: Number(reviewRating), title: reviewTitle, comment: reviewComment },
+          },
+        });
+        setReviewSuccess('Your review has been updated.');
+      } else {
+        await createReview({
+          variables: {
+            input: {
+              productId: product.id,
+              rating: Number(reviewRating),
+              title: reviewTitle,
+              comment: reviewComment,
+            },
+          },
+        });
+        setReviewSuccess('Thanks for sharing your experience.');
+      }
+      await Promise.all([refetchProduct(), refetchViewerReview()]);
+    } catch (reviewSubmitError) {
+      setReviewError(reviewSubmitError.message);
+    }
+  }
+
+  async function handleReviewDelete() {
+    if (!viewerReview) return;
+    setReviewError('');
+    setReviewSuccess('');
+    try {
+      await deleteReview({ variables: { id: viewerReview.id } });
+      setReviewRating(5);
+      setReviewTitle('');
+      setReviewComment('');
+      await Promise.all([refetchProduct(), refetchViewerReview()]);
+      setReviewSuccess('Your review has been removed.');
+    } catch (deleteError) {
+      setReviewError(deleteError.message);
+    }
+  }
 
   return (
     <Page
@@ -203,7 +274,7 @@ export default function ProductDetails() {
               <div className="purchase-actions">
                 <button
                   className="cart-button"
-                  onClick={() => toggleCart(product.id)}
+                  onClick={() => toggleCartItem(product.id)}
                 >
                   {isInCart ? <FaCartArrowDown /> : <FaCartPlus />}
                   {isInCart ? 'Remove from cart' : 'Add to cart'}
@@ -213,7 +284,7 @@ export default function ProductDetails() {
                   aria-label={
                     isInWishlist ? 'Remove from wishlist' : 'Add to wishlist'
                   }
-                  onClick={() => toggleWishlist(product.id)}
+                  onClick={() => toggleWishlistItem(product.id)}
                 >
                   {isInWishlist ? <FaHeart /> : <FaRegHeart />}
                 </button>
@@ -222,7 +293,7 @@ export default function ProductDetails() {
           </div>
         </article>
 
-        <section className="reviews-section">
+        <section className="reviews-section" id="reviews">
           <div className="section-heading">
             <p className="eyebrow">Customer feedback</p>
             <h2>Reviews</h2>
@@ -246,6 +317,53 @@ export default function ProductDetails() {
               total={summary.total}
             />
           </div>
+
+          {isAuthenticated ? (
+            <form className="review-form" onSubmit={handleReviewSubmit}>
+              <div className="review-form-heading">
+                <div>
+                  <p className="eyebrow">Your experience</p>
+                  <h3>{viewerReview ? 'Edit your review' : 'Leave a review'}</h3>
+                </div>
+                {viewerReview?.verified_purchase && (
+                  <span className="verified-review"><FaCheckCircle size={13} /> Verified purchase</span>
+                )}
+              </div>
+              {reviewError && <p className="review-message error-message" role="alert">{reviewError}</p>}
+              {reviewSuccess && <p className="review-message success-message" role="status">{reviewSuccess}</p>}
+              <label>
+                Rating
+                <select value={reviewRating} onChange={(event) => setReviewRating(Number(event.target.value))}>
+                  {[5, 4, 3, 2, 1].map((rating) => <option key={rating} value={rating}>{rating} stars</option>)}
+                </select>
+              </label>
+              <label>
+                Title
+                <input value={reviewTitle} onChange={(event) => setReviewTitle(event.target.value)} placeholder="What stood out?" />
+              </label>
+              <label>
+                Comment
+                <textarea value={reviewComment} onChange={(event) => setReviewComment(event.target.value)} placeholder="Tell other shoppers about your experience." rows="4" />
+              </label>
+              <div className="review-form-actions">
+                <button type="submit" className="review-submit" disabled={creatingReview || updatingReview}>
+                  {creatingReview || updatingReview ? 'Saving…' : viewerReview ? 'Update review' : 'Publish review'}
+                </button>
+                {viewerReview && (
+                  <button type="button" className="review-delete" onClick={handleReviewDelete} disabled={deletingReview}>
+                    {deletingReview ? 'Removing…' : 'Remove review'}
+                  </button>
+                )}
+              </div>
+            </form>
+          ) : (
+            <div className="review-signin">
+              <p>Have you tried this product?</p>
+              <Link href={`/user/login?redirect=${encodeURIComponent(`/product/${product.id}#reviews`)}`}>
+                <a>Sign in to share your experience</a>
+              </Link>
+            </div>
+          )}
 
           <div className="review-list">
             {visibleReviews.map((review) => (
@@ -459,6 +577,63 @@ export default function ProductDetails() {
           border-radius: 8px;
           background: #fafafa;
         }
+        .review-form,
+        .review-signin {
+          padding: 22px;
+          margin-bottom: 24px;
+          border: 1px solid #e9edf3;
+          border-radius: 8px;
+          background: #fbfcfe;
+        }
+        .review-form-heading {
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+          gap: 12px;
+          margin-bottom: 18px;
+        }
+        .review-form-heading h3 { margin: 4px 0 0; color: #444444; font-size: 20px; }
+        .review-form label {
+          display: block;
+          margin-top: 14px;
+          color: #555555;
+          font-size: 13px;
+          font-weight: 700;
+        }
+        .review-form input,
+        .review-form select,
+        .review-form textarea {
+          box-sizing: border-box;
+          width: 100%;
+          margin-top: 7px;
+          padding: 11px 12px;
+          border: 1px solid #dce2eb;
+          border-radius: 5px;
+          background: #ffffff;
+          color: #444444;
+          font: inherit;
+          font-size: 14px;
+        }
+        .review-form textarea { resize: vertical; line-height: 1.5; }
+        .review-form-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+        .review-submit,
+        .review-delete {
+          min-height: 40px;
+          padding: 0 16px;
+          border-radius: 5px;
+          cursor: pointer;
+          font-weight: 700;
+        }
+        .review-submit { border: 0; background: #1875f0; color: #ffffff; }
+        .review-delete { border: 1px solid #e1a0a0; background: #ffffff; color: #b54747; }
+        .review-submit:disabled,
+        .review-delete:disabled { cursor: wait; opacity: 0.6; }
+        .review-message { margin: 12px 0 0; font-size: 13px; }
+        .error-message { color: #b54747; }
+        .success-message { color: #25965a; }
+        .review-signin { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+        .review-signin p { margin: 0; color: #666666; font-size: 14px; }
+        .review-signin a { color: #1875f0; font-size: 14px; font-weight: 700; text-decoration: none; }
         .average-rating {
           align-content: center;
           flex-direction: column;
@@ -565,6 +740,7 @@ export default function ProductDetails() {
           .reviews-summary {
             padding: 18px;
           }
+          .review-signin { align-items: flex-start; flex-direction: column; }
         }
       `}</style>
     </Page>

@@ -1,4 +1,3 @@
-import { useQuery } from '@apollo/client';
 import Link from 'next/link';
 import {
   FaCartArrowDown,
@@ -7,23 +6,31 @@ import {
   FaHeart,
 } from 'react-icons/fa';
 import StarRatings from 'react-star-ratings';
-import { toggleCart, toggleWishlist } from '../utils/toggleProductStates';
-import { CART, WISHLIST } from '../apollo/client/queries';
+import useShoppingState from '../hooks/use-shopping-state';
 
 export default function ProductSection({ id, name, rating, img_url, price }) {
-  const cart = useQuery(CART);
-  const wishlist = useQuery(WISHLIST);
-  const cartProducts = cart.data?.cart?.products || [];
-  const wishlistProducts = wishlist.data?.wishlist?.products || [];
+  const {
+    cartItems,
+    wishlistIds,
+    toggleCartItem,
+    toggleWishlistItem,
+  } = useShoppingState();
+  const cartProduct = cartItems.find((item) => String(item.productId) === String(id));
+  const isInCart = Boolean(cartProduct);
+  const isInWishlist = wishlistIds.includes(String(id));
 
   return (
     <article>
       <div className="top-buttons">
-        <button className="add-wishlist" onClick={() => toggleWishlist(id)}>
-          {wishlistProducts.includes(id) && (
+        <button
+          className="add-wishlist"
+          onClick={() => toggleWishlistItem(id)}
+          aria-label={isInWishlist ? 'Remove from wishlist' : 'Add to wishlist'}
+        >
+          {isInWishlist && (
             <FaHeart size={20} color="#D8D8D8" />
           )}
-          {!wishlistProducts.includes(id) && (
+          {!isInWishlist && (
             <FaRegHeart size={20} color="#D8D8D8" />
           )}
         </button>
@@ -52,11 +59,15 @@ export default function ProductSection({ id, name, rating, img_url, price }) {
 
       <div className="price">
         <p className="price-value">${price}</p>
-        <button className="add-cart" onClick={() => toggleCart(id)}>
-          {cartProducts.includes(id) && (
+        <button
+          className="add-cart"
+          onClick={() => toggleCartItem(id)}
+          aria-label={isInCart ? 'Remove from cart' : 'Add to cart'}
+        >
+          {isInCart && (
             <FaCartArrowDown size={18} color="#D8D8D8" />
           )}
-          {!cartProducts.includes(id) && (
+          {!isInCart && (
             <FaCartPlus size={18} color="#D8D8D8" />
           )}
         </button>

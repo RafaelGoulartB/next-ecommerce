@@ -1,15 +1,12 @@
-import { wishlistProductsVar, cartProductsVar } from '../apollo/client/cache';
-
-export function toggleWishlist(id) {
-  if (wishlistProductsVar().includes(id)) {
-    const newWishlist = wishlistProductsVar().filter((item) => item != id);
-    wishlistProductsVar(newWishlist);
-  } else wishlistProductsVar([...wishlistProductsVar(), id]);
-}
+import {
+  toggleGuestCart,
+  toggleGuestWishlist,
+} from '../apollo/client/cache';
 
 export function toggleCart(id) {
-  if (cartProductsVar().includes(id)) {
-    const newCartList = cartProductsVar().filter((item) => item != id);
-    cartProductsVar(newCartList);
-  } else cartProductsVar([...cartProductsVar(), id]);
+  toggleGuestCart(id);
+}
+
+export function toggleWishlist(id) {
+  toggleGuestWishlist(id);
 }

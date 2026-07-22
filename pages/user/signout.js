@@ -1,28 +1,27 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { useMutation, useApolloClient } from '@apollo/client';
-import { gql } from '@apollo/client'
+import { useApolloClient, useMutation } from '@apollo/client';
+import { SIGN_OUT } from '../../apollo/client/mutations';
+import { clearGuestCart, clearGuestWishlist } from '../../apollo/client/cache';
 
-const SignOutMutation = gql`
-  mutation SignOutMutation {
-    signOut
-  }
-`;
-
-function SignOut() {
+export default function SignOut() {
   const client = useApolloClient();
   const router = useRouter();
-  const [signOut] = useMutation(SignOutMutation);
+  const [signOut] = useMutation(SIGN_OUT);
 
   useEffect(() => {
-    signOut().then(() => {
-      client.resetStore().then(() => {
-        router.push('/user/login');
+    let active = true;
+    signOut()
+      .catch(() => null)
+      .finally(async () => {
+        if (!active) return;
+        clearGuestCart();
+        clearGuestWishlist();
+        await client.clearStore();
+        router.replace('/user/login');
       });
-    });
-  }, [signOut, router, client]);
+    return () => { active = false; };
+  }, [client, router, signOut]);
 
-  return <p>Signing out...</p>;
+  return <p style={{ padding: '32px', fontFamily: 'Roboto, sans-serif' }}>Signing out…</p>;
 }
-
-export default SignOut;

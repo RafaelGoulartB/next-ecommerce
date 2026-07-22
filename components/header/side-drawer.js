@@ -1,104 +1,41 @@
 import Link from 'next/link';
 import { useQuery } from '@apollo/client';
 import SearchBox from '../search-box';
-import { GET_DRAWER_STATE } from '../../apollo/client/queries';
+import { GET_DRAWER_STATE, GUEST_CART, MY_CART } from '../../apollo/client/queries';
 
-export default function SideDrawer({ closeDrawer }) {
-  const { data, loading, error } = useQuery(GET_DRAWER_STATE);
+export default function SideDrawer({ closeDrawer, viewer }) {
+  const { data } = useQuery(GET_DRAWER_STATE);
+  const { data: guestCartData } = useQuery(GUEST_CART);
+  const { data: myCartData } = useQuery(MY_CART, { skip: !viewer });
+  const itemCount = viewer
+    ? myCartData?.myCart?.itemCount || 0
+    : guestCartData?.guestCart?.itemCount || 0;
 
   return (
-    <div
-      className={`side-drawer ${data?.isDrawerOpen ? 'show' : 'hide'}`}
-      id="side-drawer"
-    >
-      <button className="close-drawer" onClick={closeDrawer}>
-        X
-      </button>
-
-      <div className="search">
-        <SearchBox />
-      </div>
-
+    <div className={`side-drawer ${data?.isDrawerOpen ? 'show' : 'hide'}`} id="side-drawer">
+      <button className="close-drawer" onClick={closeDrawer} aria-label="Close menu">×</button>
+      <div className="search"><SearchBox /></div>
       <ul className="items">
-        <li id="home" className="item">
-          <Link href="/cart">
-            <a>Items</a>
-          </Link>
-        </li>
-        <li id="about" className="item">
-          <Link href="/wishlist">
-            <a>Wishlist</a>
-          </Link>
-        </li>
-        <li id="contact" className="item">
-          <Link href="/user/login">
-            <a>Sign In</a>
-          </Link>
-        </li>
+        <li className="item"><Link href="/cart"><a onClick={closeDrawer}>Cart <span>{itemCount}</span></a></Link></li>
+        <li className="item"><Link href="/wishlist"><a onClick={closeDrawer}>Wishlist</a></Link></li>
+        {viewer ? (
+          <>
+            <li className="item"><Link href="/profile"><a onClick={closeDrawer}>{viewer.name}</a></Link></li>
+            <li className="item"><Link href="/user/signout"><a onClick={closeDrawer}>Sign Out</a></Link></li>
+          </>
+        ) : (
+          <li className="item"><Link href="/user/login"><a onClick={closeDrawer}>Sign In</a></Link></li>
+        )}
       </ul>
-
       <style jsx>{`
-        .side-drawer {
-          display: flex;
-          flex-direction: column;
-          position: fixed;
-          z-index: 999;
-          top: 0;
-          left: 0;
-          width: 80%;
-          height: 100vh;
-          background: #fff;
-          box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.5);
-          transform: translateX(-100%);
-          transition: transform 0.3s ease-out;
-        }
-        .side-drawer.show {
-          transform: translateX(0);
-        }
-        .side-drawer .search {
-          padding-top: 1rem;
-          width: 80%;
-          align-self: center;
-        }
-        .side-drawer .items {
-          padding-top: 3rem;
-          box-sizing: border-box;
-          width: 100%;
-        }
-        .side-drawer .items .item + .item {
-          margin-top: 2rem;
-          padding-top: 2rem;
-          border-top: 1px solid #6666;
-        }
-        .side-drawer .items .item a {
-          padding-left: 4rem;
-          color: #4d4d4d;
-          text-decoration: none;
-          font-weight: 500;
-          font-size: 1.2rem;
-          transition: opacity 0.4s;
-        }
-        .side-drawer .items .item a:hover,
-        .side-drawer .items .item a:active {
-          opacity: 0.8;
-        }
-        .side-drawer .close-drawer {
-          width: 100%;
-          padding: 1.2rem 2rem;
-          text-align: right;
-          background: none;
-          border: none;
-          font-size: 1.8rem;
-          font-weight: 500;
-          color: #4d4d4d;
-          transition: opacity 0.2s;
-        }
-        .side-drawer .close-drawer:hover {
-          opacity: 0.8;
-        }
-        .side-drawer .close-drawer:focus {
-          outline: none;
-        }
+        .side-drawer { display: flex; flex-direction: column; position: fixed; z-index: 999; top: 0; left: 0; width: 80%; height: 100vh; box-sizing: border-box; background: #fff; box-shadow: 2px 0 5px rgba(0,0,0,.18); transform: translateX(-100%); transition: transform .3s ease-out; }
+        .side-drawer.show { transform: translateX(0); }
+        .search { padding-top: 1rem; width: 80%; align-self: center; }
+        .items { width: 100%; padding-top: 2rem; box-sizing: border-box; }
+        .item + .item { margin-top: 1.2rem; padding-top: 1.2rem; border-top: 1px solid #eeeeee; }
+        .item a { display: flex; justify-content: space-between; padding: 0 2.4rem; color: #4d4d4d; text-decoration: none; font-size: 1.05rem; font-weight: 700; }
+        .item a span { color: #1875f0; }
+        .close-drawer { width: 100%; padding: 1rem 2rem; border: 0; background: none; color: #4d4d4d; cursor: pointer; font-size: 2rem; text-align: right; }
       `}</style>
     </div>
   );

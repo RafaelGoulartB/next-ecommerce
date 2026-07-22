@@ -13,7 +13,7 @@ export default function HeaderMobile({ viewer }) {
     <div className="header-mobile">
       <OpenDrawerButton openDrawer={toggleDrawer} />
 
-      <SideDrawer closeDrawer={toggleDrawer} />
+      <SideDrawer closeDrawer={toggleDrawer} viewer={viewer} />
 
       <Logo />
 
