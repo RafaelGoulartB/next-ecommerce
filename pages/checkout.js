@@ -6,12 +6,10 @@ import LoadingPage from '../components/loading-page';
 import EmptySection from '../components/emptySection';
 import { CREATE_ORDER } from '../apollo/client/mutations';
 import { GUEST_CART, MY_CART, PRODUCTS_BY_IDS, VIEWER } from '../apollo/client/queries';
-
-function formatPrice(value) {
-  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(Number(value || 0));
-}
+import useCurrency from '../hooks/use-currency';
 
 export default function Checkout() {
+  const { formatPrice } = useCurrency();
   const { data: viewerData, loading: viewerLoading } = useQuery(VIEWER);
   const viewer = viewerData?.viewer;
   const { data: guestData, loading: guestLoading } = useQuery(GUEST_CART);

@@ -6,10 +6,7 @@ import Page from '../../components/page';
 import LoadingPage from '../../components/loading-page';
 import ErrorAlert from '../../components/alerts/error';
 import { ORDER_DETAILS, VIEWER } from '../../apollo/client/queries';
-
-function formatPrice(value) {
-  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(Number(value || 0));
-}
+import useCurrency from '../../hooks/use-currency';
 
 function formatDate(value) {
   const numericValue = Number(value);
@@ -18,6 +15,7 @@ function formatDate(value) {
 }
 
 export default function OrderDetails() {
+  const { formatPrice } = useCurrency();
   const router = useRouter();
   const { data: viewerData, loading: viewerLoading } = useQuery(VIEWER);
   const { data, loading, error } = useQuery(ORDER_DETAILS, {

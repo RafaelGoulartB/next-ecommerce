@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useQuery } from '@apollo/client';
 import SearchBox from '../search-box';
+import CurrencySelector from '../currency-selector';
 import { GET_DRAWER_STATE, GUEST_CART, MY_CART } from '../../apollo/client/queries';
 
 export default function SideDrawer({ closeDrawer, viewer }) {
@@ -26,6 +27,7 @@ export default function SideDrawer({ closeDrawer, viewer }) {
         ) : (
           <li className="item"><Link href="/user/login"><a onClick={closeDrawer}>Sign In</a></Link></li>
         )}
+        <li className="item currency-item"><span>Currency</span><CurrencySelector /></li>
       </ul>
       <style jsx>{`
         .side-drawer { display: flex; flex-direction: column; position: fixed; z-index: 999; top: 0; left: 0; width: min(86%, 360px); height: 100vh; box-sizing: border-box; background: #fff; box-shadow: 12px 0 30px rgba(34,55,89,.14); transform: translateX(-100%); transition: transform .3s ease-out; }
@@ -36,6 +38,8 @@ export default function SideDrawer({ closeDrawer, viewer }) {
         .item a { display: flex; justify-content: space-between; padding: 18px 28px; color: var(--quantum-ink); text-decoration: none; font-size: 15px; font-weight: 700; }
         .item a:hover { background: #f6f8fb; color: var(--quantum-ink); }
         .item a span { color: var(--quantum-blue); }
+        .currency-item { display: flex; align-items: center; justify-content: space-between; padding: 0 28px; color: var(--quantum-ink); font-size: 15px; font-weight: 700; }
+        .currency-item :global(select) { color: var(--quantum-ink); }
         .close-drawer { width: 100%; padding: 16px 24px 8px; border: 0; background: none; color: var(--quantum-muted); cursor: pointer; font-size: 28px; text-align: right; }
       `}</style>
     </div>

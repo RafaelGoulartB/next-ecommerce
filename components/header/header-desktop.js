@@ -11,6 +11,7 @@ import { GUEST_CART, MY_CART } from '../../apollo/client/queries';
 
 import Logo from '../logo';
 import SearchBox from '../search-box';
+import CurrencySelector from '../currency-selector';
 
 export default function HeaderDesktop({ viewer }) {
   const { data: guestCartData } = useQuery(GUEST_CART);
@@ -105,7 +106,7 @@ export default function HeaderDesktop({ viewer }) {
             <p>Help</p>
           </div>
           <div className="menu-dropdown">
-            <p>USD</p>
+            <CurrencySelector />
           </div>
           <div className="menu-dropdown">
             <p>Language</p>

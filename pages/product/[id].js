@@ -23,13 +23,7 @@ import LoadingPage from '../../components/loading-page';
 import ProductItem from '../../components/productItem';
 import ProductsGrid from '../../components/productsGrid';
 import useShoppingState from '../../hooks/use-shopping-state';
-
-function formatPrice(price) {
-  return new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-  }).format(Number(price));
-}
+import useCurrency from '../../hooks/use-currency';
 
 function formatReviewDate(date) {
   return new Intl.DateTimeFormat('en-US', {
@@ -121,6 +115,7 @@ export default function ProductDetails() {
   const [reviewError, setReviewError] = useState('');
   const [reviewSuccess, setReviewSuccess] = useState('');
   const { isAuthenticated, cartItems, wishlistIds, toggleCartItem, toggleWishlistItem } = useShoppingState();
+  const { formatPrice } = useCurrency();
   const { data, loading, error, refetch: refetchProduct } = useQuery(PRODUCT_DETAILS, {
     variables: { id: typeof id === 'string' ? id : '' },
     skip: !router.isReady || typeof id !== 'string',

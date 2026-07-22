@@ -1,11 +1,14 @@
 import Link from 'next/link';
+import useCurrency from '../hooks/use-currency';
 
 export default function FinishOrderCart({ subtotal = '0.00', itemCount = 0 }) {
+  const { formatPrice } = useCurrency();
+
   return (
     <div className="finishOrder">
       <div className="info">
         <p className="total">Total ({itemCount} items)</p>
-        <p className="price">$ {Number(subtotal).toFixed(2)}</p>
+        <p className="price">{formatPrice(subtotal)}</p>
       </div>
       <Link href="/checkout"><a>Continue to checkout</a></Link>
       <style jsx>{`

@@ -4,6 +4,7 @@ import { useApollo } from '../apollo/client';
 import { useEffect } from 'react';
 import { hydrateGuestState } from '../apollo/client/cache';
 import AuthSessionSync from '../components/auth-session-sync';
+import { CurrencyProvider } from '../hooks/use-currency';
 
 export default function App({ Component, pageProps }) {
   const apolloClient = useApollo(pageProps.initialApolloState);
@@ -14,8 +15,10 @@ export default function App({ Component, pageProps }) {
 
   return (
     <ApolloProvider client={apolloClient}>
-      <AuthSessionSync />
-      <Component {...pageProps} />
+      <CurrencyProvider>
+        <AuthSessionSync />
+        <Component {...pageProps} />
+      </CurrencyProvider>
     </ApolloProvider>
   );
 }

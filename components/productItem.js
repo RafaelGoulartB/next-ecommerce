@@ -7,6 +7,7 @@ import {
 } from 'react-icons/fa';
 import StarRatings from 'react-star-ratings';
 import useShoppingState from '../hooks/use-shopping-state';
+import useCurrency from '../hooks/use-currency';
 
 export default function ProductSection({ id, name, rating, img_url, price }) {
   const {
@@ -15,6 +16,7 @@ export default function ProductSection({ id, name, rating, img_url, price }) {
     toggleCartItem,
     toggleWishlistItem,
   } = useShoppingState();
+  const { formatPrice } = useCurrency();
   const cartProduct = cartItems.find((item) => String(item.productId) === String(id));
   const isInCart = Boolean(cartProduct);
   const isInWishlist = wishlistIds.includes(String(id));
@@ -58,7 +60,7 @@ export default function ProductSection({ id, name, rating, img_url, price }) {
       </div>
 
       <div className="price">
-        <p className="price-value">${price}</p>
+        <p className="price-value">{formatPrice(price)}</p>
         <button
           className="add-cart"
           onClick={() => toggleCartItem(id)}

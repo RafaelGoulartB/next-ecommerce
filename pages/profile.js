@@ -6,10 +6,7 @@ import { UPDATE_PROFILE } from '../apollo/client/mutations';
 import { MY_ORDERS, VIEWER } from '../apollo/client/queries';
 import Page from '../components/page';
 import LoadingPage from '../components/loading-page';
-
-function formatPrice(value) {
-  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(Number(value || 0));
-}
+import useCurrency from '../hooks/use-currency';
 
 function formatDate(value) {
   const numericValue = Number(value);
@@ -18,6 +15,7 @@ function formatDate(value) {
 }
 
 export default function Profile() {
+  const { formatPrice } = useCurrency();
   const router = useRouter();
   const { data: viewerData, loading: viewerLoading } = useQuery(VIEWER);
   const viewer = viewerData?.viewer;
