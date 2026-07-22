@@ -1,10 +1,33 @@
 import { FaSearch } from 'react-icons/fa';
+import { useQuery } from '@apollo/client';
+
+import {
+  CATEGORIES,
+  CATEGORY_PRODUCT_SECTION,
+  SEARCH_PRODUCT_SECTION,
+} from '../apollo/client/queries';
+import {
+  categoryProductSectionVar,
+  searchProductSectionVar,
+} from '../apollo/client/cache';
+import offlineCategories from '../db/offlineData/categories';
 
 export default function SearchBox() {
+  const { data: searchData } = useQuery(SEARCH_PRODUCT_SECTION);
+  const { data: categoryData } = useQuery(CATEGORY_PRODUCT_SECTION);
+  const { data: categoriesData } = useQuery(CATEGORIES);
+  const search = searchData?.searchProductSection || '';
+  const selectedCategory = categoryData?.categoryProductSection || '';
+  const categories = categoriesData?.categories || offlineCategories;
+
+  function handleSearchSubmit(event) {
+    event.preventDefault();
+  }
+
   return (
     <>
-      <div className="search-box">
-        <button className="search-button">
+      <form className="search-box" onSubmit={handleSearchSubmit}>
+        <button className="search-button" type="submit" aria-label="Search products">
           <FaSearch color="#7f8d9c" size="14px" />
         </button>
         <input
@@ -12,21 +35,26 @@ export default function SearchBox() {
           type="text"
           name="search"
           placeholder="Search goods"
+          value={search}
+          onChange={(event) => searchProductSectionVar(event.target.value)}
         />
-        <select id="categories-search" name="categories-search">
-          <option value="" selected>
+        <select
+          id="categories-search"
+          name="categories-search"
+          value={selectedCategory}
+          onChange={(event) => categoryProductSectionVar(event.target.value)}
+          aria-label="Filter by category"
+        >
+          <option value="">
             Category
           </option>
-          <option value="#">Desktop</option>
-            <option value="#">Smartphone</option>
-            <option value="#">Watches</option>
-            <option value="#">Games</option>
-            <option value="#">Laptop</option>
-            <option value="#">Keyboards</option>
-            <option value="#">TV & Video</option>
-            <option value="#">Accessories</option>
+          {categories.map((category) => (
+            <option key={category.id} value={category.name}>
+              {category.label}
+            </option>
+          ))}
         </select>
-      </div>
+      </form>
       <style jsx>{`
         .search-box {
           display: flex;

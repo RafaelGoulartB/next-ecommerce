@@ -17,6 +17,16 @@ export const cache = new InMemoryCache({
             return sortProductSectionVar();
           },
         },
+        searchProductSection: {
+          read() {
+            return searchProductSectionVar();
+          },
+        },
+        categoryProductSection: {
+          read() {
+            return categoryProductSectionVar();
+          },
+        },
         guestCart: {
           read() {
             const items = guestCartProductsVar();
@@ -39,6 +49,8 @@ export const cache = new InMemoryCache({
 
 export const isDrawerOpenVar = cache.makeVar(false);
 export const sortProductSectionVar = cache.makeVar(['rating', 'DESC']);
+export const searchProductSectionVar = cache.makeVar('');
+export const categoryProductSectionVar = cache.makeVar('');
 export const guestCartProductsVar = cache.makeVar(initialGuestCart);
 export const guestWishlistProductsVar = cache.makeVar(initialGuestWishlist);
 

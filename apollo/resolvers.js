@@ -72,11 +72,11 @@ export const resolvers = {
     },
     async products(_parent, args) {
       try {
-        if (args.sort && args.category)
-          return listProducts({ sort: args.sort, category: args.category });
-        if (args.sort) return listProducts({ sort: args.sort });
-        if (args.category) return listProducts({ category: args.category });
-        return listProducts({ sort: false, category: false });
+        return listProducts({
+          sort: args.sort,
+          category: args.category,
+          search: args.search,
+        });
       } catch (error) {
         throw new Error('It is not possible list products');
       }

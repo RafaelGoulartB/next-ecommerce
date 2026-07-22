@@ -12,6 +12,18 @@ export const SORT_PRODUCT_SECTION = gql`
   }
 `;
 
+export const SEARCH_PRODUCT_SECTION = gql`
+  query searchProductSection {
+    searchProductSection @client
+  }
+`;
+
+export const CATEGORY_PRODUCT_SECTION = gql`
+  query categoryProductSection {
+    categoryProductSection @client
+  }
+`;
+
 export const GUEST_CART = gql`
   query guestCart {
     guestCart @client {
@@ -127,8 +139,17 @@ export const ORDER_DETAILS = gql`
 `;
 
 export const PRODUCTS = gql`
-  query ProductsQuery($field: String!, $order: String!, $category: String) {
-    products(sort: { field: $field, order: $order }, category: $category) {
+  query ProductsQuery(
+    $field: String!
+    $order: String!
+    $category: String
+    $search: String
+  ) {
+    products(
+      sort: { field: $field, order: $order }
+      category: $category
+      search: $search
+    ) {
       id
       name
       description
