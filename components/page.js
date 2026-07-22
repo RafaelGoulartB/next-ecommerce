@@ -13,6 +13,7 @@ export default function Page({ title, description, children }) {
       <style jsx>{`
         .content {
           display: flex;
+          flex: 1 0 auto;
           align-items: center;
           flex-direction: column;
           box-sizing: border-box;

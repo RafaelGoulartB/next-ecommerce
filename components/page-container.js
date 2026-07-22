@@ -25,7 +25,7 @@ export default function PageContainer({ title, description, children }) {
           min-height: 100vh;
           background-color: var(--quantum-background);
           align-items: center;
-          justify-content: center;
+          justify-content: flex-start;
           flex-direction: column;
           font-family: Roboto, sans-serif;
         }
