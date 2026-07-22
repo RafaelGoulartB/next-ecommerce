@@ -7,15 +7,17 @@ import { MY_ORDERS, VIEWER } from '../apollo/client/queries';
 import Page from '../components/page';
 import LoadingPage from '../components/loading-page';
 import useCurrency from '../hooks/use-currency';
+import useLocale from '../hooks/use-locale';
 
-function formatDate(value) {
+function formatDate(value, localeCode) {
   const numericValue = Number(value);
   const date = Number.isFinite(numericValue) ? new Date(numericValue) : new Date(value);
-  return new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: 'numeric' }).format(date);
+  return new Intl.DateTimeFormat(localeCode, { year: 'numeric', month: 'short', day: 'numeric' }).format(date);
 }
 
 export default function Profile() {
   const { formatPrice } = useCurrency();
+  const { t, localeCode } = useLocale();
   const router = useRouter();
   const { data: viewerData, loading: viewerLoading } = useQuery(VIEWER);
   const viewer = viewerData?.viewer;
@@ -26,9 +28,7 @@ export default function Profile() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    if (!viewerLoading && !viewer) {
-      router.replace('/user/login?redirect=/profile');
-    }
+    if (!viewerLoading && !viewer) router.replace('/user/login?redirect=/profile');
     if (viewer) setName(viewer.name);
   }, [router, viewer, viewerLoading]);
 
@@ -40,7 +40,7 @@ export default function Profile() {
     setMessage('');
     try {
       await updateProfile({ variables: { name } });
-      setMessage('Profile updated.');
+      setMessage(t('profile.updated'));
     } catch (submitError) {
       setError(submitError.message);
     }
@@ -48,32 +48,32 @@ export default function Profile() {
 
   const orders = ordersData?.myOrders || [];
   return (
-    <Page title="My profile - Quantum E-commerce">
+    <Page title={`${t('profile.title')} - ${t('common.siteName')}`}>
       <div className="profile-page">
-        <div className="page-heading"><p className="eyebrow">Your account</p><h1>Profile</h1><p>Manage your details and keep track of your Quantum orders.</p></div>
+        <div className="page-heading"><p className="eyebrow">{t('profile.account')}</p><h1>{t('profile.title')}</h1><p>{t('profile.intro')}</p></div>
         <div className="profile-layout">
           <section className="profile-card">
-            <p className="card-eyebrow">Account details</p>
+            <p className="card-eyebrow">{t('profile.accountDetails')}</p>
             <h2>{viewer.name}</h2>
             <form onSubmit={handleProfileSubmit}>
               {error && <p className="message error" role="alert">{error}</p>}
               {message && <p className="message success" role="status">{message}</p>}
-              <label>Name<input value={name} onChange={(event) => setName(event.target.value)} required /></label>
-              <label>Email<input value={viewer.email} readOnly /></label>
-              <p className="joined">Member since {formatDate(viewer.createdAt)}</p>
-              <button type="submit" disabled={updating}>{updating ? 'Saving…' : 'Save changes'}</button>
+              <label>{t('profile.name')}<input value={name} onChange={(event) => setName(event.target.value)} required /></label>
+              <label>{t('checkout.email')}<input value={viewer.email} readOnly /></label>
+              <p className="joined">{t('profile.memberSince', { date: formatDate(viewer.createdAt, localeCode) })}</p>
+              <button type="submit" disabled={updating}>{updating ? t('common.saving') : t('common.save')}</button>
             </form>
           </section>
           <section className="orders-card">
-            <div className="orders-heading"><div><p className="card-eyebrow">Purchase history</p><h2>Your orders</h2></div><span>{orders.length} orders</span></div>
+            <div className="orders-heading"><div><p className="card-eyebrow">{t('profile.history')}</p><h2>{t('profile.yourOrders')}</h2></div><span>{orders.length} {t(orders.length === 1 ? 'common.order' : 'common.orders')}</span></div>
             {!orders.length ? (
-              <div className="empty-orders"><p>You have not placed an order yet.</p><Link href="/"><a>Explore products</a></Link></div>
+              <div className="empty-orders"><p>{t('profile.noOrders')}</p><Link href="/"><a>{t('profile.explore')}</a></Link></div>
             ) : (
               <div className="orders-list">
                 {orders.map((order) => (
                   <Link href={`/order/${order.id}`} key={order.id}>
                     <a className="order-row">
-                      <span><strong>{order.order_number}</strong><small>{formatDate(order.created_at)} · {order.items.length} items</small></span>
+                      <span><strong>{order.order_number}</strong><small>{formatDate(order.created_at, localeCode)} · {order.items.length} {t(order.items.length === 1 ? 'common.item' : 'common.items')}</small></span>
                       <span className="order-status">{order.status}</span>
                       <strong>{formatPrice(order.total)} →</strong>
                     </a>

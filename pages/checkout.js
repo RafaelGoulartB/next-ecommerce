@@ -7,9 +7,11 @@ import EmptySection from '../components/emptySection';
 import { CREATE_ORDER } from '../apollo/client/mutations';
 import { GUEST_CART, MY_CART, PRODUCTS_BY_IDS, VIEWER } from '../apollo/client/queries';
 import useCurrency from '../hooks/use-currency';
+import useLocale from '../hooks/use-locale';
 
 export default function Checkout() {
   const { formatPrice } = useCurrency();
+  const { t } = useLocale();
   const { data: viewerData, loading: viewerLoading } = useQuery(VIEWER);
   const viewer = viewerData?.viewer;
   const { data: guestData, loading: guestLoading } = useQuery(GUEST_CART);
@@ -50,9 +52,7 @@ export default function Checkout() {
     ? myCartData?.myCart?.subtotal || '0.00'
     : items.reduce((sum, item) => sum + Number(item.lineTotal || 0), 0).toFixed(2);
 
-  if (!items.length) {
-    return <Page><EmptySection name="cart" /></Page>;
-  }
+  if (!items.length) return <Page><EmptySection name={t('header.cart').toLowerCase()} /></Page>;
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -72,31 +72,31 @@ export default function Checkout() {
   }
 
   return (
-    <Page title="Checkout - Quantum E-commerce">
+    <Page title={`${t('checkout.title')} - ${t('common.siteName')}`}>
       <div className="checkout-page">
         <div className="checkout-heading">
-          <p className="eyebrow">Almost there</p>
-          <h1>Checkout</h1>
-          <p>Confirm your contact details and place a simulated order.</p>
+          <p className="eyebrow">{t('checkout.almostThere')}</p>
+          <h1>{t('checkout.title')}</h1>
+          <p>{t('checkout.intro')}</p>
         </div>
         <div className="checkout-layout">
           <form className="contact-card" onSubmit={handleSubmit}>
-            <div className="card-heading"><p className="card-eyebrow">01</p><h2>Contact details</h2></div>
-            {!viewer && <div className="signin-note">You can keep browsing as a guest. Sign in or create an account to confirm this order and save it to your history.</div>}
+            <div className="card-heading"><p className="card-eyebrow">01</p><h2>{t('checkout.contactDetails')}</h2></div>
+            {!viewer && <div className="signin-note">{t('checkout.guestNote')}</div>}
             {error && <p className="form-error" role="alert">{error}</p>}
-            <label>Full name<input value={contactName} onChange={(event) => setContactName(event.target.value)} placeholder="Alex Morgan" autoComplete="name" required /></label>
-            <label>Email address<input type="email" value={contactEmail} onChange={(event) => setContactEmail(event.target.value)} placeholder="you@example.com" autoComplete="email" required /></label>
-            <label>Phone <span>(optional)</span><input value={phone} onChange={(event) => setPhone(event.target.value)} placeholder="+1 555 000 0000" autoComplete="tel" /></label>
-            <button type="submit" disabled={creatingOrder}>{!viewer ? 'Sign in to confirm order' : creatingOrder ? 'Creating order…' : 'Place simulated order'}</button>
-            <small>No payment details are collected. This is a demonstration checkout.</small>
+            <label>{t('checkout.fullName')}<input value={contactName} onChange={(event) => setContactName(event.target.value)} placeholder="Alex Morgan" autoComplete="name" required /></label>
+            <label>{t('checkout.email')}<input type="email" value={contactEmail} onChange={(event) => setContactEmail(event.target.value)} placeholder="you@example.com" autoComplete="email" required /></label>
+            <label>{t('checkout.phone')} <span>({t('common.optional')})</span><input value={phone} onChange={(event) => setPhone(event.target.value)} placeholder="+1 555 000 0000" autoComplete="tel" /></label>
+            <button type="submit" disabled={creatingOrder}>{!viewer ? t('checkout.signInToConfirm') : creatingOrder ? t('checkout.creatingOrder') : t('checkout.placeOrder')}</button>
+            <small>{t('checkout.noPayment')}</small>
           </form>
           <aside className="summary-card">
-            <div className="card-heading"><p className="card-eyebrow">02</p><h2>Order summary</h2></div>
+            <div className="card-heading"><p className="card-eyebrow">02</p><h2>{t('checkout.summary')}</h2></div>
             <div className="summary-items">
               {items.map((item) => <div className="summary-item" key={item.productId}><span>{item.product.name} × {item.quantity}</span><strong>{formatPrice(item.lineTotal)}</strong></div>)}
             </div>
-            <div className="total-row"><span>Total</span><strong>{formatPrice(subtotal)}</strong></div>
-            <Link href="/cart"><a className="back-link">← Back to cart</a></Link>
+            <div className="total-row"><span>{t('common.total')}</span><strong>{formatPrice(subtotal)}</strong></div>
+            <Link href="/cart"><a className="back-link">← {t('checkout.backToCart')}</a></Link>
           </aside>
         </div>
       </div>
@@ -116,8 +116,7 @@ export default function Checkout() {
         label { display: block; margin-top: 16px; color: #555f70; font-size: 13px; font-weight: 800; }
         label span { color: #9da6b3; font-weight: 400; }
         input { box-sizing: border-box; width: 100%; min-height: 50px; margin-top: 7px; padding: 0 14px; border: 1px solid #e1e6ee; border-radius: 9px; background: #fbfcfe; color: #424b5c; font: inherit; font-size: 14px; outline: none; transition: border-color .2s, box-shadow .2s, background .2s; }
-        input:focus { background: #ffffff; }
-        input:focus { border-color: var(--quantum-blue); box-shadow: 0 0 0 4px rgba(96,123,150,.12); }
+        input:focus { background: #ffffff; border-color: var(--quantum-blue); box-shadow: 0 0 0 4px rgba(96,123,150,.12); }
         .contact-card button { width: 100%; min-height: 50px; margin-top: 24px; border: 0; border-radius: 9px; background: var(--quantum-blue); color: #fff; cursor: pointer; font: inherit; font-weight: 800; transition: transform .2s, box-shadow .2s; }
         .contact-card button:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 8px 18px rgba(24,117,240,.2); }
         .contact-card button:disabled { cursor: wait; opacity: .65; }

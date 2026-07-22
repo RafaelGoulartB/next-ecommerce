@@ -1,35 +1,37 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { FaArrowRight, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import useLocale from '../hooks/use-locale';
 
 const heroSlides = [
   {
     id: 1,
-    eyebrow: 'WEEKLY FEATURE',
-    title: 'Technology that keeps up with you',
-    description: 'Curated products to make every moment more connected.',
+    eyebrow: 'weeklyFeature',
+    title: 'weeklyTitle',
+    description: 'weeklyDescription',
     image: '/products/71xe2bDZ0nL._AC_UX679_.jpg',
     background: 'linear-gradient(110deg, #e6eef7 0%, #f8fbff 58%, #dbe7f2 100%)',
   },
   {
     id: 2,
-    eyebrow: 'GAMING EXPERIENCE',
-    title: 'Entertainment, wherever you go',
-    description: 'Take your favorite games with you and play your way.',
+    eyebrow: 'gamingExperience',
+    title: 'gamingTitle',
+    description: 'gamingDescription',
     image: '/products/61JnrafZ7zL._AC_SL1457_.jpg',
     background: 'linear-gradient(110deg, #e8f1ff 0%, #f6faff 58%, #d8e7ff 100%)',
   },
   {
     id: 3,
-    eyebrow: 'SMART CHOICE',
-    title: 'Your next upgrade starts here',
-    description: 'Performance, design and convenience for your daily routine.',
+    eyebrow: 'smartChoice',
+    title: 'smartTitle',
+    description: 'smartDescription',
     image: '/products/81hCytKTUTL.jpg',
     background: 'linear-gradient(110deg, #eef3e9 0%, #fbfdf9 58%, #e4edde 100%)',
   },
 ];
 
 export default function ProductShowcase() {
+  const { t } = useLocale();
   const [activeSlide, setActiveSlide] = useState(0);
   const slide = heroSlides[activeSlide];
 
@@ -42,15 +44,15 @@ export default function ProductShowcase() {
   }
 
   return (
-    <section className="showcase" aria-label="Featured products">
+    <section className="showcase" aria-label={t('home.featuredProducts')}>
       <div className="hero" style={{ background: slide.background }}>
         <div className="hero-copy">
-          <p className="eyebrow">{slide.eyebrow}</p>
-          <h1>{slide.title}</h1>
-          <p className="hero-description">{slide.description}</p>
+          <p className="eyebrow">{t(`home.${slide.eyebrow}`)}</p>
+          <h1>{t(`home.${slide.title}`)}</h1>
+          <p className="hero-description">{t(`home.${slide.description}`)}</p>
           <Link href={`/product/${slide.id}`}>
             <a className="hero-link">
-              Shop now <FaArrowRight size={12} />
+              {t('home.shopNow')} <FaArrowRight size={12} />
             </a>
           </Link>
         </div>
@@ -64,7 +66,7 @@ export default function ProductShowcase() {
           type="button"
           className="hero-arrow hero-arrow-left"
           onClick={showPreviousSlide}
-          aria-label="Previous feature"
+          aria-label={t('home.previousFeature')}
         >
           <FaChevronLeft size={13} />
         </button>
@@ -72,19 +74,19 @@ export default function ProductShowcase() {
           type="button"
           className="hero-arrow hero-arrow-right"
           onClick={showNextSlide}
-          aria-label="Next feature"
+          aria-label={t('home.nextFeature')}
         >
           <FaChevronRight size={13} />
         </button>
 
-        <div className="hero-dots" aria-label="Select a feature">
+        <div className="hero-dots" aria-label={t('home.selectFeature')}>
           {heroSlides.map((item, index) => (
             <button
               key={item.id}
               type="button"
               className={index === activeSlide ? 'active' : ''}
               onClick={() => setActiveSlide(index)}
-              aria-label={`Go to feature ${index + 1}`}
+              aria-label={t('home.goToFeature', { count: index + 1 })}
               aria-current={index === activeSlide ? 'true' : undefined}
             />
           ))}

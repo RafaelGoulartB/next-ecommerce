@@ -1,7 +1,11 @@
+import useLocale from '../../hooks/use-locale';
+
 export default function AuthSubmit({ loading, children }) {
+  const { t } = useLocale();
+
   return (
     <button className="submit" type="submit" disabled={loading}>
-      {loading ? 'Please wait…' : children}
+      {loading ? t('auth.pleaseWait') : children}
       <style jsx>{`
         .submit {
           width: 100%;

@@ -3,8 +3,10 @@ import { useRouter } from 'next/router';
 import { useApolloClient, useMutation } from '@apollo/client';
 import { SIGN_OUT } from '../../apollo/client/mutations';
 import { clearGuestCart, clearGuestWishlist } from '../../apollo/client/cache';
+import useLocale from '../../hooks/use-locale';
 
 export default function SignOut() {
+  const { t } = useLocale();
   const client = useApolloClient();
   const router = useRouter();
   const [signOut] = useMutation(SIGN_OUT);
@@ -23,5 +25,5 @@ export default function SignOut() {
     return () => { active = false; };
   }, [client, router, signOut]);
 
-  return <p style={{ padding: '32px', fontFamily: 'Roboto, sans-serif' }}>Signing out…</p>;
+  return <p style={{ padding: '32px', fontFamily: 'Roboto, sans-serif' }}>{t('auth.signingOut')}</p>;
 }

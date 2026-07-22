@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import useLocale from './use-locale';
 
 // Next.js can evaluate this module in separate server bundles (the custom App
 // and the current page). Keep the context shared between those module copies.
@@ -24,6 +25,7 @@ const currencyConfig = {
 };
 
 export function CurrencyProvider({ children }) {
+  const { localeCode } = useLocale();
   const [currency, setCurrencyState] = useState('USD');
 
   useEffect(() => {
@@ -63,13 +65,13 @@ export function CurrencyProvider({ children }) {
         const valueInUsd = Number(valueToFormat || 0);
         const convertedValue = valueInUsd * config.rate;
 
-        return new Intl.NumberFormat(config.locale, {
+        return new Intl.NumberFormat(localeCode, {
           style: 'currency',
           currency,
         }).format(convertedValue);
       },
     };
-  }, [currency]);
+  }, [currency, localeCode]);
 
   return <CurrencyContext.Provider value={value}>{children}</CurrencyContext.Provider>;
 }

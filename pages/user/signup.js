@@ -8,6 +8,7 @@ import { getErrorMessage } from '../../lib/form';
 import AuthLayout from '../../components/auth/auth-layout';
 import AuthField from '../../components/auth/auth-field';
 import AuthSubmit from '../../components/auth/auth-submit';
+import useLocale from '../../hooks/use-locale';
 
 function safeRedirect(value) {
   return typeof value === 'string' && value.startsWith('/') && !value.startsWith('//')
@@ -16,6 +17,7 @@ function safeRedirect(value) {
 }
 
 export default function SignUp() {
+  const { t } = useLocale();
   const router = useRouter();
   const client = useApolloClient();
   const [signUp, { loading }] = useMutation(SIGN_UP);
@@ -36,15 +38,15 @@ export default function SignUp() {
     event.preventDefault();
     setMsgError('');
     if (!name.trim() || !email.trim() || !password || !confirmPassword) {
-      setMsgError('Please complete all fields.');
+      setMsgError(t('auth.completeFields'));
       return;
     }
     if (password.length < 6) {
-      setMsgError('Password must contain at least 6 characters.');
+      setMsgError(t('auth.passwordLength'));
       return;
     }
     if (password !== confirmPassword) {
-      setMsgError('Passwords do not match.');
+      setMsgError(t('auth.passwordsMismatch'));
       setPassword('');
       setConfirmPassword('');
       return;
@@ -66,13 +68,13 @@ export default function SignUp() {
     : '/user/login';
 
   return (
-    <AuthLayout title="Create account" eyebrow="Join the experience" heading="Create your account">
+    <AuthLayout title={t('auth.createAccount')} eyebrow={t('auth.joinExperience')} heading={t('auth.createYourAccount')}>
       <form onSubmit={handleSubmit} noValidate>
         {msgError && <p className="form-error" role="alert">{msgError}</p>}
         <AuthField
           id="signup-name"
           name="name"
-          label="Full name"
+          label={t('auth.fullName')}
           value={name}
           onChange={setName}
           placeholder="Alex Morgan"
@@ -81,7 +83,7 @@ export default function SignUp() {
         <AuthField
           id="signup-email"
           name="email"
-          label="Email address"
+          label={t('auth.email')}
           type="email"
           value={email}
           onChange={setEmail}
@@ -91,27 +93,27 @@ export default function SignUp() {
         <AuthField
           id="signup-password"
           name="password"
-          label="Password"
+          label={t('auth.password')}
           type="password"
           value={password}
           onChange={setPassword}
-          placeholder="At least 6 characters"
+          placeholder={t('auth.passwordMin')}
           autoComplete="new-password"
         />
         <AuthField
           id="signup-confirm-password"
           name="confirm_password"
-          label="Confirm password"
+          label={t('auth.confirmPassword')}
           type="password"
           value={confirmPassword}
           onChange={setConfirmPassword}
-          placeholder="Repeat your password"
+          placeholder={t('auth.repeatPassword')}
           autoComplete="new-password"
         />
-        <AuthSubmit loading={loading}>Create account</AuthSubmit>
+        <AuthSubmit loading={loading}>{t('auth.createAccount')}</AuthSubmit>
       </form>
       <p className="switch-copy">
-        Already have an account? <Link href={loginHref}><a>Sign in</a></Link>
+        {t('auth.alreadyAccount')} <Link href={loginHref}><a>{t('auth.signIn')}</a></Link>
       </p>
       <style jsx>{`
         .form-error {

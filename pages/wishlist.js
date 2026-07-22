@@ -7,8 +7,10 @@ import ProductsGrid from '../components/productsGrid';
 import ProductItem from '../components/productItem';
 import LoadingPage from '../components/loading-page';
 import { GUEST_WISHLIST, MY_WISHLIST, PRODUCTS_BY_IDS, VIEWER } from '../apollo/client/queries';
+import useLocale from '../hooks/use-locale';
 
 export default function Wishlist() {
+  const { t } = useLocale();
   const { data: viewerData, loading: viewerLoading } = useQuery(VIEWER);
   const viewer = viewerData?.viewer;
   const { data: guestData, loading: guestLoading } = useQuery(GUEST_WISHLIST);
@@ -26,18 +28,18 @@ export default function Wishlist() {
   if (!products.length) {
     return (
       <Page>
-        <Title title="Wishlist" />
-        <EmptySection name="wishlist" />
+        <Title title={t('header.wishlist')} />
+        <EmptySection name={t('header.wishlist').toLowerCase()} />
       </Page>
     );
   }
 
   return (
-    <Page title="Wishlist - Quantum E-commerce">
+    <Page title={`${t('header.wishlist')} - ${t('common.siteName')}`}>
       <div className="wishlist-page">
         <div className="wishlist-heading">
-          <div><p className="eyebrow">Saved for later</p><Title title="Wishlist" /></div>
-          <span>{products.length} products</span>
+          <div><p className="eyebrow">{t('header.wishlist')}</p><Title title={t('header.wishlist')} /></div>
+          <span>{products.length} {t(products.length === 1 ? 'common.product' : 'common.products')}</span>
         </div>
         <section className="wishlist">
           <aside><AsideCategories /></aside>

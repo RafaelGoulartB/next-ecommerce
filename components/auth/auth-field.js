@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import useLocale from '../../hooks/use-locale';
 
 export default function AuthField({
   id,
@@ -11,6 +12,7 @@ export default function AuthField({
   autoComplete,
   error,
 }) {
+  const { t } = useLocale();
   const [visible, setVisible] = useState(false);
   const isPassword = type === 'password';
   const inputType = isPassword && visible ? 'text' : type;
@@ -35,9 +37,9 @@ export default function AuthField({
             type="button"
             className="password-toggle"
             onClick={() => setVisible((current) => !current)}
-            aria-label={visible ? 'Hide password' : 'Show password'}
+            aria-label={visible ? t('auth.hide') : t('auth.show')}
           >
-            {visible ? 'Hide' : 'Show'}
+            {visible ? t('auth.hide') : t('auth.show')}
           </button>
         )}
       </div>

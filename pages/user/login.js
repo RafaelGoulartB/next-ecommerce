@@ -8,6 +8,7 @@ import { getErrorMessage } from '../../lib/form';
 import AuthLayout from '../../components/auth/auth-layout';
 import AuthField from '../../components/auth/auth-field';
 import AuthSubmit from '../../components/auth/auth-submit';
+import useLocale from '../../hooks/use-locale';
 
 function safeRedirect(value) {
   return typeof value === 'string' && value.startsWith('/') && !value.startsWith('//')
@@ -16,6 +17,7 @@ function safeRedirect(value) {
 }
 
 export default function Login() {
+  const { t } = useLocale();
   const router = useRouter();
   const client = useApolloClient();
   const [signIn, { loading }] = useMutation(SIGN_IN);
@@ -34,7 +36,7 @@ export default function Login() {
     event.preventDefault();
     setMsgError('');
     if (!email.trim() || !password) {
-      setMsgError('Please fill in your email and password.');
+      setMsgError(t('auth.fillCredentials'));
       return;
     }
 
@@ -52,13 +54,13 @@ export default function Login() {
     : '/user/signup';
 
   return (
-    <AuthLayout title="Sign in" eyebrow="Welcome back" heading="Sign in to Quantum">
+    <AuthLayout title={t('auth.signIn')} eyebrow={t('auth.welcomeBack')} heading={t('auth.signInToQuantum')}>
       <form onSubmit={handleSubmit} noValidate>
         {msgError && <p className="form-error" role="alert">{msgError}</p>}
         <AuthField
           id="login-email"
           name="email"
-          label="Email address"
+          label={t('auth.email')}
           type="email"
           value={email}
           onChange={setEmail}
@@ -68,17 +70,17 @@ export default function Login() {
         <AuthField
           id="login-password"
           name="password"
-          label="Password"
+          label={t('auth.password')}
           type="password"
           value={password}
           onChange={setPassword}
-          placeholder="Enter your password"
+          placeholder={t('auth.passwordPlaceholder')}
           autoComplete="current-password"
         />
-        <AuthSubmit loading={loading}>Sign in</AuthSubmit>
+        <AuthSubmit loading={loading}>{t('auth.signIn')}</AuthSubmit>
       </form>
       <p className="switch-copy">
-        New to Quantum? <Link href={signUpHref}><a>Create an account</a></Link>
+        {t('auth.newToQuantum')} <Link href={signUpHref}><a>{t('auth.createAccount')}</a></Link>
       </p>
       <style jsx>{`
         .form-error {

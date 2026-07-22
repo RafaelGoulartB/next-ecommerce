@@ -1,19 +1,21 @@
 import Link from 'next/link';
+import useLocale from '../hooks/use-locale';
 
 export default function EmptySection({ name }) {
+  const { t } = useLocale();
   return (
     <>
       {name && (
         <Link href="/">
           <p className="empty-cart">
-            You do not have any product in your {name}
+            {t('cart.empty', { name })}
           </p>
         </Link>
       )}
 
       {!name && (
         <Link href="/">
-          <p className="empty-cart">This section is empty</p>
+          <p className="empty-cart">{t('empty.section')}</p>
         </Link>
       )}
 

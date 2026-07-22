@@ -1,26 +1,21 @@
-import useCurrency from '../hooks/use-currency';
 import useLocale from '../hooks/use-locale';
 
-export default function CurrencySelector() {
-  const { currency, setCurrency } = useCurrency();
-  const { t } = useLocale();
+export default function LanguageSelector() {
+  const { locale, setLocale, t } = useLocale();
 
   return (
-    <label className="currency-selector">
-      <span className="sr-only">{t('common.currency')}</span>
+    <label className="language-selector">
+      <span className="sr-only">{t('common.language')}</span>
       <select
-        aria-label={t('common.currency')}
-        value={currency}
-        onChange={(event) => setCurrency(event.target.value)}
+        aria-label={t('common.language')}
+        value={locale}
+        onChange={(event) => setLocale(event.target.value)}
       >
-        <option value="USD">USD</option>
-        <option value="EUR">EUR</option>
+        <option value="en">{t('common.english')}</option>
+        <option value="es">{t('common.spanish')}</option>
       </select>
       <style jsx>{`
-        .currency-selector {
-          display: inline-flex;
-          align-items: center;
-        }
+        .language-selector { display: inline-flex; align-items: center; }
         select {
           padding: 0 17px 0 0;
           border: 0;

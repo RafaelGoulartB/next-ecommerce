@@ -5,6 +5,7 @@ import { useEffect } from 'react';
 import { hydrateGuestState } from '../apollo/client/cache';
 import AuthSessionSync from '../components/auth-session-sync';
 import { CurrencyProvider } from '../hooks/use-currency';
+import { LocaleProvider } from '../hooks/use-locale';
 
 export default function App({ Component, pageProps }) {
   const apolloClient = useApollo(pageProps.initialApolloState);
@@ -15,10 +16,12 @@ export default function App({ Component, pageProps }) {
 
   return (
     <ApolloProvider client={apolloClient}>
-      <CurrencyProvider>
-        <AuthSessionSync />
-        <Component {...pageProps} />
-      </CurrencyProvider>
+      <LocaleProvider>
+        <CurrencyProvider>
+          <AuthSessionSync />
+          <Component {...pageProps} />
+        </CurrencyProvider>
+      </LocaleProvider>
     </ApolloProvider>
   );
 }

@@ -24,9 +24,10 @@ import ProductItem from '../../components/productItem';
 import ProductsGrid from '../../components/productsGrid';
 import useShoppingState from '../../hooks/use-shopping-state';
 import useCurrency from '../../hooks/use-currency';
+import useLocale from '../../hooks/use-locale';
 
-function formatReviewDate(date) {
-  return new Intl.DateTimeFormat('en-US', {
+function formatReviewDate(date, localeCode) {
+  return new Intl.DateTimeFormat(localeCode, {
     year: 'numeric',
     month: 'short',
     day: 'numeric',
@@ -34,6 +35,7 @@ function formatReviewDate(date) {
 }
 
 function ReviewDistribution({ distribution, total }) {
+  const { t } = useLocale();
   const counts = distribution || [];
   const maximum = Math.max(...counts.map((item) => item.count), 1);
 
@@ -45,7 +47,7 @@ function ReviewDistribution({ distribution, total }) {
 
         return (
           <div className="distribution-row" key={rating}>
-            <span className="distribution-label">{rating} stars</span>
+            <span className="distribution-label">{rating} {t('common.stars')}</span>
             <div className="distribution-bar">
               <span style={{ width: `${(count / maximum) * 100}%` }} />
             </div>
@@ -53,7 +55,7 @@ function ReviewDistribution({ distribution, total }) {
           </div>
         );
       })}
-      <p className="distribution-total">Based on {total} reviews</p>
+      <p className="distribution-total">{t('product.basedOn', { count: total })}</p>
       <style jsx>{`
         .distribution {
           display: flex;
@@ -116,6 +118,7 @@ export default function ProductDetails() {
   const [reviewSuccess, setReviewSuccess] = useState('');
   const { isAuthenticated, cartItems, wishlistIds, toggleCartItem, toggleWishlistItem } = useShoppingState();
   const { formatPrice } = useCurrency();
+  const { t, localeCode } = useLocale();
   const { data, loading, error, refetch: refetchProduct } = useQuery(PRODUCT_DETAILS, {
     variables: { id: typeof id === 'string' ? id : '' },
     skip: !router.isReady || typeof id !== 'string',
@@ -138,7 +141,7 @@ export default function ProductDetails() {
 
   if (!router.isReady || loading) {
     return (
-      <Page title="Quantum E-commerce - Product details">
+      <Page title={t('meta.productDetails')}>
         <LoadingPage />
       </Page>
     );
@@ -146,8 +149,8 @@ export default function ProductDetails() {
 
   if (error || !data?.product) {
     return (
-      <Page title="Quantum E-commerce - Product details">
-        <ErrorAlert message="This product is not found!" />
+        <Page title={t('meta.productDetails')}>
+        <ErrorAlert message={t('product.notFound')} />
       </Page>
     );
   }
@@ -178,7 +181,7 @@ export default function ProductDetails() {
             input: { rating: Number(reviewRating), title: reviewTitle, comment: reviewComment },
           },
         });
-        setReviewSuccess('Your review has been updated.');
+        setReviewSuccess(t('product.reviewUpdated'));
       } else {
         await createReview({
           variables: {
@@ -190,7 +193,7 @@ export default function ProductDetails() {
             },
           },
         });
-        setReviewSuccess('Thanks for sharing your experience.');
+        setReviewSuccess(t('product.reviewThanks'));
       }
       await Promise.all([refetchProduct(), refetchViewerReview()]);
     } catch (reviewSubmitError) {
@@ -208,7 +211,7 @@ export default function ProductDetails() {
       setReviewTitle('');
       setReviewComment('');
       await Promise.all([refetchProduct(), refetchViewerReview()]);
-      setReviewSuccess('Your review has been removed.');
+      setReviewSuccess(t('product.reviewRemoved'));
     } catch (deleteError) {
       setReviewError(deleteError.message);
     }
@@ -216,13 +219,13 @@ export default function ProductDetails() {
 
   return (
     <Page
-      title={`${product.name} - Quantum E-commerce`}
+      title={`${product.name} - ${t('common.siteName')}`}
       description={product.description}
     >
       <div className="product-details-page">
         <Link href={category ? `/category/${category.name}` : '/'}>
           <a className="back-link">
-            <FaArrowLeft size={13} /> Back to products
+            <FaArrowLeft size={13} /> {t('product.backToProducts')}
           </a>
         </Link>
 
@@ -241,7 +244,7 @@ export default function ProductDetails() {
             <div className="category-list">
               {categories.map((item) => (
                 <Link href={`/category/${item.name}`} key={item.id}>
-                  <a className="category-chip">{item.label}</a>
+                  <a className="category-chip">{t(`categories.${item.name}`) === `categories.${item.name}` ? item.label : t(`categories.${item.name}`)}</a>
                 </Link>
               ))}
             </div>
@@ -258,7 +261,7 @@ export default function ProductDetails() {
                 starSpacing="1px"
               />
               <span>
-                {Number(summary.average).toFixed(1)} ({summary.total} reviews)
+                {Number(summary.average).toFixed(1)} ({summary.total} {t(summary.total === 1 ? 'common.review' : 'common.reviews')})
               </span>
             </div>
 
@@ -272,12 +275,12 @@ export default function ProductDetails() {
                   onClick={() => toggleCartItem(product.id)}
                 >
                   {isInCart ? <FaCartArrowDown /> : <FaCartPlus />}
-                  {isInCart ? 'Remove from cart' : 'Add to cart'}
+                  {isInCart ? t('product.removeCart') : t('product.addCart')}
                 </button>
                 <button
                   className="wishlist-button"
                   aria-label={
-                    isInWishlist ? 'Remove from wishlist' : 'Add to wishlist'
+                    isInWishlist ? t('product.removeWishlist') : t('product.addWishlist')
                   }
                   onClick={() => toggleWishlistItem(product.id)}
                 >
@@ -290,8 +293,8 @@ export default function ProductDetails() {
 
         <section className="reviews-section" id="reviews">
           <div className="section-heading">
-            <p className="eyebrow">Customer feedback</p>
-            <h2>Reviews</h2>
+            <p className="eyebrow">{t('product.customerFeedback')}</p>
+            <h2>{t('product.reviewsTitle')}</h2>
           </div>
 
           <div className="reviews-summary">
@@ -305,7 +308,7 @@ export default function ProductDetails() {
                 starDimension="20px"
                 starSpacing="1px"
               />
-              <span>{summary.total} reviews</span>
+              <span>{summary.total} {t(summary.total === 1 ? 'common.review' : 'common.reviews')}</span>
             </div>
             <ReviewDistribution
               distribution={summary.distribution}
@@ -317,45 +320,45 @@ export default function ProductDetails() {
             <form className="review-form" onSubmit={handleReviewSubmit}>
               <div className="review-form-heading">
                 <div>
-                  <p className="eyebrow">Your experience</p>
-                  <h3>{viewerReview ? 'Edit your review' : 'Leave a review'}</h3>
+                  <p className="eyebrow">{t('product.yourExperience')}</p>
+                  <h3>{viewerReview ? t('product.editReview') : t('product.leaveReview')}</h3>
                 </div>
                 {viewerReview?.verified_purchase && (
-                  <span className="verified-review"><FaCheckCircle size={13} /> Verified purchase</span>
+                  <span className="verified-review"><FaCheckCircle size={13} /> {t('product.verifiedPurchase')}</span>
                 )}
               </div>
               {reviewError && <p className="review-message error-message" role="alert">{reviewError}</p>}
               {reviewSuccess && <p className="review-message success-message" role="status">{reviewSuccess}</p>}
               <label>
-                Rating
+                {t('product.rating')}
                 <select value={reviewRating} onChange={(event) => setReviewRating(Number(event.target.value))}>
-                  {[5, 4, 3, 2, 1].map((rating) => <option key={rating} value={rating}>{rating} stars</option>)}
+                  {[5, 4, 3, 2, 1].map((rating) => <option key={rating} value={rating}>{rating} {t('common.stars')}</option>)}
                 </select>
               </label>
               <label>
-                Title
-                <input value={reviewTitle} onChange={(event) => setReviewTitle(event.target.value)} placeholder="What stood out?" />
+                {t('product.title')}
+                <input value={reviewTitle} onChange={(event) => setReviewTitle(event.target.value)} placeholder={t('product.titlePlaceholder')} />
               </label>
               <label>
-                Comment
-                <textarea value={reviewComment} onChange={(event) => setReviewComment(event.target.value)} placeholder="Tell other shoppers about your experience." rows="4" />
+                {t('product.comment')}
+                <textarea value={reviewComment} onChange={(event) => setReviewComment(event.target.value)} placeholder={t('product.commentPlaceholder')} rows="4" />
               </label>
               <div className="review-form-actions">
                 <button type="submit" className="review-submit" disabled={creatingReview || updatingReview}>
-                  {creatingReview || updatingReview ? 'Saving…' : viewerReview ? 'Update review' : 'Publish review'}
+                  {creatingReview || updatingReview ? t('product.saving') : viewerReview ? t('product.updateReview') : t('product.publishReview')}
                 </button>
                 {viewerReview && (
                   <button type="button" className="review-delete" onClick={handleReviewDelete} disabled={deletingReview}>
-                    {deletingReview ? 'Removing…' : 'Remove review'}
+                    {deletingReview ? t('product.removing') : t('product.removeReview')}
                   </button>
                 )}
               </div>
             </form>
           ) : (
             <div className="review-signin">
-              <p>Have you tried this product?</p>
+              <p>{t('product.triedProduct')}</p>
               <Link href={`/user/login?redirect=${encodeURIComponent(`/product/${product.id}#reviews`)}`}>
-                <a>Sign in to share your experience</a>
+                <a>{t('product.signInToReview')}</a>
               </Link>
             </div>
           )}
@@ -367,12 +370,12 @@ export default function ProductDetails() {
                   <div>
                     <strong>{review.author_name}</strong>
                     <span className="review-date">
-                      {formatReviewDate(review.created_at)}
+                      {formatReviewDate(review.created_at, localeCode)}
                     </span>
                   </div>
                   {review.verified_purchase && (
                     <span className="verified-review">
-                      <FaCheckCircle size={13} /> Verified purchase
+                      <FaCheckCircle size={13} /> {t('product.verifiedPurchase')}
                     </span>
                   )}
                 </div>
@@ -395,7 +398,7 @@ export default function ProductDetails() {
               className="show-reviews-button"
               onClick={() => setShowAllReviews((visible) => !visible)}
             >
-              {showAllReviews ? 'Show fewer reviews' : 'Show all reviews'}
+              {showAllReviews ? t('product.showFewer') : t('product.showAll')}
             </button>
           )}
         </section>
@@ -403,8 +406,8 @@ export default function ProductDetails() {
         {!!product.relatedProducts?.length && (
           <section className="related-section">
             <div className="section-heading">
-              <p className="eyebrow">You may also like</p>
-              <h2>Related products</h2>
+              <p className="eyebrow">{t('product.youMayAlsoLike')}</p>
+              <h2>{t('product.relatedProducts')}</h2>
             </div>
             <ProductsGrid>
               {product.relatedProducts.map((relatedProduct) => (

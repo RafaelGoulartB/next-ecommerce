@@ -7,100 +7,75 @@ import LoadingPage from '../components/loading-page';
 import { GUEST_CART, MY_CART, PRODUCTS_BY_IDS, VIEWER } from '../apollo/client/queries';
 import useShoppingState from '../hooks/use-shopping-state';
 import useCurrency from '../hooks/use-currency';
+import useLocale from '../hooks/use-locale';
 
 export default function Cart() {
   const { formatPrice } = useCurrency();
+  const { t } = useLocale();
   const { data: viewerData, loading: viewerLoading } = useQuery(VIEWER);
   const viewer = viewerData?.viewer;
   const { data: guestCartData, loading: guestCartLoading } = useQuery(GUEST_CART);
   const { data: myCartData, loading: myCartLoading } = useQuery(MY_CART, { skip: !viewer });
   const guestItems = guestCartData?.guestCart?.items || [];
-  const guestIds = guestItems.map((item) => item.id);
   const { data: guestProductsData, loading: guestProductsLoading } = useQuery(PRODUCTS_BY_IDS, {
-    variables: { id: guestIds },
-    skip: Boolean(viewer) || !guestIds.length,
+    variables: { id: guestItems.map((item) => item.id) },
+    skip: Boolean(viewer) || !guestItems.length,
   });
-  const {
-    setCartQuantity,
-    removeCartProduct,
-  } = useShoppingState();
-
+  const { setCartQuantity, removeCartProduct } = useShoppingState();
   const loading = viewerLoading || guestCartLoading || (viewer ? myCartLoading : guestProductsLoading);
-  if (loading) {
-    return <Page><LoadingPage /></Page>;
-  }
+  if (loading) return <Page><LoadingPage /></Page>;
 
   const items = viewer
     ? myCartData?.myCart?.items || []
     : (guestProductsData?.productsById || []).map((product) => {
         const localItem = guestItems.find((item) => String(item.id) === String(product.id));
         const quantity = localItem?.quantity || 0;
-        return {
-          productId: product.id,
-          product,
-          quantity,
-          unitPrice: product.price,
-          lineTotal: (Number(product.price) * quantity).toFixed(2),
-        };
+        return { productId: product.id, product, quantity, unitPrice: product.price, lineTotal: (Number(product.price) * quantity).toFixed(2) };
       });
   const subtotal = viewer
     ? myCartData?.myCart?.subtotal || '0.00'
     : items.reduce((sum, item) => sum + Number(item.lineTotal || 0), 0).toFixed(2);
+  const itemCount = items.reduce((sum, item) => sum + item.quantity, 0);
 
   if (!items.length) {
-    return (
-      <Page>
-        <Title title="Cart" />
-        <EmptySection name="cart" />
-      </Page>
-    );
+    return <Page><Title title={t('header.cart')} /><EmptySection name={t('header.cart').toLowerCase()} /></Page>;
   }
 
   return (
-    <Page title="Your cart - Quantum E-commerce">
+    <Page title={`${t('header.cart')} - ${t('common.siteName')}`}>
       <div className="cart-page">
         <div className="cart-heading">
-          <div>
-            <p className="eyebrow">Ready when you are</p>
-            <Title title="Cart" />
-          </div>
-          <span>{items.reduce((sum, item) => sum + item.quantity, 0)} items</span>
+          <div><p className="eyebrow">{t('cart.ready')}</p><Title title={t('header.cart')} /></div>
+          <span>{itemCount} {t(itemCount === 1 ? 'common.item' : 'common.items')}</span>
         </div>
         <div className="cart-layout">
-          <section className="cart-items" aria-label="Cart items">
+          <section className="cart-items" aria-label={t('cart.cartItems')}>
             {items.map((item) => (
               <article className="cart-item" key={item.productId}>
-                <Link href={`/product/${item.productId}`}>
-                  <a className="item-image">
-                    <img src={item.product.img_url} alt={item.product.name} />
-                  </a>
-                </Link>
+                <Link href={`/product/${item.productId}`}><a className="item-image"><img src={item.product.img_url} alt={item.product.name} /></a></Link>
                 <div className="item-information">
-                  <Link href={`/product/${item.productId}`}>
-                    <a className="item-name">{item.product.name}</a>
-                  </Link>
-                  <p className="unit-price">{formatPrice(item.unitPrice)} each</p>
+                  <Link href={`/product/${item.productId}`}><a className="item-name">{item.product.name}</a></Link>
+                  <p className="unit-price">{formatPrice(item.unitPrice)} {t('cart.each')}</p>
                   <div className="item-actions">
-                    <div className="quantity" aria-label={`Quantity for ${item.product.name}`}>
-                      <button type="button" onClick={() => setCartQuantity(item.productId, item.quantity - 1)} aria-label="Decrease quantity">−</button>
+                    <div className="quantity" aria-label={t('product.quantityFor', { name: item.product.name })}>
+                      <button type="button" onClick={() => setCartQuantity(item.productId, item.quantity - 1)} aria-label={t('cart.decrease')}>−</button>
                       <span>{item.quantity}</span>
-                      <button type="button" onClick={() => setCartQuantity(item.productId, item.quantity + 1)} aria-label="Increase quantity">+</button>
+                      <button type="button" onClick={() => setCartQuantity(item.productId, item.quantity + 1)} aria-label={t('cart.increase')}>+</button>
                     </div>
-                    <button type="button" className="remove" onClick={() => removeCartProduct(item.productId)}>Remove</button>
+                    <button type="button" className="remove" onClick={() => removeCartProduct(item.productId)}>{t('cart.remove')}</button>
                   </div>
                 </div>
                 <strong className="line-total">{formatPrice(item.lineTotal)}</strong>
               </article>
             ))}
           </section>
-
           <aside className="summary">
-            <p className="summary-eyebrow">Order summary</p>
-            <div className="summary-row"><span>Subtotal</span><strong>{formatPrice(subtotal)}</strong></div>
-            <div className="summary-row muted"><span>Shipping</span><span>Calculated later</span></div>
-            <div className="summary-total"><span>Total</span><strong>{formatPrice(subtotal)}</strong></div>
-            <Link href="/checkout"><a className="checkout-button">Continue to checkout</a></Link>
-            <Link href="/"><a className="continue-link">← Continue shopping</a></Link>
+            <p className="summary-eyebrow">{t('cart.summary')}</p>
+            <div className="summary-row"><span>{t('cart.subtotal')}</span><strong>{formatPrice(subtotal)}</strong></div>
+            <div className="summary-row muted"><span>{t('cart.shipping')}</span><span>{t('cart.calculatedLater')}</span></div>
+            <div className="summary-total"><span>{t('common.total')}</span><strong>{formatPrice(subtotal)}</strong></div>
+            <Link href="/checkout"><a className="checkout-button">{t('cart.checkout')}</a></Link>
+            <Link href="/"><a className="continue-link">← {t('cart.continueShopping')}</a></Link>
           </aside>
         </div>
       </div>

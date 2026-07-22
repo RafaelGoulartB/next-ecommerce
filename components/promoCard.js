@@ -1,8 +1,11 @@
+import useLocale from '../hooks/use-locale';
+
 export default function PromoCard() {
+  const { t } = useLocale();
   return (
     <div className="promo-card">
-      <p className="title">Look Up In The Sky</p>
-      <p className="description">Astronomy Or Astrology</p>
+      <p className="title">{t('promo.title')}</p>
+      <p className="description">{t('promo.description')}</p>
 
       <style jsx>{`
         .promo-card {

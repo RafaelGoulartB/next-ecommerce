@@ -8,6 +8,7 @@ import {
 import StarRatings from 'react-star-ratings';
 import useShoppingState from '../hooks/use-shopping-state';
 import useCurrency from '../hooks/use-currency';
+import useLocale from '../hooks/use-locale';
 
 export default function ProductSection({ id, name, rating, img_url, price, viewMode = 'grid' }) {
   const {
@@ -17,6 +18,7 @@ export default function ProductSection({ id, name, rating, img_url, price, viewM
     toggleWishlistItem,
   } = useShoppingState();
   const { formatPrice } = useCurrency();
+  const { t } = useLocale();
   const cartProduct = cartItems.find((item) => String(item.productId) === String(id));
   const isInCart = Boolean(cartProduct);
   const isInWishlist = wishlistIds.includes(String(id));
@@ -27,7 +29,7 @@ export default function ProductSection({ id, name, rating, img_url, price, viewM
         <button
           className="add-wishlist"
           onClick={() => toggleWishlistItem(id)}
-          aria-label={isInWishlist ? 'Remove from wishlist' : 'Add to wishlist'}
+          aria-label={isInWishlist ? t('product.removeWishlist') : t('product.addWishlist')}
         >
           {isInWishlist && <FaHeart size={18} color="#71869a" />}
           {!isInWishlist && <FaRegHeart size={18} color="#71869a" />}
@@ -61,7 +63,7 @@ export default function ProductSection({ id, name, rating, img_url, price, viewM
           <button
             className="add-cart"
             onClick={() => toggleCartItem(id)}
-            aria-label={isInCart ? 'Remove from cart' : 'Add to cart'}
+            aria-label={isInCart ? t('product.removeCart') : t('product.addCart')}
           >
             {isInCart && <FaCartArrowDown size={17} color="#71869a" />}
             {!isInCart && <FaCartPlus size={17} color="#71869a" />}

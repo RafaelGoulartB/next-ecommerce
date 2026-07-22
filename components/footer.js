@@ -10,8 +10,10 @@ import {
   FaCcAmazonPay,
 } from 'react-icons/fa';
 import Logo from './logo';
+import useLocale from '../hooks/use-locale';
 
 export default function Fotter() {
+  const { t } = useLocale();
   return (
     <footer>
       <div className="footer footer-top">
@@ -19,16 +21,16 @@ export default function Fotter() {
 
         <div className="footer-nav">
           <Link href="/">
-            <a>Shop</a>
+            <a>{t('footer.shop')}</a>
           </Link>
           <Link href="/">
-            <a>Journal</a>
+            <a>{t('footer.journal')}</a>
           </Link>
           <Link href="/">
-            <a>About</a>
+            <a>{t('footer.about')}</a>
           </Link>
           <Link href="/">
-            <a>Contacts</a>
+            <a>{t('footer.contacts')}</a>
           </Link>
         </div>
 
@@ -57,12 +59,13 @@ export default function Fotter() {
       </div>
       <div className="footer footer-bottom">
         <div className="texts">
+          <p className="localized-copyright">{t('footer.copyright')}</p>
           <p>© 2016. Quantum UI kit</p>
-          <p>Privacy Policy</p>
-          <p>Terms of Use</p>
+          <p>{t('footer.privacy')}</p>
+          <p>{t('footer.terms')}</p>
         </div>
         <div className="payment-info">
-          <p className="text">Accepted payment methods</p>
+          <p className="text">{t('footer.payments')}</p>
           <div className="payment-methods">
             <div>
               <FaCcVisa color="#424242" size="32px" />
@@ -137,6 +140,7 @@ export default function Fotter() {
           margin-right: 15px;
           margin-left: 15px;
         }
+        .footer-bottom .texts > p:nth-child(2) { display: none; }
         .footer-bottom .payment-info {
           display: flex;
           flex-direction: row;

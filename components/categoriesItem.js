@@ -12,6 +12,7 @@ import {
   MdWatch,
   MdKeyboardArrowRight,
 } from 'react-icons/md';
+import useLocale from '../hooks/use-locale';
 const iconSlugs = {
   MdDesktopWindows,
   MdDesktopMac,
@@ -26,6 +27,7 @@ const iconSlugs = {
 };
 
 export default function CategoriesItem({ category }) {
+  const { getCategoryLabel } = useLocale();
   const Icon = iconSlugs[category.md_icon];
 
   return (
@@ -36,7 +38,7 @@ export default function CategoriesItem({ category }) {
             <div className="icon">
               <Icon color="#8a98a7" size="20" />
             </div>
-            <p>{category.label}</p>
+            <p>{getCategoryLabel(category)}</p>
           </div>
           <div className="arrow-button">
             <MdKeyboardArrowRight color="#b2bccb" size="24" />

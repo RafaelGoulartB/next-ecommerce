@@ -1,16 +1,17 @@
 import Head from 'next/head';
+import useLocale from '../hooks/use-locale';
 
 export default function PageContainer({ title, description, children }) {
+  const { t } = useLocale();
   return (
     <div className="container">
       <Head>
-        <title>{title || 'Quantum  E-commerce - Next Project'}</title>
+        <title>{title || t('meta.defaultTitle')}</title>
         {description !== false && (
           <meta
             name="description"
             content={
-              description ||
-              'Quantum E-commerce made with Next.js open-source project.'
+              description || t('meta.description')
             }
           />
         )}

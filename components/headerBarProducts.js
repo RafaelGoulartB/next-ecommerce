@@ -2,8 +2,10 @@ import { sortProductSectionVar } from '../apollo/client/cache';
 import { useQuery } from '@apollo/client';
 import { FaTh, FaList } from 'react-icons/fa';
 import { SORT_PRODUCT_SECTION } from '../apollo/client/queries';
+import useLocale from '../hooks/use-locale';
 
 export default function HeaderBarProducts({ viewMode = 'grid', onViewModeChange }) {
+  const { t } = useLocale();
   const { data } = useQuery(SORT_PRODUCT_SECTION);
   const currentSort = data?.sortProductSection || ['rating', 'DESC'];
 
@@ -29,7 +31,7 @@ export default function HeaderBarProducts({ viewMode = 'grid', onViewModeChange 
           }
           onClick={handlePopularProductsClick}
         >
-          Popular products
+          {t('sort.popular')}
         </a>
         <a
           id="low-price"
@@ -40,7 +42,7 @@ export default function HeaderBarProducts({ viewMode = 'grid', onViewModeChange 
           }
           onClick={handleLowPriceProductsClick}
         >
-          Low price
+          {t('sort.lowPrice')}
         </a>
         <a
           id="high-price"
@@ -51,15 +53,15 @@ export default function HeaderBarProducts({ viewMode = 'grid', onViewModeChange 
           }
           onClick={handleHighPriceProductsClick}
         >
-          High price
+          {t('sort.highPrice')}
         </a>
       </div>
-      <div className="view-switcher" role="group" aria-label="View mode">
+      <div className="view-switcher" role="group" aria-label={t('sort.viewMode')}>
         <button
           type="button"
           className={viewMode === 'grid' ? 'active' : ''}
           onClick={() => onViewModeChange?.('grid')}
-          aria-label="Show products in grid"
+          aria-label={t('sort.grid')}
           aria-pressed={viewMode === 'grid'}
         >
           <FaTh size={13} />
@@ -68,7 +70,7 @@ export default function HeaderBarProducts({ viewMode = 'grid', onViewModeChange 
           type="button"
           className={viewMode === 'list' ? 'active' : ''}
           onClick={() => onViewModeChange?.('list')}
-          aria-label="Show products in list"
+          aria-label={t('sort.list')}
           aria-pressed={viewMode === 'list'}
         >
           <FaList size={13} />

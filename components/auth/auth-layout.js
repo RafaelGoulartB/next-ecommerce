@@ -1,39 +1,38 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import useLocale from '../../hooks/use-locale';
 
 export default function AuthLayout({ title, eyebrow, heading, children }) {
+  const { t } = useLocale();
   return (
     <div className="auth-page">
       <Head>
-        <title>{title} - Quantum E-commerce</title>
+        <title>{title} - {t('common.siteName')}</title>
         <meta
           name="description"
-          content="Sign in to manage your Quantum E-commerce account."
+          content={t('auth.pageDescription')}
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className="auth-shell">
-        <section className="brand-panel" aria-label="Quantum account benefits">
+        <section className="brand-panel" aria-label={t('auth.benefitsLabel')}>
           <div className="glow glow-one" />
           <div className="glow glow-two" />
           <Link href="/">
             <a className="brand-logo">Quantum</a>
           </Link>
           <div className="brand-copy">
-            <p className="brand-eyebrow">Your smarter shopping space</p>
-            <h1>Everything you love, in one place.</h1>
-            <p className="brand-description">
-              Keep your shopping experience simple, personal and always ready
-              when you are.
-            </p>
+            <p className="brand-eyebrow">{t('auth.smarterShopping')}</p>
+            <h1>{t('auth.everything')}</h1>
+            <p className="brand-description">{t('auth.brandDescription')}</p>
             <ul className="benefits">
-              <li><span>01</span>Track your orders</li>
-              <li><span>02</span>Save your favorite products</li>
-              <li><span>03</span>Share your product experience</li>
+              <li><span>01</span>{t('auth.trackOrders')}</li>
+              <li><span>02</span>{t('auth.saveFavorites')}</li>
+              <li><span>03</span>{t('auth.shareExperience')}</li>
             </ul>
           </div>
-          <p className="brand-footer">Designed for better everyday choices.</p>
+          <p className="brand-footer">{t('auth.brandFooter')}</p>
         </section>
 
         <section className="form-panel">
@@ -46,7 +45,7 @@ export default function AuthLayout({ title, eyebrow, heading, children }) {
       </main>
 
       <p className="back-to-shop">
-        <Link href="/"><a>← Back to shop</a></Link>
+        <Link href="/"><a>← {t('auth.backToShop')}</a></Link>
       </p>
 
       <style jsx>{`

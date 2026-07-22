@@ -12,8 +12,11 @@ import { GUEST_CART, MY_CART } from '../../apollo/client/queries';
 import Logo from '../logo';
 import SearchBox from '../search-box';
 import CurrencySelector from '../currency-selector';
+import LanguageSelector from '../language-selector';
+import useLocale from '../../hooks/use-locale';
 
 export default function HeaderDesktop({ viewer }) {
+  const { t } = useLocale();
   const { data: guestCartData } = useQuery(GUEST_CART);
   const { data: myCartData } = useQuery(MY_CART, { skip: !viewer });
   const cartCount = viewer
@@ -33,21 +36,21 @@ export default function HeaderDesktop({ viewer }) {
               <FaShoppingCart color="#808080" />
               <p>
                 <sup className="items-total">{cartCount}</sup>{' '}
-                Items
+                {t('common.items')}
               </p>
             </a>
           </Link>
           <Link href="/wishlist">
             <a className="nav-buttons-wishlist">
               <FaRegHeart color="#808080" />
-              <p>Wishlist</p>
+              <p>{t('header.wishlist')}</p>
             </a>
           </Link>
           {!viewer && (
             <Link href="/user/login">
               <a className="nav-buttons-signin">
                 <FaUser color="#808080" />
-                <p>Sign In</p>
+                <p>{t('header.signIn')}</p>
               </a>
             </Link>
           )}
@@ -73,43 +76,43 @@ export default function HeaderDesktop({ viewer }) {
           <FaBars color="#d8d8d8" />
           <select name="categories" id="categories" defaultValue="All Categories">
             <option value="All Categories">
-              All Categories
+              {t('header.allCategories')}
             </option>
-            <option value="#">Desktop</option>
-            <option value="#">Smartphone</option>
-            <option value="#">Watches</option>
-            <option value="#">Games</option>
-            <option value="#">Laptop</option>
-            <option value="#">Keyboards</option>
-            <option value="#">TV & Video</option>
-            <option value="#">Accessories</option>
+            <option value="#">{t('categories.desktop')}</option>
+            <option value="#">{t('categories.smartphone')}</option>
+            <option value="#">{t('categories.watch')}</option>
+            <option value="#">{t('categories.games')}</option>
+            <option value="#">{t('categories.laptop')}</option>
+            <option value="#">{t('categories.keyboard')}</option>
+            <option value="#">{t('categories.tv')}</option>
+            <option value="#">{t('categories.speaker')}</option>
           </select>
         </div>
 
         <nav className="main-nav">
           <Link href="#">
-            <a>Super Deals</a>
+            <a>{t('header.superDeals')}</a>
           </Link>
           <Link href="#">
-            <a>Featured Brands</a>
+            <a>{t('header.featuredBrands')}</a>
           </Link>
           <Link href="#">
-            <a>Collections</a>
+            <a>{t('header.collections')}</a>
           </Link>
           <Link href="#">
-            <a>Bestselling</a>
+            <a>{t('header.bestselling')}</a>
           </Link>
         </nav>
 
         <div className="settings">
           <div className="menu-dropdown">
-            <p>Help</p>
+            <p>{t('common.help')}</p>
           </div>
           <div className="menu-dropdown">
             <CurrencySelector />
           </div>
           <div className="menu-dropdown">
-            <p>Language</p>
+            <LanguageSelector />
           </div>
         </div>
       </div>

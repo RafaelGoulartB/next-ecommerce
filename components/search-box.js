@@ -11,8 +11,10 @@ import {
   searchProductSectionVar,
 } from '../apollo/client/cache';
 import offlineCategories from '../db/offlineData/categories';
+import useLocale from '../hooks/use-locale';
 
 export default function SearchBox() {
+  const { t, getCategoryLabel } = useLocale();
   const { data: searchData } = useQuery(SEARCH_PRODUCT_SECTION);
   const { data: categoryData } = useQuery(CATEGORY_PRODUCT_SECTION);
   const { data: categoriesData } = useQuery(CATEGORIES);
@@ -27,14 +29,14 @@ export default function SearchBox() {
   return (
     <>
       <form className="search-box" onSubmit={handleSearchSubmit}>
-        <button className="search-button" type="submit" aria-label="Search products">
+        <button className="search-button" type="submit" aria-label={t('search.products')}>
           <FaSearch color="#7f8d9c" size="14px" />
         </button>
         <input
           id="search"
           type="text"
           name="search"
-          placeholder="Search goods"
+          placeholder={t('search.goods')}
           value={search}
           onChange={(event) => searchProductSectionVar(event.target.value)}
         />
@@ -43,14 +45,14 @@ export default function SearchBox() {
           name="categories-search"
           value={selectedCategory}
           onChange={(event) => categoryProductSectionVar(event.target.value)}
-          aria-label="Filter by category"
+          aria-label={t('search.filterCategory')}
         >
           <option value="">
-            Category
+            {t('search.category')}
           </option>
           {categories.map((category) => (
             <option key={category.id} value={category.name}>
-              {category.label}
+              {getCategoryLabel(category)}
             </option>
           ))}
         </select>

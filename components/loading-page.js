@@ -1,8 +1,10 @@
 import Loader from 'react-loader-spinner';
+import useLocale from '../hooks/use-locale';
 
 export default function LoadingPage() {
+  const { t } = useLocale();
   return (
-    <div className="spinner">
+    <div className="spinner" role="status" aria-label={t('common.loading')}>
       <Loader
         type="Oval"
         color="#71869a"

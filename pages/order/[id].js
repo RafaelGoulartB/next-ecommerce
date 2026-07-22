@@ -7,15 +7,17 @@ import LoadingPage from '../../components/loading-page';
 import ErrorAlert from '../../components/alerts/error';
 import { ORDER_DETAILS, VIEWER } from '../../apollo/client/queries';
 import useCurrency from '../../hooks/use-currency';
+import useLocale from '../../hooks/use-locale';
 
-function formatDate(value) {
+function formatDate(value, localeCode) {
   const numericValue = Number(value);
   const date = Number.isFinite(numericValue) ? new Date(numericValue) : new Date(value);
-  return new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: 'numeric' }).format(date);
+  return new Intl.DateTimeFormat(localeCode, { year: 'numeric', month: 'short', day: 'numeric' }).format(date);
 }
 
 export default function OrderDetails() {
   const { formatPrice } = useCurrency();
+  const { t, localeCode } = useLocale();
   const router = useRouter();
   const { data: viewerData, loading: viewerLoading } = useQuery(VIEWER);
   const { data, loading, error } = useQuery(ORDER_DETAILS, {
@@ -30,17 +32,30 @@ export default function OrderDetails() {
   }, [router, viewerData, viewerLoading]);
 
   if (viewerLoading || loading || !viewerData?.viewer) return <Page><LoadingPage /></Page>;
-  if (error || !data?.order) return <Page><ErrorAlert message="This order is not available." /></Page>;
+  if (error || !data?.order) return <Page><ErrorAlert message={t('order.unavailable')} /></Page>;
 
   const order = data.order;
   return (
-    <Page title={`${order.order_number} - Quantum E-commerce`}>
+    <Page title={`${order.order_number} - ${t('common.siteName')}`}>
       <div className="order-page">
-        <Link href="/profile"><a className="back-link">← Back to profile</a></Link>
-        <div className="heading"><div><p className="eyebrow">Order confirmed</p><h1>{order.order_number}</h1><p>Placed on {formatDate(order.created_at)}</p></div><span className="status">{order.status}</span></div>
+        <Link href="/profile"><a className="back-link">← {t('order.backToProfile')}</a></Link>
+        <div className="heading"><div><p className="eyebrow">{t('order.confirmed')}</p><h1>{order.order_number}</h1><p>{t('order.placedOn', { date: formatDate(order.created_at, localeCode) })}</p></div><span className="status">{order.status}</span></div>
         <div className="order-layout">
-          <section className="items-card"><h2>Items</h2>{order.items.map((item) => <div className="item" key={`${order.id}-${item.product_name}`}><span><strong>{item.product_name}</strong><small>{item.quantity} × {formatPrice(item.unit_price)}</small></span><strong>{formatPrice(item.line_total)}</strong></div>)}<div className="total"><span>Total</span><strong>{formatPrice(order.total)}</strong></div></section>
-          <aside className="contact-card"><h2>Contact details</h2><p><strong>{order.contact_name}</strong><br />{order.contact_email}{order.phone && <><br />{order.phone}</>}</p><div className="demo-note">This order was created through the simulated checkout. No payment was collected.</div></aside>
+          <section className="items-card">
+            <h2>{t('order.items')}</h2>
+            {order.items.map((item) => (
+              <div className="item" key={`${order.id}-${item.product_name}`}>
+                <span><strong>{item.product_name}</strong><small>{item.quantity} × {formatPrice(item.unit_price)}</small></span>
+                <strong>{formatPrice(item.line_total)}</strong>
+              </div>
+            ))}
+            <div className="total"><span>{t('common.total')}</span><strong>{formatPrice(order.total)}</strong></div>
+          </section>
+          <aside className="contact-card">
+            <h2>{t('order.contactDetails')}</h2>
+            <p><strong>{order.contact_name}</strong><br />{order.contact_email}{order.phone && <><br />{order.phone}</>}</p>
+            <div className="demo-note">{t('order.demoNote')}</div>
+          </aside>
         </div>
       </div>
       <style jsx>{`
