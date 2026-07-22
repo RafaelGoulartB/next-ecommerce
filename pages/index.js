@@ -8,7 +8,7 @@ export default function Index() {
       {process.env.NODE_ENV === 'production' && (
         <Warning message="This is not a real e-commerce, it is just a code exercise." />
       )}
-      <ProductSection />
+      <ProductSection showShowcase />
     </Page>
   );
 }

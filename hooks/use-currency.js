@@ -1,6 +1,12 @@
 import { createContext, useContext, useEffect, useMemo, useState } from 'react';
 
-const CurrencyContext = createContext(null);
+// Next.js can evaluate this module in separate server bundles (the custom App
+// and the current page). Keep the context shared between those module copies.
+const CURRENCY_CONTEXT_KEY = Symbol.for('quantum.currency.context');
+const globalScope = globalThis;
+const CurrencyContext =
+  globalScope[CURRENCY_CONTEXT_KEY] ||
+  (globalScope[CURRENCY_CONTEXT_KEY] = createContext(null));
 
 // Product and order values are stored in USD. This rate is only used for display.
 const USD_TO_EUR_RATE = 0.92;

@@ -11,7 +11,7 @@ import offlineProducts from '../db/offlineData/products';
 import LoadingPage from './loading-page';
 import EmptySection from './emptySection';
 
-export default function Products({ category }) {
+export default function Products({ category, viewMode = 'grid' }) {
   const sortQueryResult = useQuery(SORT_PRODUCT_SECTION);
   const searchQueryResult = useQuery(SEARCH_PRODUCT_SECTION);
   const categoryQueryResult = useQuery(CATEGORY_PRODUCT_SECTION);
@@ -56,7 +56,7 @@ export default function Products({ category }) {
     if (!products.length) return <EmptySection />;
 
     return (
-      <ProductsGrid>
+      <ProductsGrid viewMode={viewMode}>
         {products.map((product) => (
           <ProductItem
             key={product.id}
@@ -65,6 +65,7 @@ export default function Products({ category }) {
             rating={product.rating}
             img_url={product.img_url}
             price={product.price}
+            viewMode={viewMode}
           />
         ))}
       </ProductsGrid>
@@ -74,7 +75,7 @@ export default function Products({ category }) {
   if (!data.products.length) return <EmptySection />;
 
   return (
-    <ProductsGrid>
+    <ProductsGrid viewMode={viewMode}>
       {data.products.map((product) => (
         <ProductItem
           key={product.id}
@@ -83,6 +84,7 @@ export default function Products({ category }) {
           rating={product.rating}
           img_url={product.img_url}
           price={product.price}
+          viewMode={viewMode}
         />
       ))}
     </ProductsGrid>

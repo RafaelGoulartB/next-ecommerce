@@ -1,9 +1,11 @@
 import { sortProductSectionVar } from '../apollo/client/cache';
 import { useQuery } from '@apollo/client';
+import { FaTh, FaList } from 'react-icons/fa';
 import { SORT_PRODUCT_SECTION } from '../apollo/client/queries';
 
-export default function HeaderBarProducts() {
+export default function HeaderBarProducts({ viewMode = 'grid', onViewModeChange }) {
   const { data } = useQuery(SORT_PRODUCT_SECTION);
+  const currentSort = data?.sortProductSection || ['rating', 'DESC'];
 
   function handlePopularProductsClick() {
     sortProductSectionVar(['rating', 'DESC']);
@@ -21,8 +23,7 @@ export default function HeaderBarProducts() {
         <a
           id="popular-products"
           className={
-            data.sortProductSection[0] === 'rating' &&
-            data.sortProductSection[1] === 'DESC'
+            currentSort[0] === 'rating' && currentSort[1] === 'DESC'
               ? 'active'
               : ''
           }
@@ -33,8 +34,7 @@ export default function HeaderBarProducts() {
         <a
           id="low-price"
           className={
-            data.sortProductSection[0] === 'price' &&
-            data.sortProductSection[1] === 'ASC'
+            currentSort[0] === 'price' && currentSort[1] === 'ASC'
               ? 'active'
               : ''
           }
@@ -45,8 +45,7 @@ export default function HeaderBarProducts() {
         <a
           id="high-price"
           className={
-            data.sortProductSection[0] === 'price' &&
-            data.sortProductSection[1] === 'DESC'
+            currentSort[0] === 'price' && currentSort[1] === 'DESC'
               ? 'active'
               : ''
           }
@@ -54,6 +53,26 @@ export default function HeaderBarProducts() {
         >
           High price
         </a>
+      </div>
+      <div className="view-switcher" role="group" aria-label="View mode">
+        <button
+          type="button"
+          className={viewMode === 'grid' ? 'active' : ''}
+          onClick={() => onViewModeChange?.('grid')}
+          aria-label="Show products in grid"
+          aria-pressed={viewMode === 'grid'}
+        >
+          <FaTh size={13} />
+        </button>
+        <button
+          type="button"
+          className={viewMode === 'list' ? 'active' : ''}
+          onClick={() => onViewModeChange?.('list')}
+          aria-label="Show products in list"
+          aria-pressed={viewMode === 'list'}
+        >
+          <FaList size={13} />
+        </button>
       </div>
       <style jsx>{`
         .header {
@@ -88,12 +107,32 @@ export default function HeaderBarProducts() {
           color: #1875f0;
           border-bottom: 2px solid #1875f0;
         }
-        .header .sort-list a:hover {
-          cursor: pointer;
+        .header .sort-list a:hover { cursor: pointer; }
+        .view-switcher {
+          display: flex;
+          align-items: stretch;
+          align-self: stretch;
+          border-left: 1px solid #edf0f5;
         }
+        .view-switcher button {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 42px;
+          padding: 0;
+          border: 0;
+          background: transparent;
+          color: #b7c0cc;
+          cursor: pointer;
+          transition: color .2s, background .2s;
+        }
+        .view-switcher button + button { border-left: 1px solid #f1f3f7; }
+        .view-switcher button:hover,
+        .view-switcher button.active { color: var(--quantum-blue); background: #f7faff; }
+        .view-switcher button:focus-visible { outline: 2px solid var(--quantum-blue); outline-offset: -2px; }
         @media (max-width: 850px) {
           .header {
-            width: 80vw;
+            width: 100%;
             justify-content: center;
             align-items: center;
           }
@@ -108,6 +147,7 @@ export default function HeaderBarProducts() {
             font-size: 12px;
             margin-left: 0px;
           }
+          .view-switcher { display: none; }
         }
       `}</style>
     </div>

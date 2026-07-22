@@ -9,7 +9,7 @@ import StarRatings from 'react-star-ratings';
 import useShoppingState from '../hooks/use-shopping-state';
 import useCurrency from '../hooks/use-currency';
 
-export default function ProductSection({ id, name, rating, img_url, price }) {
+export default function ProductSection({ id, name, rating, img_url, price, viewMode = 'grid' }) {
   const {
     cartItems,
     wishlistIds,
@@ -22,61 +22,56 @@ export default function ProductSection({ id, name, rating, img_url, price }) {
   const isInWishlist = wishlistIds.includes(String(id));
 
   return (
-    <article>
+    <article className={viewMode === 'list' ? 'list-item' : ''}>
       <div className="top-buttons">
         <button
           className="add-wishlist"
           onClick={() => toggleWishlistItem(id)}
           aria-label={isInWishlist ? 'Remove from wishlist' : 'Add to wishlist'}
         >
-          {isInWishlist && (
-            <FaHeart size={18} color="#71869a" />
-          )}
-          {!isInWishlist && (
-            <FaRegHeart size={18} color="#71869a" />
-          )}
+          {isInWishlist && <FaHeart size={18} color="#71869a" />}
+          {!isInWishlist && <FaRegHeart size={18} color="#71869a" />}
         </button>
       </div>
 
       <div className="product-img-box">
         <Link href={`/product/${id}`}>
-            <img className="product-img" src={img_url} alt={name} />
+          <img className="product-img" src={img_url} alt={name} />
         </Link>
       </div>
 
-      <Link href={`/product/${id}`}>
-        <a className="product-name">{name}</a>
-      </Link>
+      <div className="product-copy">
+        <Link href={`/product/${id}`}>
+          <a className="product-name">{name}</a>
+        </Link>
 
-      <div className="rating">
-        <StarRatings
-          rating={parseFloat(rating)}
-          starRatedColor="#F9AD3D"
-          numberOfStars={5}
-          name="rating"
-          starDimension="20px"
-          starSpacing="1px"
-        />
-      </div>
+        <div className="rating">
+          <StarRatings
+            rating={parseFloat(rating)}
+            starRatedColor="#F9AD3D"
+            numberOfStars={5}
+            name="rating"
+            starDimension="20px"
+            starSpacing="1px"
+          />
+        </div>
 
-      <div className="price">
-        <p className="price-value">{formatPrice(price)}</p>
-        <button
-          className="add-cart"
-          onClick={() => toggleCartItem(id)}
-          aria-label={isInCart ? 'Remove from cart' : 'Add to cart'}
-        >
-          {isInCart && (
-            <FaCartArrowDown size={17} color="#71869a" />
-          )}
-          {!isInCart && (
-            <FaCartPlus size={17} color="#71869a" />
-          )}
-        </button>
+        <div className="price">
+          <p className="price-value">{formatPrice(price)}</p>
+          <button
+            className="add-cart"
+            onClick={() => toggleCartItem(id)}
+            aria-label={isInCart ? 'Remove from cart' : 'Add to cart'}
+          >
+            {isInCart && <FaCartArrowDown size={17} color="#71869a" />}
+            {!isInCart && <FaCartPlus size={17} color="#71869a" />}
+          </button>
+        </div>
       </div>
 
       <style jsx>{`
         article {
+          position: relative;
           display: flex;
           align-items: center;
           flex-direction: column;
@@ -105,9 +100,7 @@ export default function ProductSection({ id, name, rating, img_url, price }) {
           background: #f4f7fb;
           cursor: pointer;
         }
-        .top-buttons .add-wishlist:focus {
-          outline: none;
-        }
+        .top-buttons .add-wishlist:focus { outline: none; }
         .product-img-box {
           width: 100%;
           margin-bottom: 18px;
@@ -120,6 +113,13 @@ export default function ProductSection({ id, name, rating, img_url, price }) {
           height: 170px;
           object-fit: contain;
         }
+        .product-copy {
+          display: flex;
+          flex: 1;
+          width: 100%;
+          align-items: center;
+          flex-direction: column;
+        }
         .product-name {
           width: 80%;
           line-height: 20px;
@@ -130,13 +130,8 @@ export default function ProductSection({ id, name, rating, img_url, price }) {
           color: var(--quantum-ink);
           margin-bottom: 18px;
         }
-        .product-name:hover {
-          text-decoration: underline;
-          font-weight: 600;
-        }
-        .rating {
-          margin-bottom: 18px;
-        }
+        .product-name:hover { text-decoration: underline; font-weight: 600; }
+        .rating { margin-bottom: 18px; }
         .price {
           display: flex;
           align-items: center;
@@ -156,8 +151,50 @@ export default function ProductSection({ id, name, rating, img_url, price }) {
           background: #f0f4f8;
           cursor: pointer;
         }
-        .price .add-cart:focus {
-          outline: none;
+        .price .add-cart:focus { outline: none; }
+        article.list-item {
+          flex-direction: row;
+          align-items: center;
+          min-height: 192px;
+          padding: 16px 22px 16px 16px;
+        }
+        article.list-item:hover { transform: translateY(-2px); }
+        article.list-item .top-buttons {
+          position: absolute;
+          top: 14px;
+          right: 14px;
+          margin: 0;
+        }
+        article.list-item .product-img-box {
+          flex: 0 0 190px;
+          width: 190px;
+          margin: 0 28px 0 0;
+        }
+        article.list-item .product-img { height: 158px; }
+        article.list-item .product-copy {
+          align-items: flex-start;
+          padding-right: 48px;
+        }
+        article.list-item .product-name {
+          width: 100%;
+          margin-bottom: 14px;
+          text-align: left;
+          font-size: 16px;
+        }
+        article.list-item .rating { margin-bottom: 14px; }
+        article.list-item .price { font-size: 18px; }
+        @media (max-width: 560px) {
+          article.list-item {
+            align-items: flex-start;
+            flex-direction: column;
+          }
+          article.list-item .product-img-box {
+            flex-basis: auto;
+            width: 100%;
+            margin: 0 0 18px;
+          }
+          article.list-item .product-img { height: 170px; }
+          article.list-item .product-copy { padding-right: 0; }
         }
       `}</style>
     </article>
