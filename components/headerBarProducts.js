@@ -85,8 +85,8 @@ export default function HeaderBarProducts() {
           color: #9da6b3;
         }
         .header .sort-list a.active {
-          color: var(--quantum-ink);
-          border-bottom: 2px solid #91a5b8;
+          color: #1875f0;
+          border-bottom: 2px solid #1875f0;
         }
         .header .sort-list a:hover {
           cursor: pointer;
