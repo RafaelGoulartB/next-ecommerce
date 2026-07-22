@@ -20,20 +20,23 @@ export default function Home() {
 
   const { data, loading, error } = useQuery(PRODUCTS_BY_IDS, {
     variables: {
-      id,
+      id: typeof id === 'string' ? [id] : [],
     },
+    skip: !router.isReady || typeof id !== 'string',
   });
 
-  if ((error || !data?.productsById.length) && !loading) {
-    return (
-      <Page title="Quantum E-commerce - Products">
-        <ErrorAlert message="This product is not found!"></ErrorAlert>
-      </Page>
-    );
-  } else if (loading) {
+  if (!router.isReady || loading) {
     return (
       <Page title="Quantum E-commerce - Products">
         <p>Loading...</p>
+      </Page>
+    );
+  }
+
+  if (error || !data?.productsById?.length) {
+    return (
+      <Page title="Quantum E-commerce - Products">
+        <ErrorAlert message="This product is not found!"></ErrorAlert>
       </Page>
     );
   }

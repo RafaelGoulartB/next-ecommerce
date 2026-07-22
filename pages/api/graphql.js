@@ -9,9 +9,3 @@ const handler = startServerAndCreateNextHandler(server, {
 });
 
 export default handler;
-
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
