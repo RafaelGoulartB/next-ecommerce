@@ -13,15 +13,17 @@ import { CART, WISHLIST } from '../apollo/client/queries';
 export default function ProductSection({ id, name, rating, img_url, price }) {
   const cart = useQuery(CART);
   const wishlist = useQuery(WISHLIST);
+  const cartProducts = cart.data?.cart?.products || [];
+  const wishlistProducts = wishlist.data?.wishlist?.products || [];
 
   return (
     <article>
       <div className="top-buttons">
         <button className="add-wishlist" onClick={() => toggleWishlist(id)}>
-          {wishlist.data.wishlist.products.includes(id) && (
+          {wishlistProducts.includes(id) && (
             <FaHeart size={20} color="#D8D8D8" />
           )}
-          {!wishlist.data.wishlist.products.includes(id) && (
+          {!wishlistProducts.includes(id) && (
             <FaRegHeart size={20} color="#D8D8D8" />
           )}
         </button>
@@ -51,10 +53,10 @@ export default function ProductSection({ id, name, rating, img_url, price }) {
       <div className="price">
         <p className="price-value">${price}</p>
         <button className="add-cart" onClick={() => toggleCart(id)}>
-          {cart.data.cart.products.includes(id) && (
+          {cartProducts.includes(id) && (
             <FaCartArrowDown size={18} color="#D8D8D8" />
           )}
-          {!cart.data.cart.products.includes(id) && (
+          {!cartProducts.includes(id) && (
             <FaCartPlus size={18} color="#D8D8D8" />
           )}
         </button>

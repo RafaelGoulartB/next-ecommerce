@@ -17,6 +17,28 @@ export const typeDefs = gql`
     createdAt: Int
     updatedAt: Int
     user_id: ID!
+    categories: [Category!]!
+    reviews: [Review!]!
+    reviewSummary: ReviewSummary!
+    relatedProducts: [Product!]!
+  }
+  type Review {
+    id: ID!
+    author_name: String!
+    rating: Int!
+    title: String!
+    comment: String!
+    verified_purchase: Boolean!
+    created_at: String!
+  }
+  type ReviewRatingCount {
+    rating: Int!
+    count: Int!
+  }
+  type ReviewSummary {
+    average: Float!
+    total: Int!
+    distribution: [ReviewRatingCount!]!
   }
   type Category {
     id: ID!

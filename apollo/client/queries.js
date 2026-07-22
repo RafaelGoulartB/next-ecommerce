@@ -82,6 +82,48 @@ export const PRODUCTS_BY_IDS = gql`
   }
 `;
 
+export const PRODUCT_DETAILS = gql`
+  query ProductDetails($id: ID!) {
+    product(id: $id) {
+      id
+      name
+      description
+      img_url
+      price
+      rating
+      categories {
+        id
+        name
+        label
+      }
+      reviewSummary {
+        average
+        total
+        distribution {
+          rating
+          count
+        }
+      }
+      reviews {
+        id
+        author_name
+        rating
+        title
+        comment
+        verified_purchase
+        created_at
+      }
+      relatedProducts {
+        id
+        name
+        img_url
+        price
+        rating
+      }
+    }
+  }
+`;
+
 export const PRODUCTS_BY_IDS_PRICE = gql`
   query productsByIds($id: [ID]!) {
     productsById(id: $id) {

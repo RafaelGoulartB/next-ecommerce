@@ -4,11 +4,14 @@ import { listCategories } from '../lib/category';
 import {
   listProducts,
   findProduct,
+  findProductCategories,
+  findRelatedProducts,
   CreateProduct,
   DeleteProduct,
   UpdateProduct,
   findProductsById,
 } from '../lib/product';
+import { getReviewSummary, listReviewsByProduct } from '../lib/review';
 import { setLoginSession, getLoginSession } from '../lib/auth';
 import { removeTokenCookie } from '../lib/auth-cookies';
 
@@ -49,7 +52,7 @@ export const resolvers = {
     },
     async product(_parent, args, _context, _info) {
       try {
-        return findProduct({ id: args.id });
+        return await findProduct({ id: args.id });
       } catch (error) {
         throw new Error('It is not possible list product');
       }
@@ -60,6 +63,20 @@ export const resolvers = {
       } catch (error) {
         throw new Error('It is not possible list categories');
       }
+    },
+  },
+  Product: {
+    async categories(product) {
+      return findProductCategories({ productId: product.id });
+    },
+    async reviews(product) {
+      return listReviewsByProduct({ productId: product.id });
+    },
+    async reviewSummary(product) {
+      return getReviewSummary({ productId: product.id });
+    },
+    async relatedProducts(product) {
+      return findRelatedProducts({ productId: product.id });
     },
   },
   Mutation: {
