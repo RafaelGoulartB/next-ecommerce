@@ -1,4 +1,4 @@
-import { gql } from 'apollo-server-micro';
+import gql from 'graphql-tag';
 
 export const typeDefs = gql`
   type User {

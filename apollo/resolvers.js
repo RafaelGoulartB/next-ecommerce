@@ -1,4 +1,4 @@
-import { AuthenticationError, UserInputError } from 'apollo-server-micro';
+import { GraphQLError } from 'graphql';
 import { createUser, findUser, validatePassword } from '../lib/user';
 import { listCategories } from '../lib/category';
 import {
@@ -22,22 +22,19 @@ export const resolvers = {
           return findUser({ email: session.email });
         }
       } catch (error) {
-        throw new AuthenticationError(
-          'Authentication token is invalid, please log in'
+        throw new GraphQLError(
+          'Authentication token is invalid, please log in',
+          { extensions: { code: 'UNAUTHENTICATED' } }
         );
       }
     },
     async products(_parent, args, _context, _info) {
       try {
-        // Sort + Category
         if (args.sort && args.category)
           return listProducts({ sort: args.sort, category: args.category });
-        // Sort
         else if (args.sort) return listProducts({ sort: args.sort });
-        // Category
         else if (args.category)
           return listProducts({ category: args.category });
-        // Default
         return listProducts({ sort: false, category: false });
       } catch (error) {
         throw new Error('It is not possible list products');
@@ -70,7 +67,9 @@ export const resolvers = {
       const userExist = await findUser({ email: args.input.email });
 
       if (userExist)
-        throw new UserInputError('email is already in use, try to login');
+        throw new GraphQLError('email is already in use, try to login', {
+          extensions: { code: 'BAD_USER_INPUT' },
+        });
 
       const user = await createUser(args.input);
       return { user };
@@ -89,7 +88,9 @@ export const resolvers = {
         return { user };
       }
 
-      throw new UserInputError('Invalid email and password combination');
+      throw new GraphQLError('Invalid email and password combination', {
+        extensions: { code: 'BAD_USER_INPUT' },
+      });
     },
     async signOut(_parent, _args, context, _info) {
       removeTokenCookie(context.res);
