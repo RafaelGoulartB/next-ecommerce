@@ -32,7 +32,7 @@
     "validator": "^13.15.35"
   },
   "devDependencies": {
-    "eslint": "^7.1.0",
+    "eslint": "^10.8.1",
     "eslint-plugin-react": "^7.20.0"
   }
 }
